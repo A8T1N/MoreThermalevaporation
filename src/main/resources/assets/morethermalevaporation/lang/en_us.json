@@ -1,0 +1,6 @@
+{
+  "block.morethermalevaporation.basic_thermal_evaporation_block": "Basic Thermal Evaporation Block",
+  "block.morethermalevaporation.basic_thermal_evaporation_controller": "Basic Thermal Evaporation Controller",
+  "block.morethermalevaporation.basic_thermal_evaporation_valve": "Basic Thermal Evaporation Valve",
+  "creativetab.morethermalevaporation.tab": "More Thermal Evaporation"
+}

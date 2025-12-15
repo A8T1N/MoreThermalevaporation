@@ -1,6 +1,6 @@
 package morethermalevaporation.common.registries;
 
-import morethermalevaporation.MoreThermalevaporation;
+import morethermalevaporation.MoreThermalEvaporation;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
@@ -12,7 +12,7 @@ import net.minecraftforge.registries.RegistryObject;
 public class MoreThermalEvaporationCreativeTabs {
 
     public static final DeferredRegister<CreativeModeTab> CREATIVE_TABS =
-            DeferredRegister.create(Registries.CREATIVE_MODE_TAB, MoreThermalevaporation.MODID);
+            DeferredRegister.create(Registries.CREATIVE_MODE_TAB, MoreThermalEvaporation.MODID);
 
     public static final RegistryObject<CreativeModeTab> TAB_MORE_THERMAL_EVAPORATION = CREATIVE_TABS.register("tab_more_thermal_evaporation", () ->
             CreativeModeTab.builder()

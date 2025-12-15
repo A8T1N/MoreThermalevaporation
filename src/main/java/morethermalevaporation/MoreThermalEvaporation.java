@@ -13,14 +13,14 @@ import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
-@Mod(MoreThermalevaporation.MODID)
-public class MoreThermalevaporation {
+@Mod(MoreThermalEvaporation.MODID)
+public class MoreThermalEvaporation {
 
     public static final String MODID = "morethermalevaporation";
 
     public static final MultiblockManager<BasicThermalEvaporationMultiblockData> moreThermalEvaporationManager = new MultiblockManager<>("moreThermalEvaporation", MultiblockCache::new, BasicThermalEvaporationValidator::new);
 
-    public MoreThermalevaporation() {
+    public MoreThermalEvaporation() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
         MoreThermalEvaporationBlocks.BLOCKS.register(modEventBus);

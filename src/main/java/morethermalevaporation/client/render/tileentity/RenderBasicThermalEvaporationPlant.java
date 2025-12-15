@@ -28,14 +28,14 @@ public class RenderBasicThermalEvaporationPlant extends MultiblockTileEntityRend
         VertexConsumer buffer = renderer.getBuffer(Sheets.translucentCullBlockSheet());
         FluidRenderData data = RenderData.Builder.create(multiblock.inputTank.getFluid())
                 .of(multiblock)
-                .height(multiblock.height() - 1)
+                .height(multiblock.height() - 2)    // TODO なぜか液体の描画が1ブロック分多い
                 .build();
         renderObject(data, multiblock.valves, tile.getBlockPos(), matrix, buffer, overlayLight, Math.min(1, multiblock.prevScale));
     }
 
     @Override
     protected String getProfilerSection() {
-        return ProfilerConstants.THERMAL_EVAPORATION_CONTROLLER;
+        return "BasicThermalEvaporationController";
     }
 
     @Override

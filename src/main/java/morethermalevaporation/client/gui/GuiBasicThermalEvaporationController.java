@@ -45,7 +45,9 @@ public class GuiBasicThermalEvaporationController extends GuiMekanismTile<TileEn
             return List.of(MekanismLang.MULTIBLOCK_FORMED.translate(), MekanismLang.EVAPORATION_HEIGHT.translate(multiblock.height()),
                     MekanismLang.TEMPERATURE.translate(MekanismUtils.getTemperatureDisplay(multiblock.getTemperature(), TemperatureUnit.KELVIN, true)),
                     MekanismLang.FLUID_PRODUCTION.translate(Math.round(multiblock.lastGain * 100D) / 100D));
-        }).spacing(1).jeiCategory(tile));
+        }).spacing(1)
+//                .jeiCategory(tile) // TODO JEIのクラッシュを修正
+        );
         addRenderableWidget(new GuiDownArrow(this, 32, 39));
         addRenderableWidget(new GuiDownArrow(this, 136, 39));
         addRenderableWidget(new GuiHorizontalRateBar(this, new IBarInfoHandler() {

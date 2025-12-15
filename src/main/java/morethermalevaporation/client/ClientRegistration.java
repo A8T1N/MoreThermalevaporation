@@ -1,7 +1,7 @@
 package morethermalevaporation.client;
 
 import mekanism.client.ClientRegistrationUtil;
-import morethermalevaporation.MoreThermalevaporation;
+import morethermalevaporation.MoreThermalEvaporation;
 import morethermalevaporation.client.gui.GuiBasicThermalEvaporationController;
 import morethermalevaporation.client.render.tileentity.RenderBasicThermalEvaporationPlant;
 import morethermalevaporation.common.registries.MoreThermalEvaporationContainerTypes;
@@ -14,7 +14,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.RegisterEvent;
 
-@Mod.EventBusSubscriber(modid = MoreThermalevaporation.MODID, value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.MOD)
+@Mod.EventBusSubscriber(modid = MoreThermalEvaporation.MODID, value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ClientRegistration {
 
     @SubscribeEvent

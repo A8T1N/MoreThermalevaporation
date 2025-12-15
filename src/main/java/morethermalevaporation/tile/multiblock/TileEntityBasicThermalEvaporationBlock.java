@@ -4,7 +4,7 @@ import mekanism.api.providers.IBlockProvider;
 import mekanism.common.lib.multiblock.MultiblockManager;
 import mekanism.common.tile.prefab.TileEntityMultiblock;
 import mekanism.common.util.WorldUtils;
-import morethermalevaporation.MoreThermalevaporation;
+import morethermalevaporation.MoreThermalEvaporation;
 import morethermalevaporation.common.evaporation.BasicThermalEvaporationMultiblockData;
 import morethermalevaporation.common.registries.MoreThermalEvaporationBlocks;
 import net.minecraft.core.BlockPos;
@@ -41,7 +41,7 @@ public class TileEntityBasicThermalEvaporationBlock extends TileEntityMultiblock
 
     @Override
     public MultiblockManager<BasicThermalEvaporationMultiblockData> getManager() {
-        return MoreThermalevaporation.moreThermalEvaporationManager;
+        return MoreThermalEvaporation.moreThermalEvaporationManager;
     }
 
     @Override

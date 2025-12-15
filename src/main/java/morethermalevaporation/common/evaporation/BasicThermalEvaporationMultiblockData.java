@@ -59,7 +59,7 @@ import java.util.function.BooleanSupplier;
 public class BasicThermalEvaporationMultiblockData extends MultiblockData implements IValveHandler, FluidRecipeLookupHandler<FluidToFluidRecipe> {
 
     public static final int MAX_HEIGHT = 18;
-    public static final double MAX_MULTIPLIER_TEMP = 3_000;
+    public static final double MAX_MULTIPLIER_TEMP = 6_000;
     private static final List<RecipeError> TRACKED_ERROR_TYPES = List.of(
             RecipeError.NOT_ENOUGH_INPUT,
             RecipeError.NOT_ENOUGH_OUTPUT_SPACE,
@@ -104,7 +104,6 @@ public class BasicThermalEvaporationMultiblockData extends MultiblockData implem
         super(tile);
         recipeCacheLookupMonitor = new RecipeCacheLookupMonitor<>(this);
         recheckAllRecipeErrors = TileEntityRecipeMachine.shouldRecheckAllErrors(tile);
-        //Default biome temp to the ambient temperature at the block we are at
         biomeAmbientTemp = HeatAPI.getAmbientTemp(tile.getLevel(), tile.getTilePos());
         fluidTanks.add(inputTank = VariableCapacityFluidTank.input(this, this::getMaxFluid, this::containsRecipe, createSaveAndComparator(recipeCacheLookupMonitor)));
         fluidTanks.add(outputTank = VariableCapacityFluidTank.output(this, MekanismConfig.general.evaporationOutputTankCapacity, BasicFluidTank.alwaysTrue, this));
@@ -135,8 +134,6 @@ public class BasicThermalEvaporationMultiblockData extends MultiblockData implem
         lastEnvironmentLoss = simulateEnvironment();
         // update temperature
         updateHeatCapacitors(null);
-        //After we update the heat capacitors, update our temperature multiplier
-        // Note: We use the ambient temperature without taking our biome into account as we want to have a consistent multiplier
         tempMultiplier = (Math.min(MAX_MULTIPLIER_TEMP, getTemperature()) - HeatAPI.AMBIENT_TEMP) * MekanismConfig.general.evaporationTempMultiplier.get() *
                 ((double) height() / MAX_HEIGHT);
         inputOutputSlot.drainTank(outputOutputSlot);
@@ -248,7 +245,6 @@ public class BasicThermalEvaporationMultiblockData extends MultiblockData implem
     public boolean hasWarning(RecipeError error) {
         int errorIndex = TRACKED_ERROR_TYPES.indexOf(error);
         if (errorIndex == -1) {
-            //Something went wrong
             return false;
         }
         return trackedErrors[errorIndex];
@@ -271,7 +267,6 @@ public class BasicThermalEvaporationMultiblockData extends MultiblockData implem
     }
 
     private void updateSolarSpot(Level world, BlockPos pos, int corner) {
-        //If we have the corner cached remove it
         cachedSolar.remove(corner);
         BlockEntity tile = WorldUtils.getTileEntity(world, pos);
         if (tile != null && !tile.isRemoved()) {
@@ -285,15 +280,12 @@ public class BasicThermalEvaporationMultiblockData extends MultiblockData implem
 
     public void updateSolarSpot(Level world, BlockPos pos) {
         BlockPos maxPos = getMaxPos();
-        //Validate it is actually one of the spots solar panels can go
         if (pos.getY() == maxPos.getY() && getBounds().isOnCorner(pos)) {
             int i = 0;
             if (pos.getX() + 3 == maxPos.getX()) {
-                //If we are westwards our index goes up by one
                 i++;
             }
             if (pos.getZ() + 3 == maxPos.getZ()) {
-                //If we are northwards it goes up by two
                 i += 2;
             }
             updateSolarSpot(world, pos, i);
@@ -315,15 +307,11 @@ public class BasicThermalEvaporationMultiblockData extends MultiblockData implem
 
     @Override
     public void remove(Level world) {
-        //Clear the cached solar panels so that we don't hold references to them and prevent them from being able to be garbage collected
         cachedSolar.clear();
         super.remove(world);
     }
 
     private static class RefreshListener implements NonNullConsumer<LazyOptional<IEvaporationSolar>> {
-
-        //Note: We only keep a weak reference to the multiblock from inside the listener so that if it gets unformed it can be released from memory
-        // instead of being referenced by the listener still in the tile in a neighboring chunk
         private final WeakReference<BasicThermalEvaporationMultiblockData> multiblock;
         private final int corner;
 
@@ -335,7 +323,6 @@ public class BasicThermalEvaporationMultiblockData extends MultiblockData implem
         @Override
         public void accept(@NotNull LazyOptional<IEvaporationSolar> ignored) {
             BasicThermalEvaporationMultiblockData multiblockData = multiblock.get();
-            //Check to make sure the multiblock is still valid and that the position we are going to check is actually still loaded
             if (multiblockData != null && multiblockData.isFormed()) {
                 BlockPos maxPos = multiblockData.getMaxPos();
                 BlockPos pos = switch (corner) {
@@ -345,7 +332,6 @@ public class BasicThermalEvaporationMultiblockData extends MultiblockData implem
                     default -> maxPos;//Corner 0
                 };
                 if (WorldUtils.isBlockLoaded(multiblockData.getWorld(), pos)) {
-                    //Refresh the solar
                     multiblockData.updateSolarSpot(multiblockData.getWorld(), pos, corner);
                 }
             }

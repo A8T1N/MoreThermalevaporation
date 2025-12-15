@@ -24,7 +24,7 @@ import java.util.EnumSet;
 public class BasicThermalEvaporationValidator extends CuboidStructureValidator<BasicThermalEvaporationMultiblockData> {
 
     private static final VoxelCuboid MIN_CUBOID = new VoxelCuboid(4, 3, 4);
-    private static final VoxelCuboid MAX_CUBOID = new VoxelCuboid(4, 18, 4);
+    private static final VoxelCuboid MAX_CUBOID = new VoxelCuboid(4, 34, 4);
 
     private boolean foundController = false;
 
@@ -32,9 +32,6 @@ public class BasicThermalEvaporationValidator extends CuboidStructureValidator<B
     protected FormationResult validateFrame(FormationProtocol<BasicThermalEvaporationMultiblockData> ctx, BlockPos pos, BlockState state, CasingType type, boolean needsFrame) {
         boolean controller = structure.getTile(pos) instanceof TileEntityBasicThermalEvaporationController;
         if (foundController && controller) {
-            //Ensure we don't allow ignoring the failure as if there are multiple in the corners which are ignored spots
-            // it is possible then we will form with multiple controllers
-            System.out.println("[DEBUG] validateFrame " + pos + " " + state.getBlock());
             return FormationResult.fail(MekanismLang.MULTIBLOCK_INVALID_CONTROLLER_CONFLICT, pos, true);
         }
         foundController |= controller;
@@ -72,13 +69,11 @@ public class BasicThermalEvaporationValidator extends CuboidStructureValidator<B
     @Override
     public boolean precheck() {
         cuboid = StructureHelper.fetchCuboid(structure, MIN_CUBOID, MAX_CUBOID, EnumSet.complementOf(EnumSet.of(CuboidSide.TOP)), 8);
-        System.out.println("[DEBUG] precheck cuboid = " + cuboid);
         return cuboid != null;
     }
 
     @Override
     public FormationResult postcheck(BasicThermalEvaporationMultiblockData structure, Long2ObjectMap<ChunkAccess> chunkMap) {
-        System.out.println("[DEBUG] postcheck foundController=" + foundController);
         if (!foundController) {
             return FormationResult.fail(MekanismLang.MULTIBLOCK_INVALID_NO_CONTROLLER);
         }

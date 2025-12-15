@@ -155,6 +155,7 @@ dependencies {
     runtimeOnly fg.deobf("curse.maven:mekanism-generators-268566:6552914")
     runtimeOnly fg.deobf("curse.maven:mekanism-tools-268567:6552915")
     runtimeOnly fg.deobf("mezz.jei:jei-1.20.1-forge:15.3.0.4")
+    runtimeOnly fg.deobf("curse.maven:construction-wand-399558:4684054")
 }
 
 // This block of code expands all declared replace properties in the specified resource targets.

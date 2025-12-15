@@ -3,13 +3,13 @@ package morethermalevaporation.common.registries;
 import mekanism.common.registration.impl.TileEntityTypeDeferredRegister;
 import mekanism.common.registration.impl.TileEntityTypeRegistryObject;
 import mekanism.common.tile.base.TileEntityMekanism;
-import morethermalevaporation.MoreThermalevaporation;
+import morethermalevaporation.MoreThermalEvaporation;
 import morethermalevaporation.tile.multiblock.TileEntityBasicThermalEvaporationBlock;
 import morethermalevaporation.tile.multiblock.TileEntityBasicThermalEvaporationController;
 import morethermalevaporation.tile.multiblock.TileEntityBasicThermalEvaporationValve;
 
 public class MoreThermalEvaporationTileEntityTypes {
-    public static final TileEntityTypeDeferredRegister TILE_ENTITY_TYPES = new TileEntityTypeDeferredRegister(MoreThermalevaporation.MODID);
+    public static final TileEntityTypeDeferredRegister TILE_ENTITY_TYPES = new TileEntityTypeDeferredRegister(MoreThermalEvaporation.MODID);
 
     // Basic
     // Block
