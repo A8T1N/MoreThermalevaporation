@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "V": {
+      "item": "morethermalevaporation:elite_thermal_evaporation_valve"
+    },
+    "#": {
+      "item": "morethermalevaporation:ultimate_thermal_evaporation_block"
+    }
+  },
+  "pattern": [
+    " # ",
+    "#V#",
+    " # "
+  ],
+  "result": {
+    "item": "morethermalevaporation:ultimate_thermal_evaporation_valve",
+    "count": 1
+  }
+}

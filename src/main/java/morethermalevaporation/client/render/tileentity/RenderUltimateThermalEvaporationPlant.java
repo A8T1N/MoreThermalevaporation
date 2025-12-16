@@ -6,8 +6,8 @@ import mekanism.api.annotations.NothingNullByDefault;
 import mekanism.client.render.data.FluidRenderData;
 import mekanism.client.render.data.RenderData;
 import mekanism.client.render.tileentity.MultiblockTileEntityRenderer;
-import morethermalevaporation.common.evaporation.BasicThermalEvaporationMultiblockData;
-import morethermalevaporation.tile.multiblock.TileEntityBasicThermalEvaporationController;
+import morethermalevaporation.common.evaporation.UltimateThermalEvaporationMultiblockData;
+import morethermalevaporation.tile.multiblock.TileEntityUltimateThermalEvaporationController;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.Sheets;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
@@ -15,14 +15,14 @@ import net.minecraft.util.profiling.ProfilerFiller;
 import net.minecraft.world.phys.Vec3;
 
 @NothingNullByDefault
-public class RenderBasicThermalEvaporationPlant extends MultiblockTileEntityRenderer<BasicThermalEvaporationMultiblockData, TileEntityBasicThermalEvaporationController> {
+public class RenderUltimateThermalEvaporationPlant extends MultiblockTileEntityRenderer<UltimateThermalEvaporationMultiblockData, TileEntityUltimateThermalEvaporationController> {
 
-    public RenderBasicThermalEvaporationPlant(BlockEntityRendererProvider.Context context) {
+    public RenderUltimateThermalEvaporationPlant(BlockEntityRendererProvider.Context context) {
         super(context);
     }
 
     @Override
-    protected void render(TileEntityBasicThermalEvaporationController tile, BasicThermalEvaporationMultiblockData multiblock, float partialTick, PoseStack matrix, MultiBufferSource renderer,
+    protected void render(TileEntityUltimateThermalEvaporationController tile, UltimateThermalEvaporationMultiblockData multiblock, float partialTick, PoseStack matrix, MultiBufferSource renderer,
                           int light, int overlayLight, ProfilerFiller profiler) {
         VertexConsumer buffer = renderer.getBuffer(Sheets.translucentCullBlockSheet());
         FluidRenderData data = RenderData.Builder.create(multiblock.inputTank.getFluid())
@@ -34,11 +34,11 @@ public class RenderBasicThermalEvaporationPlant extends MultiblockTileEntityRend
 
     @Override
     protected String getProfilerSection() {
-        return "BasicThermalEvaporationController";
+        return "UltimateThermalEvaporationController";
     }
 
     @Override
-    protected boolean shouldRender(TileEntityBasicThermalEvaporationController tile, BasicThermalEvaporationMultiblockData multiblock, Vec3 camera) {
+    protected boolean shouldRender(TileEntityUltimateThermalEvaporationController tile, UltimateThermalEvaporationMultiblockData multiblock, Vec3 camera) {
         return super.shouldRender(tile, multiblock, camera) && !multiblock.inputTank.isEmpty();
     }
 }

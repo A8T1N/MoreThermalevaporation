@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "C": {
+      "tag": "forge:circuits/advanced"
+    },
+    "G": {
+      "tag": "forge:glass_panes"
+    },
+    "#": {
+      "item": "morethermalevaporation:advanced_thermal_evaporation_block"
+    },
+    "T": {
+      "item": "morethermalevaporation:basic_thermal_evaporation_controller"
+    }
+  },
+  "pattern": [
+    "CGC",
+    "#T#",
+    "###"
+  ],
+  "result": {
+    "item": "morethermalevaporation:advanced_thermal_evaporation_controller",
+    "count": 1
+  }
+}

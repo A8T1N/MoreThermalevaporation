@@ -5,20 +5,20 @@ import mekanism.common.lib.multiblock.MultiblockManager;
 import mekanism.common.tile.prefab.TileEntityMultiblock;
 import mekanism.common.util.WorldUtils;
 import morethermalevaporation.MoreThermalEvaporation;
-import morethermalevaporation.common.evaporation.BasicThermalEvaporationMultiblockData;
+import morethermalevaporation.common.evaporation.UltimateThermalEvaporationMultiblockData;
 import morethermalevaporation.common.registries.MoreThermalEvaporationBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 
-public class TileEntityBasicThermalEvaporationBlock extends TileEntityMultiblock<BasicThermalEvaporationMultiblockData> {
+public class TileEntityUltimateThermalEvaporationBlock extends TileEntityMultiblock<UltimateThermalEvaporationMultiblockData> {
 
-    public TileEntityBasicThermalEvaporationBlock(BlockPos pos, BlockState state) {
-        this(MoreThermalEvaporationBlocks.BASIC_THERMAL_EVAPORATION_BLOCK, pos, state);
+    public TileEntityUltimateThermalEvaporationBlock(BlockPos pos, BlockState state) {
+        this(MoreThermalEvaporationBlocks.ULTIMATE_THERMAL_EVAPORATION_BLOCK, pos, state);
     }
 
-    public TileEntityBasicThermalEvaporationBlock(IBlockProvider provider, BlockPos pos, BlockState state) {
+    public TileEntityUltimateThermalEvaporationBlock(IBlockProvider provider, BlockPos pos, BlockState state) {
         super(provider, pos, state);
     }
 
@@ -26,7 +26,7 @@ public class TileEntityBasicThermalEvaporationBlock extends TileEntityMultiblock
     public void onNeighborChange(Block block, BlockPos neighborPos) {
         super.onNeighborChange(block, neighborPos);
         if (!isRemote() && WorldUtils.sideDifference(worldPosition, neighborPos) == Direction.DOWN) {
-            BasicThermalEvaporationMultiblockData multiblock = getMultiblock();
+            UltimateThermalEvaporationMultiblockData multiblock = getMultiblock();
             if (multiblock.isFormed()) {
                 multiblock.updateSolarSpot(getLevel(), neighborPos);
             }
@@ -34,13 +34,13 @@ public class TileEntityBasicThermalEvaporationBlock extends TileEntityMultiblock
     }
 
     @Override
-    public BasicThermalEvaporationMultiblockData createMultiblock() {
-        return new BasicThermalEvaporationMultiblockData(this);
+    public UltimateThermalEvaporationMultiblockData createMultiblock() {
+        return new UltimateThermalEvaporationMultiblockData(this);
     }
 
     @Override
-    public MultiblockManager<BasicThermalEvaporationMultiblockData> getManager() {
-        return MoreThermalEvaporation.BasicThermalEvaporationManager;
+    public MultiblockManager<UltimateThermalEvaporationMultiblockData> getManager() {
+        return MoreThermalEvaporation.UltimateThermalEvaporationManager;
     }
 
     @Override

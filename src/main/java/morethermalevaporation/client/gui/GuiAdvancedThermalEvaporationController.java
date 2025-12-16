@@ -16,8 +16,8 @@ import mekanism.common.inventory.warning.IWarningTracker;
 import mekanism.common.inventory.warning.WarningTracker.WarningType;
 import mekanism.common.util.MekanismUtils;
 import mekanism.common.util.UnitDisplayUtils.TemperatureUnit;
-import morethermalevaporation.common.evaporation.BasicThermalEvaporationMultiblockData;
-import morethermalevaporation.tile.multiblock.TileEntityBasicThermalEvaporationController;
+import morethermalevaporation.common.evaporation.AdvancedThermalEvaporationMultiblockData;
+import morethermalevaporation.tile.multiblock.TileEntityAdvancedThermalEvaporationController;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Inventory;
@@ -27,9 +27,9 @@ import java.util.Collections;
 import java.util.List;
 import java.util.function.BooleanSupplier;
 
-public class GuiBasicThermalEvaporationController extends GuiMekanismTile<TileEntityBasicThermalEvaporationController, MekanismTileContainer<TileEntityBasicThermalEvaporationController>> {
+public class GuiAdvancedThermalEvaporationController extends GuiMekanismTile<TileEntityAdvancedThermalEvaporationController, MekanismTileContainer<TileEntityAdvancedThermalEvaporationController>> {
 
-    public GuiBasicThermalEvaporationController(MekanismTileContainer<TileEntityBasicThermalEvaporationController> container, Inventory inv, Component title) {
+    public GuiAdvancedThermalEvaporationController(MekanismTileContainer<TileEntityAdvancedThermalEvaporationController> container, Inventory inv, Component title) {
         super(container, inv, title);
         inventoryLabelY += 2;
         titleLabelY = 4;
@@ -40,7 +40,7 @@ public class GuiBasicThermalEvaporationController extends GuiMekanismTile<TileEn
     protected void addGuiElements() {
         super.addGuiElements();
         addRenderableWidget(new GuiInnerScreen(this, 48, 19, 80, 40, () -> {
-                    BasicThermalEvaporationMultiblockData multiblock = tile.getMultiblock();
+                    AdvancedThermalEvaporationMultiblockData multiblock = tile.getMultiblock();
                     return List.of(MekanismLang.MULTIBLOCK_FORMED.translate(), MekanismLang.EVAPORATION_HEIGHT.translate(multiblock.height()),
                             MekanismLang.TEMPERATURE.translate(MekanismUtils.getTemperatureDisplay(multiblock.getTemperature(), TemperatureUnit.KELVIN, true)),
                             MekanismLang.FLUID_PRODUCTION.translate(Math.round(multiblock.lastGain * 100D) / 100D));
@@ -57,7 +57,7 @@ public class GuiBasicThermalEvaporationController extends GuiMekanismTile<TileEn
 
             @Override
             public double getLevel() {
-                return Math.min(1, tile.getMultiblock().getTemperature() / BasicThermalEvaporationMultiblockData.MAX_MULTIPLIER_TEMP);
+                return Math.min(1, tile.getMultiblock().getTemperature() / AdvancedThermalEvaporationMultiblockData.MAX_MULTIPLIER_TEMP);
             }
         }, 48, 63))
                 //Note: We just apply this warning to the bar as we don't have an arrow or anything here

@@ -39,7 +39,7 @@ import mekanism.common.util.CapabilityUtils;
 import mekanism.common.util.MekanismUtils;
 import mekanism.common.util.NBTUtils;
 import mekanism.common.util.WorldUtils;
-import morethermalevaporation.tile.multiblock.TileEntityBasicThermalEvaporationBlock;
+import morethermalevaporation.tile.multiblock.TileEntityUltimateThermalEvaporationBlock;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
@@ -56,10 +56,10 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.function.BooleanSupplier;
 
-public class BasicThermalEvaporationMultiblockData extends MultiblockData implements IValveHandler, FluidRecipeLookupHandler<FluidToFluidRecipe> {
+public class UltimateThermalEvaporationMultiblockData extends MultiblockData implements IValveHandler, FluidRecipeLookupHandler<FluidToFluidRecipe> {
 
     public static final int MAX_HEIGHT = 18;
-    public static final double MAX_MULTIPLIER_TEMP = 6_000;
+    public static final double MAX_MULTIPLIER_TEMP = 48_000;
     private static final List<RecipeError> TRACKED_ERROR_TYPES = List.of(
             RecipeError.NOT_ENOUGH_INPUT,
             RecipeError.NOT_ENOUGH_OUTPUT_SPACE,
@@ -100,7 +100,7 @@ public class BasicThermalEvaporationMultiblockData extends MultiblockData implem
     private double tempMultiplier;
     private int inputTankCapacity;
 
-    public BasicThermalEvaporationMultiblockData(TileEntityBasicThermalEvaporationBlock tile) {
+    public UltimateThermalEvaporationMultiblockData(TileEntityUltimateThermalEvaporationBlock tile) {
         super(tile);
         recipeCacheLookupMonitor = new RecipeCacheLookupMonitor<>(this);
         recheckAllRecipeErrors = TileEntityRecipeMachine.shouldRecheckAllErrors(tile);
@@ -312,17 +312,17 @@ public class BasicThermalEvaporationMultiblockData extends MultiblockData implem
     }
 
     private static class RefreshListener implements NonNullConsumer<LazyOptional<IEvaporationSolar>> {
-        private final WeakReference<BasicThermalEvaporationMultiblockData> multiblock;
+        private final WeakReference<UltimateThermalEvaporationMultiblockData> multiblock;
         private final int corner;
 
-        private RefreshListener(BasicThermalEvaporationMultiblockData multiblock, int corner) {
+        private RefreshListener(UltimateThermalEvaporationMultiblockData multiblock, int corner) {
             this.multiblock = new WeakReference<>(multiblock);
             this.corner = corner;
         }
 
         @Override
         public void accept(@NotNull LazyOptional<IEvaporationSolar> ignored) {
-            BasicThermalEvaporationMultiblockData multiblockData = multiblock.get();
+            UltimateThermalEvaporationMultiblockData multiblockData = multiblock.get();
             if (multiblockData != null && multiblockData.isFormed()) {
                 BlockPos maxPos = multiblockData.getMaxPos();
                 BlockPos pos = switch (corner) {

@@ -22,6 +22,15 @@ public class MoreThermalEvaporationCreativeTabs {
                         output.accept(MoreThermalEvaporationBlocks.BASIC_THERMAL_EVAPORATION_BLOCK.getBlock());
                         output.accept(MoreThermalEvaporationBlocks.BASIC_THERMAL_EVAPORATION_VALVE.getBlock());
                         output.accept(MoreThermalEvaporationBlocks.BASIC_THERMAL_EVAPORATION_CONTROLLER.getBlock());
+                        output.accept(MoreThermalEvaporationBlocks.ADVANCED_THERMAL_EVAPORATION_BLOCK.getBlock());
+                        output.accept(MoreThermalEvaporationBlocks.ADVANCED_THERMAL_EVAPORATION_VALVE.getBlock());
+                        output.accept(MoreThermalEvaporationBlocks.ADVANCED_THERMAL_EVAPORATION_CONTROLLER.getBlock());
+                        output.accept(MoreThermalEvaporationBlocks.ELITE_THERMAL_EVAPORATION_BLOCK.getBlock());
+                        output.accept(MoreThermalEvaporationBlocks.ELITE_THERMAL_EVAPORATION_VALVE.getBlock());
+                        output.accept(MoreThermalEvaporationBlocks.ELITE_THERMAL_EVAPORATION_CONTROLLER.getBlock());
+                        output.accept(MoreThermalEvaporationBlocks.ULTIMATE_THERMAL_EVAPORATION_BLOCK.getBlock());
+                        output.accept(MoreThermalEvaporationBlocks.ULTIMATE_THERMAL_EVAPORATION_VALVE.getBlock());
+                        output.accept(MoreThermalEvaporationBlocks.ULTIMATE_THERMAL_EVAPORATION_CONTROLLER.getBlock());
 
                     })
                     .build()

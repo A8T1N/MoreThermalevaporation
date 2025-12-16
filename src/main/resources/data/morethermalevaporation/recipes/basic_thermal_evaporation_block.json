@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "A": {
+      "tag": "mekanism:alloys/basic"
+    },
+    "C": {
+      "tag": "forge:circuits/basic"
+    },
+    "#": {
+      "item": "mekanism:thermal_evaporation_block"
+    }
+  },
+  "pattern": [
+    "A#A",
+    "#C#",
+    "A#A"
+  ],
+  "result": {
+    "item": "morethermalevaporation:basic_thermal_evaporation_block",
+    "count": 4
+  }
+}

@@ -2,8 +2,7 @@ package morethermalevaporation;
 
 import mekanism.common.lib.multiblock.MultiblockCache;
 import mekanism.common.lib.multiblock.MultiblockManager;
-import morethermalevaporation.common.evaporation.BasicThermalEvaporationMultiblockData;
-import morethermalevaporation.common.evaporation.BasicThermalEvaporationValidator;
+import morethermalevaporation.common.evaporation.*;
 import morethermalevaporation.common.registries.MoreThermalEvaporationBlocks;
 import morethermalevaporation.common.registries.MoreThermalEvaporationContainerTypes;
 import morethermalevaporation.common.registries.MoreThermalEvaporationCreativeTabs;
@@ -18,7 +17,10 @@ public class MoreThermalEvaporation {
 
     public static final String MODID = "morethermalevaporation";
 
-    public static final MultiblockManager<BasicThermalEvaporationMultiblockData> moreThermalEvaporationManager = new MultiblockManager<>("moreThermalEvaporation", MultiblockCache::new, BasicThermalEvaporationValidator::new);
+    public static final MultiblockManager<BasicThermalEvaporationMultiblockData> BasicThermalEvaporationManager = new MultiblockManager<>("BasicThermalEvaporation", MultiblockCache::new, BasicThermalEvaporationValidator::new);
+    public static final MultiblockManager<AdvancedThermalEvaporationMultiblockData> AdvancedThermalEvaporationManager = new MultiblockManager<>("AdvancedThermalEvaporation", MultiblockCache::new, AdvancedThermalEvaporationValidator::new);
+    public static final MultiblockManager<EliteThermalEvaporationMultiblockData> EliteThermalEvaporationManager = new MultiblockManager<>("EliteThermalEvaporation", MultiblockCache::new, EliteThermalEvaporationValidator::new);
+    public static final MultiblockManager<UltimateThermalEvaporationMultiblockData> UltimateThermalEvaporationManager = new MultiblockManager<>("UltimateThermalEvaporation", MultiblockCache::new, UltimateThermalEvaporationValidator::new);
 
     public MoreThermalEvaporation() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
