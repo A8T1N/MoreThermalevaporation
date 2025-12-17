@@ -1,11 +1,18 @@
 package morethermalevaporation.common.registries;
 
+import mekanism.api.text.ILangEntry;
 import mekanism.common.MekanismLang;
 import mekanism.common.block.attribute.AttributeStateFacing;
+import mekanism.common.block.attribute.AttributeTier;
 import mekanism.common.block.attribute.Attributes;
 import mekanism.common.content.blocktype.BlockTypeTile;
 import mekanism.common.content.blocktype.BlockTypeTile.BlockTileBuilder;
+import mekanism.common.registration.impl.TileEntityTypeRegistryObject;
+import mekanism.common.tier.InductionCellTier;
+import mekanism.common.tile.base.TileEntityMekanism;
 import morethermalevaporation.tile.multiblock.*;
+
+import java.util.function.Supplier;
 
 public class MoreThermalEvaporationBlockTypes {
     // Basic
@@ -31,9 +38,9 @@ public class MoreThermalEvaporationBlockTypes {
     private MoreThermalEvaporationBlockTypes() {
     }
 
-    // Controller
-    // Osmium
-    // Steel
-    // Bronze
-    // RefinedObsidian
+    public static <TILE extends TileEntityMekanism> BlockTypeTile<TILE> createTierBlock(InductionCellTier tier, Supplier<TileEntityTypeRegistryObject<TILE>> tileEntityRegistrar, ILangEntry description) {
+        return  BlockTileBuilder.createBlock(tileEntityRegistrar,description)
+                .with(new AttributeTier<>(tier))
+                .build();
+    }
 }
