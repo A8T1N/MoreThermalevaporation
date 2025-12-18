@@ -1,9 +1,13 @@
 package morethermalevaporation.tile.multiblock;
 
+import mekanism.api.text.TextComponentUtil;
+import mekanism.api.tier.BaseTier;
 import morethermalevaporation.common.evaporation.UltimateThermalEvaporationMultiblockData;
 import morethermalevaporation.common.registries.MoreThermalEvaporationBlocks;
 import net.minecraft.core.BlockPos;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.level.block.state.BlockState;
+import org.jetbrains.annotations.NotNull;
 
 public class TileEntityUltimateThermalEvaporationController extends TileEntityUltimateThermalEvaporationBlock {
 
@@ -22,5 +26,10 @@ public class TileEntityUltimateThermalEvaporationController extends TileEntityUl
     @Override
     public boolean canBeMaster() {
         return true;
+    }
+
+    @Override
+    public @NotNull Component getDisplayName() {
+        return TextComponentUtil.color(super.getDisplayName().copy(), BaseTier.ULTIMATE.getColor().getValue());
     }
 }
