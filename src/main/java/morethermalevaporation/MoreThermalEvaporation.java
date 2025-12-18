@@ -22,7 +22,8 @@ public class MoreThermalEvaporation {
     public static final MultiblockManager<EliteThermalEvaporationMultiblockData> EliteThermalEvaporationManager = new MultiblockManager<>("EliteThermalEvaporation", MultiblockCache::new, EliteThermalEvaporationValidator::new);
     public static final MultiblockManager<UltimateThermalEvaporationMultiblockData> UltimateThermalEvaporationManager = new MultiblockManager<>("UltimateThermalEvaporation", MultiblockCache::new, UltimateThermalEvaporationValidator::new);
 
-    public MoreThermalEvaporation(IEventBus modEventBus) {
+    public MoreThermalEvaporation() {
+        IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
         MoreThermalEvaporationBlocks.BLOCKS.register(modEventBus);
         MoreThermalEvaporationTileEntityTypes.TILE_ENTITY_TYPES.register(modEventBus);
