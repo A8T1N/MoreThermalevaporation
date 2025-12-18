@@ -39,7 +39,7 @@ public class MoreThermalEvaporationBlockTypes {
     }
 
     public static <TILE extends TileEntityMekanism> BlockTypeTile<TILE> createTierBlock(InductionCellTier tier, Supplier<TileEntityTypeRegistryObject<TILE>> tileEntityRegistrar, ILangEntry description) {
-        return  BlockTileBuilder.createBlock(tileEntityRegistrar,description)
+        return BlockTileBuilder.createBlock(tileEntityRegistrar, description)
                 .with(new AttributeTier<>(tier))
                 .build();
     }

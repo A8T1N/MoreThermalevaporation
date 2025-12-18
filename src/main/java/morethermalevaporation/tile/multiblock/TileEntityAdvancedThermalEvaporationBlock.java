@@ -1,8 +1,6 @@
 package morethermalevaporation.tile.multiblock;
 
 import mekanism.api.providers.IBlockProvider;
-import mekanism.api.text.TextComponentUtil;
-import mekanism.api.tier.BaseTier;
 import mekanism.common.lib.multiblock.MultiblockManager;
 import mekanism.common.tile.prefab.TileEntityMultiblock;
 import mekanism.common.util.WorldUtils;
@@ -11,10 +9,8 @@ import morethermalevaporation.common.evaporation.AdvancedThermalEvaporationMulti
 import morethermalevaporation.common.registries.MoreThermalEvaporationBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.network.chat.Component;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
-import org.jetbrains.annotations.NotNull;
 
 public class TileEntityAdvancedThermalEvaporationBlock extends TileEntityMultiblock<AdvancedThermalEvaporationMultiblockData> {
 
@@ -52,8 +48,4 @@ public class TileEntityAdvancedThermalEvaporationBlock extends TileEntityMultibl
         return false;
     }
 
-    @Override
-    public @NotNull Component getDisplayName() {
-        return TextComponentUtil.color(super.getDisplayName().copy(), BaseTier.ADVANCED.getColor().getValue());
-    }
 }

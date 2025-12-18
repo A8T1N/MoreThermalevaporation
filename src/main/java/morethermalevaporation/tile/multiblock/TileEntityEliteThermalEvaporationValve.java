@@ -2,8 +2,6 @@ package morethermalevaporation.tile.multiblock;
 
 import mekanism.api.Action;
 import mekanism.api.IContentsListener;
-import mekanism.api.text.TextComponentUtil;
-import mekanism.api.tier.BaseTier;
 import mekanism.common.capabilities.heat.CachedAmbientTemperature;
 import mekanism.common.capabilities.holder.fluid.IFluidTankHolder;
 import mekanism.common.capabilities.holder.heat.IHeatCapacitorHolder;
@@ -12,7 +10,6 @@ import mekanism.common.tile.base.SubstanceType;
 import morethermalevaporation.common.registries.MoreThermalEvaporationBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.network.chat.Component;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.fluids.FluidStack;
 import org.jetbrains.annotations.NotNull;
@@ -65,8 +62,4 @@ public class TileEntityEliteThermalEvaporationValve extends TileEntityEliteTherm
         return getMultiblock().getCurrentRedstoneLevel();
     }
 
-    @Override
-    public @NotNull Component getDisplayName() {
-        return TextComponentUtil.color(super.getDisplayName().copy(), BaseTier.ELITE.getColor().getValue());
-    }
 }
