@@ -1,0 +1,19 @@
+{
+  "block.morethermalevaporation.basic_thermal_evaporation_block": "Базовый Блок теплового испарителя",
+  "block.morethermalevaporation.basic_thermal_evaporation_controller": "Базовый Контроллер теплового испарителя",
+  "block.morethermalevaporation.basic_thermal_evaporation_valve": "Базовый Вентиль теплового испарителя",
+
+  "block.morethermalevaporation.advanced_thermal_evaporation_block": "Продвинутый Блок теплового испарителя",
+  "block.morethermalevaporation.advanced_thermal_evaporation_controller": "Продвинутый Контроллер теплового испарителя",
+  "block.morethermalevaporation.advanced_thermal_evaporation_valve": "Продвинутый Вентиль теплового испарителя",
+
+  "block.morethermalevaporation.elite_thermal_evaporation_block": "Элитный Блок теплового испарителя",
+  "block.morethermalevaporation.elite_thermal_evaporation_controller": "Элитный Контроллер теплового испарителя",
+  "block.morethermalevaporation.elite_thermal_evaporation_valve": "Элитный Вентиль теплового испарителя",
+
+  "block.morethermalevaporation.ultimate_thermal_evaporation_block": "Совершенный Блок теплового испарителя",
+  "block.morethermalevaporation.ultimate_thermal_evaporation_controller": "Совершенный Контроллер теплового испарителя",
+  "block.morethermalevaporation.ultimate_thermal_evaporation_valve": "Совершенный Вентиль теплового испарителя",
+
+  "creativetab.morethermalevaporation.tab": "бо́лее теплового испарителя"
+}

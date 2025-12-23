@@ -1,0 +1,19 @@
+{
+  "block.morethermalevaporation.basic_thermal_evaporation_block": "基础热力蒸馏方块",
+  "block.morethermalevaporation.basic_thermal_evaporation_controller": "基础热力蒸馏控制器",
+  "block.morethermalevaporation.basic_thermal_evaporation_valve": "基础热力蒸馏阀门",
+
+  "block.morethermalevaporation.advanced_thermal_evaporation_block": "高级热力蒸馏方块",
+  "block.morethermalevaporation.advanced_thermal_evaporation_controller": "高级热力蒸馏控制器",
+  "block.morethermalevaporation.advanced_thermal_evaporation_valve": "高级热力蒸馏阀门",
+
+  "block.morethermalevaporation.elite_thermal_evaporation_block": "精英热力蒸馏方块",
+  "block.morethermalevaporation.elite_thermal_evaporation_controller": "精英热力蒸馏控制器",
+  "block.morethermalevaporation.elite_thermal_evaporation_valve": "精英热力蒸馏阀门",
+
+  "block.morethermalevaporation.ultimate_thermal_evaporation_block": "终极热力蒸馏方块",
+  "block.morethermalevaporation.ultimate_thermal_evaporation_controller": "终极热力蒸馏控制器",
+  "block.morethermalevaporation.ultimate_thermal_evaporation_valve": "终极热力蒸馏阀门",
+
+  "creativetab.morethermalevaporation.tab": "更多热力蒸馏"
+}

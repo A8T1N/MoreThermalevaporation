@@ -2,14 +2,18 @@
   "block.morethermalevaporation.basic_thermal_evaporation_block": "Basic Thermal Evaporation Block",
   "block.morethermalevaporation.basic_thermal_evaporation_controller": "Basic Thermal Evaporation Controller",
   "block.morethermalevaporation.basic_thermal_evaporation_valve": "Basic Thermal Evaporation Valve",
+
   "block.morethermalevaporation.advanced_thermal_evaporation_block": "Advanced Thermal Evaporation Block",
   "block.morethermalevaporation.advanced_thermal_evaporation_controller": "Advanced Thermal Evaporation Controller",
   "block.morethermalevaporation.advanced_thermal_evaporation_valve": "Advanced Thermal Evaporation Valve",
+
   "block.morethermalevaporation.elite_thermal_evaporation_block": "Elite Thermal Evaporation Block",
   "block.morethermalevaporation.elite_thermal_evaporation_controller": "Elite Thermal Evaporation Controller",
   "block.morethermalevaporation.elite_thermal_evaporation_valve": "Elite Thermal Evaporation Valve",
+
   "block.morethermalevaporation.ultimate_thermal_evaporation_block": "Ultimate Thermal Evaporation Block",
   "block.morethermalevaporation.ultimate_thermal_evaporation_controller": "Ultimate Thermal Evaporation Controller",
   "block.morethermalevaporation.ultimate_thermal_evaporation_valve": "Ultimate Thermal Evaporation Valve",
+
   "creativetab.morethermalevaporation.tab": "More Thermal Evaporation"
 }

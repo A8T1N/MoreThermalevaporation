@@ -1,0 +1,19 @@
+{
+  "block.morethermalevaporation.basic_thermal_evaporation_block": "基本加温蒸発濃縮ブロック",
+  "block.morethermalevaporation.basic_thermal_evaporation_controller": "基本加温蒸発濃縮コントローラー",
+  "block.morethermalevaporation.basic_thermal_evaporation_valve": "基本加温蒸発濃縮バルブ",
+
+  "block.morethermalevaporation.advanced_thermal_evaporation_block": "発展加温蒸発濃縮ブロック",
+  "block.morethermalevaporation.advanced_thermal_evaporation_controller": "発展加温蒸発濃縮コントローラー",
+  "block.morethermalevaporation.advanced_thermal_evaporation_valve": "発展加温蒸発濃縮バルブ",
+
+  "block.morethermalevaporation.elite_thermal_evaporation_block": "精鋭加温蒸発濃縮ブロック",
+  "block.morethermalevaporation.elite_thermal_evaporation_controller": "精鋭加温蒸発濃縮コントローラー",
+  "block.morethermalevaporation.elite_thermal_evaporation_valve": "精鋭加温蒸発濃縮バルブ",
+
+  "block.morethermalevaporation.ultimate_thermal_evaporation_block": "究極加温蒸発濃縮ブロック",
+  "block.morethermalevaporation.ultimate_thermal_evaporation_controller": "究極加温蒸発濃縮コントローラー",
+  "block.morethermalevaporation.ultimate_thermal_evaporation_valve": "究極加温蒸発濃縮バルブ",
+
+  "creativetab.morethermalevaporation.tab": "More Thermal Evaporation"
+}
