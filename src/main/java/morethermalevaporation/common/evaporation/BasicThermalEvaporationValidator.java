@@ -24,7 +24,7 @@ import java.util.EnumSet;
 public class BasicThermalEvaporationValidator extends CuboidStructureValidator<BasicThermalEvaporationMultiblockData> {
 
     private static final VoxelCuboid MIN_CUBOID = new VoxelCuboid(4, 3, 4);
-    private static final VoxelCuboid MAX_CUBOID = new VoxelCuboid(4, 34, 4);
+    private static final VoxelCuboid MAX_CUBOID = new VoxelCuboid(4, 18, 4);
 
     private boolean foundController = false;
 
