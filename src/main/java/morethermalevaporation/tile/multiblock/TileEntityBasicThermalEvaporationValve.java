@@ -40,7 +40,7 @@ public class TileEntityBasicThermalEvaporationValve extends TileEntityBasicTherm
 
     @Override
     public boolean persists(SubstanceType type) {
-        //But that we do not handle fluid when it comes to syncing it/saving this tile to disk
+
         if (type == SubstanceType.FLUID || type == SubstanceType.HEAT) {
             return false;
         }
