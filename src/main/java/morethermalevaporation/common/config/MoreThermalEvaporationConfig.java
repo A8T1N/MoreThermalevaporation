@@ -21,6 +21,8 @@ public class MoreThermalEvaporationConfig {
     public static final ForgeConfigSpec.IntValue UltimateEvaporationOutputTankCapacity;
     public static final ForgeConfigSpec.IntValue UltimateEvaporationPlantHeight;
 
+    public final static ForgeConfigSpec.BooleanValue RenderFluid;
+
     static {
         builder.comment("More Thermal Evaporation Settings");
         builder.push("Tier");
@@ -74,6 +76,15 @@ public class MoreThermalEvaporationConfig {
         builder.pop();
 
         builder.pop(); // Tier
+
+        builder.push("Render");
+        builder.comment("Settings for the Render fluid");
+        RenderFluid = builder
+                .comment("Render fluid inside of Thermal Evaporation Plants.")
+                .define("RenderFluid", true);
+        builder.pop(); // Render
+
+
         configSpec = builder.build();
     }
 }
