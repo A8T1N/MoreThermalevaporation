@@ -12,6 +12,7 @@ import mekanism.common.lib.multiblock.FormationProtocol.CasingType;
 import mekanism.common.lib.multiblock.FormationProtocol.FormationResult;
 import mekanism.common.lib.multiblock.FormationProtocol.StructureRequirement;
 import mekanism.common.lib.multiblock.StructureHelper;
+import morethermalevaporation.common.config.MoreThermalEvaporationConfig;
 import morethermalevaporation.common.registries.MoreThermalEvaporationBlockTypes;
 import morethermalevaporation.tile.multiblock.TileEntityEliteThermalEvaporationController;
 import net.minecraft.core.BlockPos;
@@ -24,7 +25,6 @@ import java.util.EnumSet;
 public class EliteThermalEvaporationValidator extends CuboidStructureValidator<EliteThermalEvaporationMultiblockData> {
 
     private static final VoxelCuboid MIN_CUBOID = new VoxelCuboid(4, 3, 4);
-    private static final VoxelCuboid MAX_CUBOID = new VoxelCuboid(4, 18, 4);
 
     private boolean foundController = false;
 
@@ -68,7 +68,9 @@ public class EliteThermalEvaporationValidator extends CuboidStructureValidator<E
 
     @Override
     public boolean precheck() {
-        cuboid = StructureHelper.fetchCuboid(structure, MIN_CUBOID, MAX_CUBOID, EnumSet.complementOf(EnumSet.of(CuboidSide.TOP)), 8);
+        int maxHeight = MoreThermalEvaporationConfig.EliteEvaporationPlantHeight.get();
+        VoxelCuboid maxCuboid = new VoxelCuboid(4, maxHeight, 4);
+        cuboid = StructureHelper.fetchCuboid(structure, MIN_CUBOID, maxCuboid, EnumSet.complementOf(EnumSet.of(CuboidSide.TOP)), 8);
         return cuboid != null;
     }
 
