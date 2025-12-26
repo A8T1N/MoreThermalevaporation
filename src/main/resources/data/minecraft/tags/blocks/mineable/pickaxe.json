@@ -1,0 +1,19 @@
+{
+  "values": [
+    "morethermalevaporation:basic_thermal_evaporation_block",
+    "morethermalevaporation:basic_thermal_evaporation_controller",
+    "morethermalevaporation:basic_thermal_evaporation_valve",
+
+    "morethermalevaporation:advanced_thermal_evaporation_block",
+    "morethermalevaporation:advanced_thermal_evaporation_controller",
+    "morethermalevaporation:advanced_thermal_evaporation_valve",
+
+    "morethermalevaporation:elite_thermal_evaporation_block",
+    "morethermalevaporation:elite_thermal_evaporation_controller",
+    "morethermalevaporation:elite_thermal_evaporation_valve",
+
+    "morethermalevaporation:ultimate_thermal_evaporation_block",
+    "morethermalevaporation:ultimate_thermal_evaporation_controller",
+    "morethermalevaporation:ultimate_thermal_evaporation_valve"
+  ]
+}
