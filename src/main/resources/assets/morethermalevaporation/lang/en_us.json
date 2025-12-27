@@ -15,5 +15,26 @@
   "block.morethermalevaporation.ultimate_thermal_evaporation_controller": "Ultimate Thermal Evaporation Controller",
   "block.morethermalevaporation.ultimate_thermal_evaporation_valve": "Ultimate Thermal Evaporation Valve",
 
+  "description.morethermalevaporation.basic_thermal_evaporation_block": "A copper-alloyed casing used in the structure of a Basic Thermal Evaporation Plant, using its advanced material to conduct the great amounts of heat necessary for processing.",
+  "description.morethermalevaporation.basic_thermal_evaporation_controller": "The controller for a Basic Thermal Evaporation Plant, acting as the master block of the structure. Only one of these should be placed on a multiblock.",
+  "description.morethermalevaporation.basic_thermal_evaporation_valve": "A valve that can be placed on a Basic Thermal Evaporation Plant multiblock, allowing for fluids to be inserted and extracted via external piping.",
+
+  "description.morethermalevaporation.advanced_thermal_evaporation_block": "A copper-alloyed casing used in the structure of an Advanced Thermal Evaporation Plant, using its advanced material to conduct the great amounts of heat necessary for processing.",
+  "description.morethermalevaporation.advanced_thermal_evaporation_controller": "The controller for an Advanced Thermal Evaporation Plant, acting as the master block of the structure. Only one of these should be placed on a multiblock.",
+  "description.morethermalevaporation.advanced_thermal_evaporation_valve": "A valve that can be placed on an Advanced Thermal Evaporation Plant multiblock, allowing for fluids to be inserted and extracted via external piping.",
+
+  "description.morethermalevaporation.elite_thermal_evaporation_block": "A copper-alloyed casing used in the structure of an Elite Thermal Evaporation Plant, using its advanced material to conduct the great amounts of heat necessary for processing.",
+  "description.morethermalevaporation.elite_thermal_evaporation_controller": "The controller for an Elite Thermal Evaporation Plant, acting as the master block of the structure. Only one of these should be placed on a multiblock.",
+  "description.morethermalevaporation.elite_thermal_evaporation_valve": "A valve that can be placed on an Elite Thermal Evaporation Plant multiblock, allowing for fluids to be inserted and extracted via external piping.",
+
+  "description.morethermalevaporation.ultimate_thermal_evaporation_block": "A copper-alloyed casing used in the structure of an Ultimate Thermal Evaporation Plant, using its advanced material to conduct the great amounts of heat necessary for processing.",
+  "description.morethermalevaporation.ultimate_thermal_evaporation_controller": "The controller for an Ultimate Thermal Evaporation Plant, acting as the master block of the structure. Only one of these should be placed on a multiblock.",
+  "description.morethermalevaporation.ultimate_thermal_evaporation_valve": "A valve that can be placed on an Ultimate Thermal Evaporation Plant multiblock, allowing for fluids to be inserted and extracted via external piping.",
+
+  "basic_evaporation.morethermalevaporation.basic_evaporation_plant" : "Basic Thermal Evaporation Plant",
+  "advanced_evaporation.morethermalevaporation.advanced_evaporation_plant" : "Advanced Thermal Evaporation Plant",
+  "elite_evaporation.morethermalevaporation.elite_evaporation_plant" : "Elite Thermal Evaporation Plant",
+  "ultimate_evaporation.morethermalevaporation.ultimate_evaporation_plant" : "Ultimate Thermal Evaporation Plant",
+
   "creativetab.morethermalevaporation.tab": "More Thermal Evaporation"
 }

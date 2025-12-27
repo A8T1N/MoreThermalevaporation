@@ -15,5 +15,26 @@
   "block.morethermalevaporation.ultimate_thermal_evaporation_controller": "究極加温蒸発濃縮コントローラー",
   "block.morethermalevaporation.ultimate_thermal_evaporation_valve": "究極加温蒸発濃縮バルブ",
 
+  "description.morethermalevaporation.basic_thermal_evaporation_block": "基本加温蒸発濃縮プラントの組み立てに使う銅合金製の筐体です。 処理に必要な沢山の熱を発展的な素材が伝えます。",
+  "description.morethermalevaporation.basic_thermal_evaporation_controller": "基本加温蒸発濃縮プラントの根幹となるブロックです。 基本加温蒸発濃縮プラント1機につき1つだけ配置出来ます。",
+  "description.morethermalevaporation.basic_thermal_evaporation_valve": "基本加温蒸発濃縮プラントのバルブです。 熱力学的コンダクターからの導熱、パイプからの流体の搬入出をサポートします。",
+
+  "description.morethermalevaporation.advanced_thermal_evaporation_block": "発展加温蒸発濃縮プラントの組み立てに使う銅合金製の筐体です。 処理に必要な沢山の熱を発展的な素材が伝えます。",
+  "description.morethermalevaporation.advanced_thermal_evaporation_controller": "発展加温蒸発濃縮プラントの根幹となるブロックです。 発展加温蒸発濃縮プラント1機につき1つだけ配置出来ます。",
+  "description.morethermalevaporation.advanced_thermal_evaporation_valve": "発展加温蒸発濃縮プラントのバルブです。 熱力学的コンダクターからの導熱、パイプからの流体の搬入出をサポートします。",
+
+  "description.morethermalevaporation.elite_thermal_evaporation_block": "精鋭加温蒸発濃縮プラントの組み立てに使う銅合金製の筐体です。 処理に必要な沢山の熱を発展的な素材が伝えます。",
+  "description.morethermalevaporation.elite_thermal_evaporation_controller": "精鋭加温蒸発濃縮プラントの根幹となるブロックです。 精鋭加温蒸発濃縮プラント1機につき1つだけ配置出来ます。",
+  "description.morethermalevaporation.elite_thermal_evaporation_valve": "精鋭加温蒸発濃縮プラントのバルブです。 熱力学的コンダクターからの導熱、パイプからの流体の搬入出をサポートします。",
+
+  "description.morethermalevaporation.ultimate_thermal_evaporation_block": "究極加温蒸発濃縮プラントの組み立てに使う銅合金製の筐体です。 処理に必要な沢山の熱を発展的な素材が伝えます。",
+  "description.morethermalevaporation.ultimate_thermal_evaporation_controller": "究極加温蒸発濃縮プラントの根幹となるブロックです。 精鋭加温蒸発濃縮プラント1機につき1つだけ配置出来ます。",
+  "description.morethermalevaporation.ultimate_thermal_evaporation_valve": "究極加温蒸発濃縮プラントのバルブです。 熱力学的コンダクターからの導熱、パイプからの流体の搬入出をサポートします。",
+
+  "basic_evaporation.morethermalevaporation.basic_evaporation_plant" : "基本加温蒸発濃縮プラント",
+  "advanced_evaporation.morethermalevaporation.advanced_evaporation_plant" : "発展加温蒸発濃縮プラント",
+  "elite_evaporation.morethermalevaporation.elite_evaporation_plant" : "精鋭加温蒸発濃縮プラント",
+  "ultimate_evaporation.morethermalevaporation.ultimate_evaporation_plant" : "究極加温蒸発濃縮プラント",
+
   "creativetab.morethermalevaporation.tab": "More Thermal Evaporation"
 }

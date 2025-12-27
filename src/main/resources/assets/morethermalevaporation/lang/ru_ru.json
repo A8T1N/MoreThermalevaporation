@@ -15,5 +15,26 @@
   "block.morethermalevaporation.ultimate_thermal_evaporation_controller": "Совершенный Контроллер теплового испарителя",
   "block.morethermalevaporation.ultimate_thermal_evaporation_valve": "Совершенный Вентиль теплового испарителя",
 
+  "description.morethermalevaporation.basic_thermal_evaporation_block": "Обшивка из сплава меди, используется в Базовый тепловом испарителе благодаря теплопроводности меди.",
+  "description.morethermalevaporation.basic_thermal_evaporation_controller": "Контроллер для Базовый теплового испарителя, в структуре может быть только один.",
+  "description.morethermalevaporation.basic_thermal_evaporation_valve": "Вентиль для Базовый теплового испарителя, используется для ввода и вывода жидкости.",
+
+  "description.morethermalevaporation.advanced_thermal_evaporation_block": "Обшивка из сплава меди, используется в Продвинутый тепловом испарителе благодаря теплопроводности меди.",
+  "description.morethermalevaporation.advanced_thermal_evaporation_controller": "Контроллер для Продвинутый теплового испарителя, в структуре может быть только один.",
+  "description.morethermalevaporation.advanced_thermal_evaporation_valve": "Вентиль для Продвинутый теплового испарителя, используется для ввода и вывода жидкости.",
+
+  "description.morethermalevaporation.elite_thermal_evaporation_block": "Обшивка из сплава меди, используется в Элитный тепловом испарителе благодаря теплопроводности меди.",
+  "description.morethermalevaporation.elite_thermal_evaporation_controller": "Контроллер для Элитный теплового испарителя, в структуре может быть только один.",
+  "description.morethermalevaporation.elite_thermal_evaporation_valve": "Вентиль для Элитный теплового испарителя, используется для ввода и вывода жидкости.",
+
+  "description.morethermalevaporation.ultimate_thermal_evaporation_block": "Обшивка из сплава меди, используется в Совершенный тепловом испарителе благодаря теплопроводности меди.",
+  "description.morethermalevaporation.ultimate_thermal_evaporation_controller": "Контроллер для Совершенный теплового испарителя, в структуре может быть только один.",
+  "description.morethermalevaporation.ultimate_thermal_evaporation_valve": "Вентиль для Совершенный теплового испарителя, используется для ввода и вывода жидкости.",
+
+  "basic_evaporation.morethermalevaporation.basic_evaporation_plant" : "Базовый Установка теплового испарителя",
+  "advanced_evaporation.morethermalevaporation.advanced_evaporation_plant" : "Продвинутый Установка теплового испарителя",
+  "elite_evaporation.morethermalevaporation.elite_evaporation_plant" : "Элитный Установка теплового испарителя",
+  "ultimate_evaporation.morethermalevaporation.ultimate_evaporation_plant" : "Совершенный Установка теплового испарителя",
+
   "creativetab.morethermalevaporation.tab": "бо́лее теплового испарителя"
 }

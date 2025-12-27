@@ -15,5 +15,26 @@
   "block.morethermalevaporation.ultimate_thermal_evaporation_controller": "终极热力蒸馏控制器",
   "block.morethermalevaporation.ultimate_thermal_evaporation_valve": "终极热力蒸馏阀门",
 
+  "description.morethermalevaporation.basic_thermal_evaporation_block": "用于基础热力蒸馏塔结构的铜合金外壳，使用先进材料传导工作时所需的大量热量。",
+  "description.morethermalevaporation.basic_thermal_evaporation_controller": "基础热力蒸馏塔的控制器，多方块结构的核心。 在多方块结构中只能有一个。",
+  "description.morethermalevaporation.basic_thermal_evaporation_valve": "用于基础热力蒸馏塔的阀门，允许通过外部管道输入和输出流体。",
+
+  "description.morethermalevaporation.advanced_thermal_evaporation_block": "用于高级热力蒸馏塔结构的铜合金外壳，使用先进材料传导工作时所需的大量热量。",
+  "description.morethermalevaporation.advanced_thermal_evaporation_controller": "高级热力蒸馏塔的控制器，多方块结构的核心。 在多方块结构中只能有一个。",
+  "description.morethermalevaporation.advanced_thermal_evaporation_valve": "用于高级热力蒸馏塔的阀门，允许通过外部管道输入和输出流体。",
+
+  "description.morethermalevaporation.elite_thermal_evaporation_block": "用于精英热力蒸馏塔结构的铜合金外壳，使用先进材料传导工作时所需的大量热量。",
+  "description.morethermalevaporation.elite_thermal_evaporation_controller": "精英热力蒸馏塔的控制器，多方块结构的核心。 在多方块结构中只能有一个。",
+  "description.morethermalevaporation.elite_thermal_evaporation_valve": "用于精英热力蒸馏塔的阀门，允许通过外部管道输入和输出流体。",
+
+  "description.morethermalevaporation.ultimate_thermal_evaporation_block": "用于终极热力蒸馏塔结构的铜合金外壳，使用先进材料传导工作时所需的大量热量。",
+  "description.morethermalevaporation.ultimate_thermal_evaporation_controller": "终极热力蒸馏塔的控制器，多方块结构的核心。 在多方块结构中只能有一个。",
+  "description.morethermalevaporation.ultimate_thermal_evaporation_valve": "用于终极热力蒸馏塔的阀门，允许通过外部管道输入和输出流体。",
+
+  "basic_evaporation.morethermalevaporation.basic_evaporation_plant" : "基础热力蒸馏塔",
+  "advanced_evaporation.morethermalevaporation.advanced_evaporation_plant" : "高级热力蒸馏塔",
+  "elite_evaporation.morethermalevaporation.elite_evaporation_plant" : "精英热力蒸馏塔",
+  "ultimate_evaporation.morethermalevaporation.ultimate_evaporation_plant" : "终极热力蒸馏塔",
+
   "creativetab.morethermalevaporation.tab": "更多热力蒸馏"
 }
