@@ -27,7 +27,7 @@ public class MoreThermalEvaporationConfig {
         builder.comment("More Thermal Evaporation Settings");
         builder.push("Tier");
 
-        // --- BASIC ---
+        // Basic
         builder.push("Basic");
         builder.comment("Settings for the Basic Tier");
         BasicEvaporationOutputTankCapacity = builder
@@ -39,7 +39,7 @@ public class MoreThermalEvaporationConfig {
                 .defineInRange("BasicEvaporationPlantHeight", 18, 18, 36);
         builder.pop();
 
-        // --- ADVANCED ---
+        // Advanced
         builder.push("Advanced");
         builder.comment("Settings for the Advanced Tier");
         AdvancedEvaporationOutputTankCapacity = builder
@@ -51,7 +51,7 @@ public class MoreThermalEvaporationConfig {
                 .defineInRange("AdvancedEvaporationPlantHeight", 18, 18, 72);
         builder.pop();
 
-        // --- ELITE ---
+        // Elite
         builder.push("Elite");
         builder.comment("Settings for the Elite Tier");
         EliteEvaporationOutputTankCapacity = builder
@@ -63,7 +63,7 @@ public class MoreThermalEvaporationConfig {
                 .defineInRange("EliteEvaporationPlantHeight", 18, 18, 144);
         builder.pop();
 
-        // --- ULTIMATE ---
+        // Ultimate
         builder.push("Ultimate");
         builder.comment("Settings for the Ultimate Tier");
         UltimateEvaporationOutputTankCapacity = builder
