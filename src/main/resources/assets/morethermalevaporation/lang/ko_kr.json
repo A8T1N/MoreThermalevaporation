@@ -1,0 +1,40 @@
+{
+  "block.morethermalevaporation.basic_thermal_evaporation_block": "기본 열적 증발 블록",
+  "block.morethermalevaporation.basic_thermal_evaporation_controller": "기본 열적 증발 제어기",
+  "block.morethermalevaporation.basic_thermal_evaporation_valve": "기본 열적 증발 밸브",
+
+  "block.morethermalevaporation.advanced_thermal_evaporation_block": "고급 열적 증발 블록",
+  "block.morethermalevaporation.advanced_thermal_evaporation_controller": "고급 열적 증발 제어기",
+  "block.morethermalevaporation.advanced_thermal_evaporation_valve": "고급 열적 증발 밸브",
+
+  "block.morethermalevaporation.elite_thermal_evaporation_block": "엘리트 열적 증발 블록",
+  "block.morethermalevaporation.elite_thermal_evaporation_controller": "엘리트 열적 증발 제어기",
+  "block.morethermalevaporation.elite_thermal_evaporation_valve": "엘리트 열적 증발 밸브",
+
+  "block.morethermalevaporation.ultimate_thermal_evaporation_block": "궁극 열적 증발 블록",
+  "block.morethermalevaporation.ultimate_thermal_evaporation_controller": "궁극 열적 증발 제어기",
+  "block.morethermalevaporation.ultimate_thermal_evaporation_valve": "궁극 열적 증발 밸브",
+
+  "description.morethermalevaporation.basic_thermal_evaporation_block": "청동 합금 케이싱으로, 기본 열적 증발 장치 멀티블록의 구성에 사용됩니다. 처리에 필요한 많은 열을 모을 수 있습니다.",
+  "description.morethermalevaporation.basic_thermal_evaporation_controller": "기본 열적 증발 장치 멀티블록의 제어기입니다. 이 블록은 열적 증발 장치 멀티블록 구조물 하나당 한개씩만 배치되어야 합니다.",
+  "description.morethermalevaporation.basic_thermal_evaporation_valve": "기본 열적 증발 장치 멀티블록에 사용되는 밸브로, 유체를 투입 및 방출할 수 있도록 해줍니다.",
+
+  "description.morethermalevaporation.advanced_thermal_evaporation_block": "청동 합금 케이싱으로, 고급 열적 증발 장치 멀티블록의 구성에 사용됩니다. 처리에 필요한 많은 열을 모을 수 있습니다.",
+  "description.morethermalevaporation.advanced_thermal_evaporation_controller": "고급 열적 증발 장치 멀티블록의 제어기입니다. 이 블록은 열적 증발 장치 멀티블록 구조물 하나당 한개씩만 배치되어야 합니다.",
+  "description.morethermalevaporation.advanced_thermal_evaporation_valve": "고급 열적 증발 장치 멀티블록에 사용되는 밸브로, 유체를 투입 및 방출할 수 있도록 해줍니다.",
+
+  "description.morethermalevaporation.elite_thermal_evaporation_block": "청동 합금 케이싱으로, 엘리트 열적 증발 장치 멀티블록의 구성에 사용됩니다. 처리에 필요한 많은 열을 모을 수 있습니다.",
+  "description.morethermalevaporation.elite_thermal_evaporation_controller": "엘리트 열적 증발 장치 멀티블록의 제어기입니다. 이 블록은 열적 증발 장치 멀티블록 구조물 하나당 한개씩만 배치되어야 합니다.",
+  "description.morethermalevaporation.elite_thermal_evaporation_valve": "엘리트 열적 증발 장치 멀티블록에 사용되는 밸브로, 유체를 투입 및 방출할 수 있도록 해줍니다.",
+
+  "description.morethermalevaporation.ultimate_thermal_evaporation_block": "청동 합금 케이싱으로, 궁극 열적 증발 장치 멀티블록의 구성에 사용됩니다. 처리에 필요한 많은 열을 모을 수 있습니다.",
+  "description.morethermalevaporation.ultimate_thermal_evaporation_controller": "궁극 열적 증발 장치 멀티블록의 제어기입니다. 이 블록은 열적 증발 장치 멀티블록 구조물 하나당 한개씩만 배치되어야 합니다.",
+  "description.morethermalevaporation.ultimate_thermal_evaporation_valve": "궁극 열적 증발 장치 멀티블록에 사용되는 밸브로, 유체를 투입 및 방출할 수 있도록 해줍니다.",
+
+  "basic_evaporation.morethermalevaporation.basic_evaporation_plant" : "기본 열 증발 설비",
+  "advanced_evaporation.morethermalevaporation.advanced_evaporation_plant" : "고급 열 증발 설비",
+  "elite_evaporation.morethermalevaporation.elite_evaporation_plant" : "엘리트 열 증발 설비",
+  "ultimate_evaporation.morethermalevaporation.ultimate_evaporation_plant" : "궁극 열 증발 설비",
+
+  "creativetab.morethermalevaporation.tab": "More Thermal Evaporation"
+}
