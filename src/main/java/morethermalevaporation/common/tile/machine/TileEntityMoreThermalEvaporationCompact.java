@@ -12,6 +12,7 @@ import mekanism.api.recipes.inputs.IInputHandler;
 import mekanism.api.recipes.inputs.InputHelper;
 import mekanism.api.recipes.outputs.IOutputHandler;
 import mekanism.api.recipes.outputs.OutputHelper;
+import mekanism.common.Mekanism;
 import mekanism.common.block.attribute.Attribute;
 import mekanism.common.capabilities.fluid.BasicFluidTank;
 import mekanism.common.capabilities.heat.BasicHeatCapacitor;
@@ -38,6 +39,7 @@ import mekanism.common.recipe.IMekanismRecipeTypeProvider;
 import mekanism.common.recipe.MekanismRecipeType;
 import mekanism.common.recipe.lookup.ISingleRecipeLookupHandler;
 import mekanism.common.recipe.lookup.cache.InputRecipeCache;
+import mekanism.common.tile.component.ITileComponent;
 import mekanism.common.tile.component.TileComponentConfig;
 import mekanism.common.tile.component.TileComponentEjector;
 import mekanism.common.tile.component.config.ConfigInfo;
@@ -45,11 +47,13 @@ import mekanism.common.tile.component.config.DataType;
 import mekanism.common.tile.component.config.slot.FluidSlotInfo;
 import mekanism.common.tile.component.config.slot.InventorySlotInfo;
 import mekanism.common.tile.prefab.TileEntityRecipeMachine;
+import mekanism.common.upgrade.IUpgradeData;
 import mekanism.common.util.MekanismUtils;
 import mekanism.common.util.NBTUtils;
 import mekanism.common.util.WorldUtils;
 import morethermalevaporation.common.registries.MoreThermalEvaporationBlocks;
 import morethermalevaporation.common.tier.MoreThermalEvaporationTier;
+import morethermalevaporation.common.upgrade.MoreThermalEvaporationCompactUpgradeData;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.level.block.state.BlockState;
@@ -314,6 +318,31 @@ public class TileEntityMoreThermalEvaporationCompact extends TileEntityRecipeMac
                 prevScale = scale;
             }
         });
+    }
+
+    @Override
+    public void parseUpgradeData(@NotNull IUpgradeData upgradeData) {
+        if (upgradeData instanceof MoreThermalEvaporationCompactUpgradeData data) {
+            redstone = data.redstone;
+            setControlType(data.controlType);
+            for (ITileComponent component : getComponents()) {
+                component.read(data.components);
+            }
+            inputTank.deserializeNBT(data.inputTank.serializeNBT());
+            outputTank.deserializeNBT(data.outputTank.serializeNBT());
+            inputInputSlot.deserializeNBT(data.inputInputSlot.serializeNBT());
+            outputInputSlot.deserializeNBT(data.outputInputSlot.serializeNBT());
+            inputOutputSlot.deserializeNBT(data.inputOutputSlot.serializeNBT());
+            outputOutputSlot.deserializeNBT(data.outputOutputSlot.serializeNBT());
+            heatCapacitor.deserializeNBT(data.heatCapacitor.serializeNBT());
+        } else {
+            Mekanism.logger.warn("Unhandled upgrade data.", new Throwable());
+        }
+    }
+
+    @Override
+    public @Nullable MoreThermalEvaporationCompactUpgradeData getUpgradeData() {
+        return new MoreThermalEvaporationCompactUpgradeData(redstone, getControlType(), inputTank, outputTank, inputInputSlot, outputInputSlot, inputOutputSlot, outputOutputSlot, heatCapacitor, getComponents());
     }
 
     public MoreThermalEvaporationTier getTier() {

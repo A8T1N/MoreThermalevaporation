@@ -8,6 +8,8 @@ import mekanism.common.content.blocktype.BlockTypeTile;
 import mekanism.common.content.blocktype.BlockTypeTile.BlockTileBuilder;
 import morethermalevaporation.common.MoreThermalEvaporationLang;
 import morethermalevaporation.common.content.blocktype.BlockShapes;
+import morethermalevaporation.common.content.blocktype.MoreThermalEvaporationMachine;
+import morethermalevaporation.common.content.blocktype.MoreThermalEvaporationMachine.MoreThermalEvaporationMachineBuilder;
 import morethermalevaporation.common.tier.MoreThermalEvaporationTier;
 import morethermalevaporation.common.tile.machine.TileEntityMoreThermalEvaporationCompact;
 import morethermalevaporation.common.tile.multiblock.TileEntityMoreThermalEvaporationBlock;
@@ -22,7 +24,7 @@ public class MoreThermalEvaporationBlockTypes {
     public static final EnumMap<MoreThermalEvaporationTier, BlockTypeTile<TileEntityMoreThermalEvaporationBlock>> BLOCKS = new EnumMap<>(MoreThermalEvaporationTier.class);
     public static final EnumMap<MoreThermalEvaporationTier, BlockTypeTile<TileEntityMoreThermalEvaporationValve>> VALVES = new EnumMap<>(MoreThermalEvaporationTier.class);
     public static final EnumMap<MoreThermalEvaporationTier, BlockTypeTile<TileEntityMoreThermalEvaporationController>> CONTROLLERS = new EnumMap<>(MoreThermalEvaporationTier.class);
-    public static final EnumMap<MoreThermalEvaporationTier, BlockTypeTile<TileEntityMoreThermalEvaporationCompact>> COMPACTS = new EnumMap<>(MoreThermalEvaporationTier.class);
+    public static final EnumMap<MoreThermalEvaporationTier, MoreThermalEvaporationMachine<TileEntityMoreThermalEvaporationCompact>> COMPACTS = new EnumMap<>(MoreThermalEvaporationTier.class);
 
     static {
         for (MoreThermalEvaporationTier tier : MoreThermalEvaporationTier.values()) {
@@ -61,8 +63,8 @@ public class MoreThermalEvaporationBlockTypes {
                 .build();
     }
 
-    private static BlockTypeTile<TileEntityMoreThermalEvaporationCompact> createMoreThermalEvaporationCompact(MoreThermalEvaporationTier tier, MoreThermalEvaporationLang lang) {
-        return BlockTileBuilder.createBlock(() -> MoreThermalEvaporationTileEntityTypes.COMPACTS.get(tier), lang)
+    private static MoreThermalEvaporationMachine<TileEntityMoreThermalEvaporationCompact> createMoreThermalEvaporationCompact(MoreThermalEvaporationTier tier, MoreThermalEvaporationLang lang) {
+        return MoreThermalEvaporationMachineBuilder.createMachine(() -> MoreThermalEvaporationTileEntityTypes.COMPACTS.get(tier), lang, tier)
                 .withGui(() -> MoreThermalEvaporationContainerTypes.MORE_THERMAL_EVAPORATION_COMPACT.get(tier), MoreThermalEvaporationLang.getLangCompact(tier))
                 .withSupportedUpgrades(EnumSet.of(Upgrade.ANCHOR))
                 .with(new AttributeTier<>(tier), Attributes.INVENTORY, Attributes.ACTIVE, new AttributeStateFacing(), new Attributes.AttributeCustomResistance(9))
