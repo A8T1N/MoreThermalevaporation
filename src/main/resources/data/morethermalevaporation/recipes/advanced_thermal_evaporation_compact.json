@@ -1,29 +1,25 @@
 {
-  "type": "minecraft:crafting_shaped",
+  "type": "mekanism:mek_data",
   "key": {
     "A": {
-      "tag": "forge:pellets/antimatter"
-    },
-    "B": {
-      "item": "morethermalevaporation:advanced_thermal_evaporation_block"
+      "tag": "mekanism:alloys/infused"
     },
     "C": {
+      "tag": "forge:circuits/advanced"
+    },
+    "I": {
+      "tag": "forge:ingots/osmium"
+    },
+    "P": {
       "item": "morethermalevaporation:basic_thermal_evaporation_compact"
-    },
-    "V": {
-      "item": "morethermalevaporation:advanced_thermal_evaporation_valve"
-    },
-    "#": {
-      "item": "morethermalevaporation:advanced_thermal_evaporation_controller"
     }
   },
   "pattern": [
-    "BAB",
-    "VCV",
-    "B#B"
+    "ACA",
+    "IPI",
+    "ACA"
   ],
   "result": {
-    "item": "morethermalevaporation:advanced_thermal_evaporation_compact",
-    "count": 1
+    "item": "morethermalevaporation:advanced_thermal_evaporation_compact"
   }
 }

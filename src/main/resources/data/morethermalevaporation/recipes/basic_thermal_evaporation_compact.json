@@ -5,16 +5,16 @@
       "tag": "forge:pellets/antimatter"
     },
     "B": {
-      "item": "morethermalevaporation:basic_thermal_evaporation_block"
+      "item": "morethermalevaporation:ultimate_thermal_evaporation_block"
     },
     "C": {
-      "item": "morethermalevaporation:basic_thermal_evaporation_controller"
+      "item": "morethermalevaporation:ultimate_thermal_evaporation_controller"
+    },
+    "V": {
+      "item": "morethermalevaporation:ultimate_thermal_evaporation_valve"
     },
     "G": {
       "item": "mekanism:structural_glass"
-    },
-    "V": {
-      "item": "morethermalevaporation:basic_thermal_evaporation_valve"
     }
   },
   "pattern": [
