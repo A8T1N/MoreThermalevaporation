@@ -1,12 +1,22 @@
 package morethermalevaporation.common.tile.multiblock;
 
+import morethermalevaporation.MoreThermalEvaporation;
 import morethermalevaporation.common.content.evaporation.MoreThermalEvaporationMultiblockData;
 import morethermalevaporation.common.registries.MoreThermalEvaporationBlocks;
 import morethermalevaporation.common.tier.MoreThermalEvaporationTier;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.common.capabilities.ForgeCapabilities;
+import net.minecraftforge.common.util.LazyOptional;
+import org.apache.commons.lang3.ArrayUtils;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 public class TileEntityMoreThermalEvaporationController extends TileEntityMoreThermalEvaporationBlock {
+
+    private static final Capability<?>[] caps = {ForgeCapabilities.ITEM_HANDLER};
 
     public TileEntityMoreThermalEvaporationController(MoreThermalEvaporationTier tier, BlockPos pos, BlockState state) {
         super(MoreThermalEvaporationBlocks.CONTROLLERS.get(tier), pos, state);
@@ -23,6 +33,16 @@ public class TileEntityMoreThermalEvaporationController extends TileEntityMoreTh
     @Override
     public boolean canBeMaster() {
         return true;
+    }
+
+    @NotNull
+    @Override
+    public <T> LazyOptional<T> getCapability(@NotNull Capability<T> capability, @Nullable Direction side) {
+        var cap = super.getCapability(capability, side);
+        if (MoreThermalEvaporation.PipezLoaded && !cap.isPresent() && ArrayUtils.contains(caps, capability)) {
+            return LazyOptional.of(() -> (T) MoreThermalEvaporationPipezHelper.MAP.get(capability));
+        }
+        return cap;
     }
 
 }

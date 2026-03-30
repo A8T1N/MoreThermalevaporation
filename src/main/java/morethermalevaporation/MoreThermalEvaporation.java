@@ -31,6 +31,7 @@ public class MoreThermalEvaporation {
 
     public static final String MODID = "morethermalevaporation";
     public static boolean JustEnoughMekanismMultiblocksLoaded = false;
+    public static boolean PipezLoaded = false;
 
     public static final EnumMap<MoreThermalEvaporationTier, MultiblockManager<MoreThermalEvaporationMultiblockData>> MoreThermalEvaporationManagers = new EnumMap<>(MoreThermalEvaporationTier.class);
 
@@ -56,6 +57,7 @@ public class MoreThermalEvaporation {
     public static void onCommonSetup(FMLCommonSetupEvent e) {
         ModList modList = ModList.get();
         JustEnoughMekanismMultiblocksLoaded = modList.isLoaded("jei_mekanism_multiblocks");
+        PipezLoaded = modList.isLoaded("pipez");
     }
 
     public static ResourceLocation rl(String path) {
