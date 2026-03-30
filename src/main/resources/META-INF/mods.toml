@@ -90,3 +90,10 @@ versionRange = "[1.0.16,]"
 ordering = "NONE"
 side = "BOTH"
 
+[[dependencies."${mod_id}"]]
+modId = "pipez"
+mandatory = false
+versionRange = "[1.2.5,]"
+ordering = "NONE"
+side = "BOTH"
+
