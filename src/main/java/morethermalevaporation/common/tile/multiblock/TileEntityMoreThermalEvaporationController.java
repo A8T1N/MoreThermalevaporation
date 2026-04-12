@@ -1,5 +1,6 @@
 package morethermalevaporation.common.tile.multiblock;
 
+import mekanism.common.tile.interfaces.IHasDumpButton;
 import morethermalevaporation.MoreThermalEvaporation;
 import morethermalevaporation.common.content.evaporation.MoreThermalEvaporationMultiblockData;
 import morethermalevaporation.common.registries.MoreThermalEvaporationBlocks;
@@ -14,7 +15,7 @@ import org.apache.commons.lang3.ArrayUtils;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public class TileEntityMoreThermalEvaporationController extends TileEntityMoreThermalEvaporationBlock {
+public class TileEntityMoreThermalEvaporationController extends TileEntityMoreThermalEvaporationBlock implements IHasDumpButton {
 
     private static final Capability<?>[] caps = {ForgeCapabilities.ITEM_HANDLER};
 
@@ -45,4 +46,9 @@ public class TileEntityMoreThermalEvaporationController extends TileEntityMoreTh
         return cap;
     }
 
+    @Override
+    public void dump() {
+        getMultiblock().getFluidInTank(0).setAmount(0); // InputTank
+        getMultiblock().getFluidInTank(1).setAmount(0); // OutputTank
+    }
 }

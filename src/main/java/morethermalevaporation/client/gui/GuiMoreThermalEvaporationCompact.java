@@ -3,6 +3,7 @@ package morethermalevaporation.client.gui;
 import mekanism.api.recipes.cache.CachedRecipe.OperationTracker.RecipeError;
 import mekanism.client.gui.GuiConfigurableTile;
 import mekanism.client.gui.element.GuiDownArrow;
+import mekanism.client.gui.element.GuiDumpButton;
 import mekanism.client.gui.element.GuiInnerScreen;
 import mekanism.client.gui.element.bar.GuiBar.IBarInfoHandler;
 import mekanism.client.gui.element.bar.GuiHorizontalRateBar;
@@ -72,6 +73,7 @@ public class GuiMoreThermalEvaporationCompact extends GuiConfigurableTile<TileEn
             Component environment = MekanismUtils.getTemperatureDisplay(tile.lastEnvironmentLoss, TemperatureUnit.KELVIN, false);
             return Collections.singletonList(MekanismLang.DISSIPATED_RATE.translate(environment));
         }));
+        addRenderableWidget(new GuiDumpButton<>(this, tile, 130, 71));
     }
 
     private BooleanSupplier getWarningCheck(RecipeError error) {

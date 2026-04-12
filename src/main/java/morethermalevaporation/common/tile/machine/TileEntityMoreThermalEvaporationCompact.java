@@ -46,6 +46,7 @@ import mekanism.common.tile.component.config.ConfigInfo;
 import mekanism.common.tile.component.config.DataType;
 import mekanism.common.tile.component.config.slot.FluidSlotInfo;
 import mekanism.common.tile.component.config.slot.InventorySlotInfo;
+import mekanism.common.tile.interfaces.IHasDumpButton;
 import mekanism.common.tile.prefab.TileEntityRecipeMachine;
 import mekanism.common.upgrade.IUpgradeData;
 import mekanism.common.util.MekanismUtils;
@@ -64,7 +65,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.Arrays;
 import java.util.List;
 
-public class TileEntityMoreThermalEvaporationCompact extends TileEntityRecipeMachine<FluidToFluidRecipe> implements ISingleRecipeLookupHandler.FluidRecipeLookupHandler<FluidToFluidRecipe> {
+public class TileEntityMoreThermalEvaporationCompact extends TileEntityRecipeMachine<FluidToFluidRecipe> implements ISingleRecipeLookupHandler.FluidRecipeLookupHandler<FluidToFluidRecipe>, IHasDumpButton {
     public static final int MAX_HEIGHT = 18;
     private static final List<RecipeError> TRACKED_ERROR_TYPES = List.of(
             RecipeError.NOT_ENOUGH_INPUT,
@@ -347,5 +348,11 @@ public class TileEntityMoreThermalEvaporationCompact extends TileEntityRecipeMac
 
     public MoreThermalEvaporationTier getTier() {
         return this.tier;
+    }
+
+    @Override
+    public void dump() {
+        inputTank.setEmpty();
+        outputTank.setEmpty();
     }
 }
