@@ -82,6 +82,17 @@ public class MoreThermalEvaporationValidator extends CuboidStructureValidator<Mo
         if (!foundController) {
             return FormationResult.fail(MekanismLang.MULTIBLOCK_INVALID_NO_CONTROLLER);
         }
+
+        int allowedHeight = structure.getAllowedHeight();
+        int currentHeight = structure.height();
+
+        // プラントの高さが許容高さを超えた場合は無効化する。
+        // プラントの最大高さとは別に、許容高さを設け、実質的な最大高さの制限を行う。
+        if (currentHeight > allowedHeight) {
+            return FormationResult.FAIL;
+        }
+
         return FormationResult.SUCCESS;
     }
+
 }

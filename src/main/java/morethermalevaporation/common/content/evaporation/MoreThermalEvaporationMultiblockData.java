@@ -101,10 +101,12 @@ public class MoreThermalEvaporationMultiblockData extends MultiblockData impleme
     private double biomeAmbientTemp;
     private double tempMultiplier;
     private int inputTankCapacity;
+    private int allowedHeight;
 
     public MoreThermalEvaporationMultiblockData(TileEntityMoreThermalEvaporationBlock tile, MoreThermalEvaporationTier tier) {
         super(tile);
         this.tier = tier;
+        this.allowedHeight = tile.getAllowedHeight();
         recipeCacheLookupMonitor = new RecipeCacheLookupMonitor<>(this);
         recheckAllRecipeErrors = TileEntityRecipeMachine.shouldRecheckAllErrors(tile);
         maxMultiplierTemp = this.tier.getMultiplierTemp();
@@ -343,4 +345,9 @@ public class MoreThermalEvaporationMultiblockData extends MultiblockData impleme
             }
         }
     }
+
+    public int getAllowedHeight() {
+        return allowedHeight;
+    }
+
 }
