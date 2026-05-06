@@ -8,10 +8,7 @@ import morethermalevaporation.common.command.builders.MoreThermalEvaporationBuil
 import morethermalevaporation.common.config.MoreThermalEvaporationConfig;
 import morethermalevaporation.common.content.evaporation.MoreThermalEvaporationMultiblockData;
 import morethermalevaporation.common.content.evaporation.MoreThermalEvaporationValidator;
-import morethermalevaporation.common.registries.MoreThermalEvaporationBlocks;
-import morethermalevaporation.common.registries.MoreThermalEvaporationContainerTypes;
-import morethermalevaporation.common.registries.MoreThermalEvaporationCreativeTabs;
-import morethermalevaporation.common.registries.MoreThermalEvaporationTileEntityTypes;
+import morethermalevaporation.common.registries.*;
 import morethermalevaporation.common.tier.MoreThermalEvaporationTier;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
@@ -45,11 +42,12 @@ public class MoreThermalEvaporation {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
         MoreThermalEvaporationBlocks.REGISTRY_BLOCKS.register(modEventBus);
+        MoreThermalEvaporationItems.REGISTRY_ITEMS.register(modEventBus);
         MoreThermalEvaporationTileEntityTypes.TILE_ENTITY_TYPES.register(modEventBus);
         MoreThermalEvaporationContainerTypes.CONTAINER_TYPES.register(modEventBus);
         MoreThermalEvaporationCreativeTabs.register(modEventBus);
         MoreThermalEvaporationConfig.registerConfig(ModLoadingContext.get());
-        MinecraftForge.EVENT_BUS.addListener(EventPriority.HIGHEST,this::registerCommands);
+        MinecraftForge.EVENT_BUS.addListener(EventPriority.HIGHEST, this::registerCommands);
         modEventBus.addListener(MoreThermalEvaporation::onCommonSetup);
         MinecraftForge.EVENT_BUS.register(this);
     }

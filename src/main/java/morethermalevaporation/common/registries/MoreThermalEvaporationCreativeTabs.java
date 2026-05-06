@@ -26,6 +26,7 @@ public class MoreThermalEvaporationCreativeTabs {
                             output.accept(MoreThermalEvaporationBlocks.CONTROLLERS.get(tier));
                             output.accept(MoreThermalEvaporationBlocks.COMPACTS.get(tier));
                         }
+                        output.accept(MoreThermalEvaporationItems.STRUCTURE_UPGRADE);
                     })
                     .build()
     );
