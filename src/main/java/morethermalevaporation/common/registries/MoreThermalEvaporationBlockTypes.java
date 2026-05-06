@@ -15,6 +15,7 @@ import morethermalevaporation.common.tile.machine.TileEntityMoreThermalEvaporati
 import morethermalevaporation.common.tile.multiblock.TileEntityMoreThermalEvaporationBlock;
 import morethermalevaporation.common.tile.multiblock.TileEntityMoreThermalEvaporationController;
 import morethermalevaporation.common.tile.multiblock.TileEntityMoreThermalEvaporationValve;
+import morethermalevaporation.common.upgrade.MoreThermalEvaporationUpgrade;
 
 import java.util.EnumMap;
 import java.util.EnumSet;
@@ -56,7 +57,7 @@ public class MoreThermalEvaporationBlockTypes {
     private static BlockTypeTile<TileEntityMoreThermalEvaporationController> createMoreThermalEvaporationController(MoreThermalEvaporationTier tier, MoreThermalEvaporationLang lang) {
         return BlockTileBuilder.createBlock(() -> MoreThermalEvaporationTileEntityTypes.CONTROLLERS.get(tier), lang)
                 .withGui(() -> MoreThermalEvaporationContainerTypes.MORE_THERMAL_EVAPORATION_CONTROLLER.get(tier), MoreThermalEvaporationLang.getLangPlant(tier))
-                .withSupportedUpgrades(EnumSet.of(Upgrade.ANCHOR))
+                .withSupportedUpgrades(EnumSet.of(Upgrade.ANCHOR, MoreThermalEvaporationUpgrade.STRUCTURE))
                 .with(new AttributeTier<>(tier), Attributes.INVENTORY, Attributes.ACTIVE, new AttributeStateFacing(), new Attributes.AttributeCustomResistance(9))
                 .externalMultiblock()
                 .withComputerSupport(tier.getBaseTier().getLowerName() + "ThermalEvaporationController")
