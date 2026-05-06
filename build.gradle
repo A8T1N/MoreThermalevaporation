@@ -2,6 +2,7 @@ plugins {
     id 'eclipse'
     id 'idea'
     id 'net.minecraftforge.gradle' version '[6.0.16,6.2)'
+    id 'org.spongepowered.mixin' version '0.7.+'
 }
 
 
@@ -64,8 +65,21 @@ sourceSets.main.resources { srcDir 'src/generated/resources' }
 repositories {
 
     maven { url 'https://modmaven.dev/' }
-    maven {
-        url "https://cursemaven.com"
+    maven { url "https://cursemaven.com" }
+    maven { url = 'https://repo.spongepowered.org/repository/maven-public/' }
+}
+
+mixin {
+    add sourceSets.main, "${mod_id}.refmap.json"
+
+    config "${mod_id}.mixins.json"
+}
+
+jar {
+    manifest {
+        attributes([
+                "MixinConfigs": "${mod_id}.mixins.json"
+        ])
     }
 }
 
@@ -79,6 +93,9 @@ dependencies {
     implementation fg.deobf("curse.maven:just-enough-mekanism-multiblocks-898746:${jei_mekanism_multiblocks_version}")
     implementation fg.deobf("curse.maven:multi-builder-tool-827020:${multi_builder_tool_version}")
     implementation fg.deobf("curse.maven:pipez-443900:${pipez_version}")
+
+    annotationProcessor "org.spongepowered:mixin:0.8.5:processor"
+    compileOnly "org.spongepowered:mixin:0.8.5"
 
 }
 
