@@ -48,7 +48,8 @@ public class TileEntityMoreThermalEvaporationController extends TileEntityMoreTh
 
     @Override
     public void dump() {
-        getMultiblock().getFluidInTank(0).setAmount(0); // InputTank
-        getMultiblock().getFluidInTank(1).setAmount(0); // OutputTank
+        MoreThermalEvaporationMultiblockData multiblock = getMultiblock();
+        multiblock.inputTank.setEmpty();    // InputTank
+        multiblock.outputTank.setEmpty();   // OutputTank
     }
 }
