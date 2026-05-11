@@ -68,10 +68,6 @@ public class TileEntityMoreThermalEvaporationBlock extends TileEntityMultiblock<
         this.tier = Attribute.getTier(getBlockType(), MoreThermalEvaporationTier.class);
     }
 
-    public MoreThermalEvaporationTier getTier() {
-        return this.tier;
-    }
-
     @Override
     public void recalculateUpgrades(Upgrade upgrade) {
         MoreThermalEvaporationMultiblockData multiblock = getMultiblock();
@@ -94,8 +90,12 @@ public class TileEntityMoreThermalEvaporationBlock extends TileEntityMultiblock<
         return MoreThermalEvaporationUpgradeUtils.getMultScaledInfo(ret, this, upgrade);
     }
 
+    public MoreThermalEvaporationTier getTier() {
+        return tier;
+    }
+
     public int getAllowedHeight() {
-        return this.allowedHeight;
+        return allowedHeight;
     }
 
 }

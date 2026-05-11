@@ -95,4 +95,5 @@ public class MoreThermalEvaporationValidator extends CuboidStructureValidator<Mo
 
         return FormationResult.SUCCESS;
     }
+
 }
