@@ -5,23 +5,28 @@ import mekanism.api.providers.IBlockProvider;
 import mekanism.common.block.attribute.Attribute;
 import mekanism.common.lib.multiblock.MultiblockManager;
 import mekanism.common.tile.prefab.TileEntityMultiblock;
+import mekanism.common.util.UpgradeUtils;
 import mekanism.common.util.WorldUtils;
 import morethermalevaporation.MoreThermalEvaporation;
 import morethermalevaporation.common.content.evaporation.MoreThermalEvaporationMultiblockData;
 import morethermalevaporation.common.registries.MoreThermalEvaporationBlocks;
 import morethermalevaporation.common.tier.MoreThermalEvaporationTier;
 import morethermalevaporation.common.upgrade.MoreThermalEvaporationUpgrade;
+import morethermalevaporation.common.util.MoreThermalEvaporationUpgradeUtils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
+import org.jetbrains.annotations.NotNull;
 
-import static morethermalevaporation.common.tile.machine.TileEntityMoreThermalEvaporationCompact.MAX_HEIGHT;
+import java.util.List;
 
 public class TileEntityMoreThermalEvaporationBlock extends TileEntityMultiblock<MoreThermalEvaporationMultiblockData> {
 
     public MoreThermalEvaporationTier tier;
-    private int allowedHeight = MAX_HEIGHT;
+    private static final int DEFAULT_HEIGHT = 18;
+    private int allowedHeight = DEFAULT_HEIGHT;
 
     public TileEntityMoreThermalEvaporationBlock(MoreThermalEvaporationTier tier, BlockPos pos, BlockState state) {
         this(MoreThermalEvaporationBlocks.BLOCKS.get(tier), pos, state);
@@ -69,16 +74,28 @@ public class TileEntityMoreThermalEvaporationBlock extends TileEntityMultiblock<
 
     @Override
     public void recalculateUpgrades(Upgrade upgrade) {
-        // 構造条件（高さ制限など）に影響するアップグレード適用時は、許容高さの設定及び構造の再チェックを要求する
-        // TODO : recheckStructure時にGUI表示を維持する方法を探す
+        MoreThermalEvaporationMultiblockData multiblock = getMultiblock();
+
+        // ストラクチャーアップグレード数に応じて許容高さを設定する。
+        // 現在の高さが更新後の許容高さを超えている場合はプラントを無効化する。
         if (upgrade == MoreThermalEvaporationUpgrade.STRUCTURE) {
-            this.allowedHeight = this.tier.getBaseHeight() + upgradeComponent.getUpgrades(MoreThermalEvaporationUpgrade.STRUCTURE);
-            getMultiblock().recheckStructure = true;
+            this.allowedHeight = this.tier.getHeight() + upgradeComponent.getUpgrades(MoreThermalEvaporationUpgrade.STRUCTURE);
+            // 動的変更時チェック
+            if (multiblock.height() > this.allowedHeight) {
+                multiblock.setFormedForce(false);
+            }
         }
     }
 
+    @NotNull
+    @Override
+    public List<Component> getInfo(@NotNull Upgrade upgrade) {
+        List<Component> ret = UpgradeUtils.getMultScaledInfo(this, upgrade);
+        return MoreThermalEvaporationUpgradeUtils.getMultScaledInfo(ret, this, upgrade);
+    }
+
     public int getAllowedHeight() {
-        return allowedHeight;
+        return this.allowedHeight;
     }
 
 }
