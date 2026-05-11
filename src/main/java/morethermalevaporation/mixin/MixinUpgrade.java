@@ -37,7 +37,7 @@ public abstract class MixinUpgrade {
 
     @Inject(method = "<clinit>", at = @At("TAIL"))
     private static void mte$clinit(CallbackInfo ci) {
-        MoreThermalEvaporationUpgrade.STRUCTURE = mte$addVariant("STRUCTURE", MoreThermalEvaporationAPILang.UPGRADE_STRUCTURE, MoreThermalEvaporationAPILang.UPGRADE_STRUCTURE_DESCRIPTION, 1, EnumColor.DARK_GREEN);
+        MoreThermalEvaporationUpgrade.STRUCTURE = mte$addVariant("STRUCTURE", MoreThermalEvaporationAPILang.UPGRADE_STRUCTURE, MoreThermalEvaporationAPILang.UPGRADE_STRUCTURE_DESCRIPTION, 8, EnumColor.DARK_GREEN);
 
         UPGRADES = $VALUES;
     }
