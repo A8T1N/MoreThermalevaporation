@@ -15,6 +15,7 @@ import mekanism.common.lib.multiblock.StructureHelper;
 import morethermalevaporation.common.registries.MoreThermalEvaporationBlockTypes;
 import morethermalevaporation.common.tier.MoreThermalEvaporationTier;
 import morethermalevaporation.common.tile.multiblock.TileEntityMoreThermalEvaporationController;
+import morethermalevaporation.common.upgrade.MoreThermalEvaporationUpgrade;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
@@ -72,7 +73,7 @@ public class MoreThermalEvaporationValidator extends CuboidStructureValidator<Mo
 
     @Override
     public boolean precheck() {
-        VoxelCuboid maxCuboid = new VoxelCuboid(4, this.tier.getHeight(), 4);
+        VoxelCuboid maxCuboid = new VoxelCuboid(4, this.tier.getHeight() + MoreThermalEvaporationUpgrade.STRUCTURE.getMax(), 4);
         cuboid = StructureHelper.fetchCuboid(structure, MIN_CUBOID, maxCuboid, EnumSet.complementOf(EnumSet.of(CuboidSide.TOP)), 8);
         return cuboid != null;
     }
@@ -94,5 +95,4 @@ public class MoreThermalEvaporationValidator extends CuboidStructureValidator<Mo
 
         return FormationResult.SUCCESS;
     }
-
 }
