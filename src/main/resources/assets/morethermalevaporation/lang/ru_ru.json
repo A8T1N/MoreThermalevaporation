@@ -63,6 +63,10 @@
   "evaporation.morethermalevaporation.ultimate_evaporation_compact" : "Совершенный компактный тепловой испаритель",
   "evaporation.morethermalevaporation.creative_evaporation_compact" : "Творческий компактный тепловой испаритель",
 
+  "item.morethermalevaporation.upgrade_structure" : "Улучшение: зда́ние",
+  "upgrade.mekanism.structure": "зда́ние",
+  "upgrade.mekanism.structure.description" : "Увеличивает максимальную высоту установки.",
+
   "mbtool.structure.morethermalevaporation_basic_evaporation_tower": "MTE Базовый Установка теплового испарителя",
   "mbtool.structure.morethermalevaporation_advanced_evaporation_tower": "MTE Продвинутый Установка теплового испарителя",
   "mbtool.structure.morethermalevaporation_elite_evaporation_tower": "MTE литный Установка теплового испарителя",

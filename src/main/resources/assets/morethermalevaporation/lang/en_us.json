@@ -63,6 +63,10 @@
   "evaporation.morethermalevaporation.ultimate_evaporation_compact" : "Ultimate Thermal Evaporation Compact",
   "evaporation.morethermalevaporation.creative_evaporation_compact" : "Creative Thermal Evaporation Compact",
 
+  "item.morethermalevaporation.upgrade_structure" : "Structure Upgrade",
+  "upgrade.mekanism.structure": "Structure",
+  "upgrade.mekanism.structure.description" : "Increases Max Height of plants.",
+
   "mbtool.structure.morethermalevaporation_basic_evaporation_tower": "MTE Basic Thermal Evaporation Plant",
   "mbtool.structure.morethermalevaporation_advanced_evaporation_tower": "MTE Advanced Thermal Evaporation Plant",
   "mbtool.structure.morethermalevaporation_elite_evaporation_tower": "MTE Elite Thermal Evaporation Plant",

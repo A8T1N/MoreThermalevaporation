@@ -63,6 +63,10 @@
   "evaporation.morethermalevaporation.ultimate_evaporation_compact" : "궁극 열적 증발 컴팩트",
   "evaporation.morethermalevaporation.creative_evaporation_compact" : "크리에이티브 열적 증발 컴팩트",
 
+  "item.morethermalevaporation.upgrade_structure" : "구조 업그레이드",
+  "upgrade.mekanism.structure": "구조",
+  "upgrade.mekanism.structure.description" : "설비의 최대 높이를 증가시킵니다.",
+
   "mbtool.structure.morethermalevaporation_basic_evaporation_tower": "MTE 기본 열 증발 설비",
   "mbtool.structure.morethermalevaporation_advanced_evaporation_tower": "MTE 고급 열 증발 설비",
   "mbtool.structure.morethermalevaporation_elite_evaporation_tower": "MTE 엘리트 열 증발 설비",

@@ -63,6 +63,10 @@
   "evaporation.morethermalevaporation.ultimate_evaporation_compact" : "终极热力蒸馏紧凑",
   "evaporation.morethermalevaporation.creative_evaporation_compact" : "创造热力蒸馏紧凑",
 
+  "item.morethermalevaporation.upgrade_structure" : "结构升级",
+  "upgrade.mekanism.structure": "结构",
+  "upgrade.mekanism.structure.description" : "提升塔的最大高度",
+
   "mbtool.structure.morethermalevaporation_basic_evaporation_tower": "MTE 基础热力蒸馏塔",
   "mbtool.structure.morethermalevaporation_advanced_evaporation_tower": "MTE 高级热力蒸馏塔",
   "mbtool.structure.morethermalevaporation_elite_evaporation_tower": "MTE 精英热力蒸馏塔",
