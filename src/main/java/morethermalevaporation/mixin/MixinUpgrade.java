@@ -1,18 +1,25 @@
 package morethermalevaporation.mixin;
 
+import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
+import com.llamalad7.mixinextras.sugar.Local;
 import mekanism.api.Upgrade;
 import mekanism.api.text.APILang;
 import mekanism.api.text.EnumColor;
 import morethermalevaporation.common.upgrade.MoreThermalEvaporationAPILang;
 import morethermalevaporation.common.upgrade.MoreThermalEvaporationUpgrade;
+import net.minecraft.nbt.CompoundTag;
+import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.gen.Invoker;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.ModifyVariable;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Map;
+import java.util.Set;
 
 @Mixin(value = Upgrade.class, remap = false)
 public abstract class MixinUpgrade {
@@ -40,6 +47,18 @@ public abstract class MixinUpgrade {
         MoreThermalEvaporationUpgrade.STRUCTURE = mte$addVariant("STRUCTURE", MoreThermalEvaporationAPILang.UPGRADE_STRUCTURE, MoreThermalEvaporationAPILang.UPGRADE_STRUCTURE_DESCRIPTION, 8, EnumColor.DARK_GREEN);
 
         UPGRADES = $VALUES;
+    }
+
+    @ModifyVariable(method = "buildMap", at = @At(value = "STORE", ordinal = 0), name = "upgrades")
+    private static Map<Upgrade, Integer> mte$buildMap(@Nullable Map<Upgrade, Integer> upgrades,
+                                                            @Nullable CompoundTag nbtTags) {
+        return MoreThermalEvaporationUpgrade.buildMap(upgrades, nbtTags);
+    }
+
+    @ModifyExpressionValue(method = "saveMap", at = @At(value = "INVOKE", target = "Ljava/util/Map;entrySet()Ljava/util/Set;"))
+    private static Set<Map.Entry<Upgrade, Integer>> mte$saveMap(
+            Set<Map.Entry<Upgrade, Integer>> original, @Local(argsOnly = true, name = "arg1") CompoundTag nbtTags) {
+        return MoreThermalEvaporationUpgrade.saveMap(original, nbtTags);
     }
 
     @Unique
