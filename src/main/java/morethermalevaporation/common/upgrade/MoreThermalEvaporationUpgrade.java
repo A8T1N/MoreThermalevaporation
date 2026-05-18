@@ -1,10 +1,7 @@
 package morethermalevaporation.common.upgrade;
 
-import mekanism.api.NBTConstants;
 import mekanism.api.Upgrade;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.nbt.ListTag;
-import net.minecraft.nbt.Tag;
 import net.minecraft.util.Mth;
 
 import java.util.HashMap;
@@ -23,29 +20,22 @@ public class MoreThermalEvaporationUpgrade {
         if (upgrades == null) {
             upgrades = new HashMap<>();
         }
-        if (nbtTags != null && nbtTags.contains(MTE_UPGRADE_NBT, Tag.TAG_LIST)) {
-            ListTag list = nbtTags.getList(MTE_UPGRADE_NBT, Tag.TAG_COMPOUND);
-            for (int tagCount = 0; tagCount < list.size(); tagCount++) {
-                CompoundTag compound = list.getCompound(tagCount);
-                int installed = Mth.clamp(compound.getInt(NBTConstants.AMOUNT), 0, STRUCTURE.getMax());
 
-                if (installed > 0) {
-                    upgrades.put(STRUCTURE, installed);
-                }
-            }
+        int installed = Mth.clamp(nbtTags.getInt(MTE_UPGRADE_NBT), 0, STRUCTURE.getMax());
+
+        if (installed > 0) {
+            upgrades.put(STRUCTURE, installed);
         }
+
         return upgrades;
     }
 
-    public static Set<Map.Entry<Upgrade, Integer>> saveMap(Set<Map.Entry<Upgrade, Integer>> upgrades,
-                                                           CompoundTag nbtTags) {
-        ListTag list = new ListTag();
+    public static Set<Map.Entry<Upgrade, Integer>> saveMap(Set<Map.Entry<Upgrade, Integer>> upgrades, CompoundTag nbtTags) {
         for (Map.Entry<Upgrade, Integer> entry : upgrades) {
             if (entry.getKey() == STRUCTURE) {
-                list.add(STRUCTURE.getTag(entry.getValue()));
+                nbtTags.putInt(MTE_UPGRADE_NBT, entry.getValue());
             }
         }
-        nbtTags.put(MTE_UPGRADE_NBT, list);
         return upgrades.stream()
                 .filter(Objects::nonNull)
                 .filter(entry -> entry.getKey() != STRUCTURE)
