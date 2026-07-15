@@ -1,0 +1,77 @@
+{
+  "block.morethermalevaporation.basic_thermal_evaporation_block": "Bloco de Evaporação Térmica Básico",
+  "block.morethermalevaporation.basic_thermal_evaporation_controller": "Controlador de Evaporação Térmica Básico",
+  "block.morethermalevaporation.basic_thermal_evaporation_valve": "Válvula de Evaporação Térmica Básica",
+
+  "block.morethermalevaporation.advanced_thermal_evaporation_block": "Bloco de Evaporação Térmica Avançado",
+  "block.morethermalevaporation.advanced_thermal_evaporation_controller": "Controlador de Evaporação Térmica Avançado",
+  "block.morethermalevaporation.advanced_thermal_evaporation_valve": "Válvula de Evaporação Térmica Avançada",
+
+  "block.morethermalevaporation.elite_thermal_evaporation_block": "Bloco de Evaporação Térmica Elite",
+  "block.morethermalevaporation.elite_thermal_evaporation_controller": "Controlador de Evaporação Térmica Elite",
+  "block.morethermalevaporation.elite_thermal_evaporation_valve": "Válvula de Evaporação Térmica Elite",
+
+  "block.morethermalevaporation.ultimate_thermal_evaporation_block": "Bloco de Evaporação Térmica Ultimate",
+  "block.morethermalevaporation.ultimate_thermal_evaporation_controller": "Controlador de Evaporação Térmica Ultimate",
+  "block.morethermalevaporation.ultimate_thermal_evaporation_valve": "Válvula de Evaporação Térmica Ultimate",
+
+  "block.morethermalevaporation.creative_thermal_evaporation_block": "Bloco de Evaporação Térmica Criativo",
+  "block.morethermalevaporation.creative_thermal_evaporation_controller": "Controlador de Evaporação Térmica Criativo",
+  "block.morethermalevaporation.creative_thermal_evaporation_valve": "Válvula de Evaporação Térmica Criativa",
+
+  "block.morethermalevaporation.basic_thermal_evaporation_compact": "Evaporação Térmica Compacta Básica",
+  "block.morethermalevaporation.advanced_thermal_evaporation_compact": "Evaporação Térmica Compacta Avançada",
+  "block.morethermalevaporation.elite_thermal_evaporation_compact": "Evaporação Térmica Compacta Elite",
+  "block.morethermalevaporation.ultimate_thermal_evaporation_compact": "Evaporação Térmica Compacta Ultimate",
+  "block.morethermalevaporation.creative_thermal_evaporation_compact": "Evaporação Térmica Compacta Criativa",
+
+  "description.morethermalevaporation.basic_thermal_evaporation_block": "Um revestimento de liga de cobre usado na estrutura de uma Usina de Evaporação Térmica Básica, que usa seu material avançado para conduzir as grandes quantidades de calor necessárias para o processamento.",
+  "description.morethermalevaporation.basic_thermal_evaporation_controller": "O controlador de uma Usina de Evaporação Térmica Básica, que age como o bloco mestre da estrutura. Apenas um deve ser colocado por multibloco.",
+  "description.morethermalevaporation.basic_thermal_evaporation_valve": "Uma válvula que pode ser colocada em um multibloco da Usina de Evaporação Térmica Básica, para permitir a inserção e extração de fluidos por meio de tubulação externa.",
+
+  "description.morethermalevaporation.advanced_thermal_evaporation_block": "Um revestimento de liga de cobre usado na estrutura de uma Usina de Evaporação Térmica Avançada, que usa seu material avançado para conduzir as grandes quantidades de calor necessárias para o processamento.",
+  "description.morethermalevaporation.advanced_thermal_evaporation_controller": "O controlador de uma Usina de Evaporação Térmica Avançada, que age como o bloco mestre da estrutura. Apenas um deve ser colocado por multibloco.",
+  "description.morethermalevaporation.advanced_thermal_evaporation_valve": "Uma válvula que pode ser colocada em um multibloco da Usina de Evaporação Térmica Avançada, para permitir a inserção e extração de fluidos por meio de tubulação externa.",
+
+  "description.morethermalevaporation.elite_thermal_evaporation_block": "Um revestimento de liga de cobre usado na estrutura de uma Usina de Evaporação Térmica Elite, que usa seu material avançado para conduzir as grandes quantidades de calor necessárias para o processamento.",
+  "description.morethermalevaporation.elite_thermal_evaporation_controller": "O controlador de uma Usina de Evaporação Térmica Elite, que age como o bloco mestre da estrutura. Apenas um deve ser colocado por multibloco.",
+  "description.morethermalevaporation.elite_thermal_evaporation_valve": "Uma válvula que pode ser colocada em um multibloco da Usina de Evaporação Térmica Elite, para permitir a inserção e extração de fluidos por meio de tubulação externa.",
+
+  "description.morethermalevaporation.ultimate_thermal_evaporation_block": "Um revestimento de liga de cobre usado na estrutura de uma Usina de Evaporação Térmica Ultimate, que usa seu material avançado para conduzir as grandes quantidades de calor necessárias para o processamento.",
+  "description.morethermalevaporation.ultimate_thermal_evaporation_controller": "O controlador de uma Usina de Evaporação Térmica Ultimate, que age como o bloco mestre da estrutura. Apenas um deve ser colocado por multibloco.",
+  "description.morethermalevaporation.ultimate_thermal_evaporation_valve": "Uma válvula que pode ser colocada em um multibloco da Usina de Evaporação Térmica Ultimate, para permitir a inserção e extração de fluidos por meio de tubulação externa.",
+
+  "description.morethermalevaporation.creative_thermal_evaporation_block": "Um revestimento de liga de cobre usado na estrutura de uma Usina de Evaporação Térmica Criativa, que usa seu material avançado para conduzir as grandes quantidades de calor necessárias para o processamento.",
+  "description.morethermalevaporation.creative_thermal_evaporation_controller": "O controlador de uma Usina de Evaporação Térmica Criativa, que age como o bloco mestre da estrutura. Apenas um deve ser colocado por multibloco.",
+  "description.morethermalevaporation.creative_thermal_evaporation_valve": "Uma válvula que pode ser colocada em um multibloco da Usina de Evaporação Térmica Criativa, para permitir a inserção e extração de fluidos por meio de tubulação externa.",
+
+  "description.morethermalevaporation.basic_thermal_evaporation_compact": "Uma máquina altamente avançada que integra todas as funções de uma Usina de Evaporação Térmica Básica em uma única unidade.",
+  "description.morethermalevaporation.advanced_thermal_evaporation_compact": "Uma máquina altamente avançada que integra todas as funções de uma Usina de Evaporação Térmica Avançada em uma única unidade.",
+  "description.morethermalevaporation.elite_thermal_evaporation_compact": "Uma máquina altamente avançada que integra todas as funções de uma Usina de Evaporação Térmica Elite em uma única unidade.",
+  "description.morethermalevaporation.ultimate_thermal_evaporation_compact": "Uma máquina altamente avançada que integra todas as funções de uma Usina de Evaporação Térmica Ultimate em uma única unidade.",
+  "description.morethermalevaporation.creative_thermal_evaporation_compact": "Uma máquina altamente avançada que integra todas as funções de uma Usina de Evaporação Térmica Criativa em uma única unidade.",
+
+  "evaporation.morethermalevaporation.basic_evaporation_plant": "Usina de Evaporação Térmica Básica",
+  "evaporation.morethermalevaporation.advanced_evaporation_plant": "Usina de Evaporação Térmica Avançada",
+  "evaporation.morethermalevaporation.elite_evaporation_plant": "Usina de Evaporação Térmica Elite",
+  "evaporation.morethermalevaporation.ultimate_evaporation_plant": "Usina de Evaporação Térmica Ultimate",
+  "evaporation.morethermalevaporation.creative_evaporation_plant": "Usina de Evaporação Térmica Criativa",
+
+  "evaporation.morethermalevaporation.basic_evaporation_compact": "Evaporação Térmica Compacta Básica",
+  "evaporation.morethermalevaporation.advanced_evaporation_compact": "Evaporação Térmica Compacta Avançada",
+  "evaporation.morethermalevaporation.elite_evaporation_compact": "Evaporação Térmica Compacta Elite",
+  "evaporation.morethermalevaporation.ultimate_evaporation_compact": "Evaporação Térmica Compacta Ultimate",
+  "evaporation.morethermalevaporation.creative_evaporation_compact": "Evaporação Térmica Compacta Criativa",
+
+  "item.morethermalevaporation.upgrade_structure": "Atualização de Estrutura",
+  "upgrade.mekanism.structure": "Estrutura",
+  "upgrade.mekanism.structure.description": "Aumenta a altura máxima das usinas.",
+
+  "mbtool.structure.morethermalevaporation_basic_evaporation_tower": "Usina de Evaporação Térmica Básica MET",
+  "mbtool.structure.morethermalevaporation_advanced_evaporation_tower": "Usina de Evaporação Térmica Avançada MET",
+  "mbtool.structure.morethermalevaporation_elite_evaporation_tower": "Usina de Evaporação Térmica Elite MET",
+  "mbtool.structure.morethermalevaporation_ultimate_evaporation_tower": "Usina de Evaporação Térmica Ultimate MET",
+  "mbtool.structure.morethermalevaporation_creative_evaporation_tower": "Usina de Evaporação Térmica Criativa MET",
+
+  "creativetab.morethermalevaporation.tab": "More Thermal Evaporation"
+}
