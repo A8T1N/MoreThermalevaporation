@@ -21,8 +21,11 @@ import mezz.jei.api.helpers.IGuiHelper;
 import morethermalevaporation.MoreThermalEvaporation;
 import morethermalevaporation.common.MoreThermalEvaporationLang;
 import morethermalevaporation.common.content.evaporation.MoreThermalEvaporationMultiblockData;
+import morethermalevaporation.common.content.evaporation.MoreThermalEvaporationType;
 import morethermalevaporation.common.registries.MoreThermalEvaporationBlocks;
+import morethermalevaporation.common.registries.MoreThermalEvaporationItems;
 import morethermalevaporation.common.tier.MoreThermalEvaporationTier;
+import morethermalevaporation.common.upgrade.MoreThermalEvaporationUpgrade;
 import net.minecraft.client.gui.components.AbstractWidget;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
@@ -35,7 +38,7 @@ public class MoreEvaporationPlantCategory extends MultiblockCategory<MoreEvapora
     private final MoreThermalEvaporationTier tier;
 
     public MoreEvaporationPlantCategory(IGuiHelper helper, MoreThermalEvaporationTier tier, Class<? extends MoreEvaporationPlantWidget> widgetClass) {
-        // TODO JEI表示順の為にティア順をパスに追加
+        // NOTE JEI表示順の為にティア順をパスに追加
         super(helper, MoreThermalEvaporation.rl(tier.ordinal() + "_" + tier.getBaseTier().getLowerName() + "_evaporation_plant"), widgetClass, MoreThermalEvaporationLang.getLangPlant(tier).translate(), MoreThermalEvaporationBlocks.CONTROLLERS.get(tier).getItemStack());
         this.tier = tier;
     }
@@ -56,6 +59,8 @@ public class MoreEvaporationPlantCategory extends MultiblockCategory<MoreEvapora
 
     public abstract static class MoreEvaporationPlantWidget extends MultiblockWidget {
         protected CheckBoxWidget useAdvancedSolarGeneratorCheckBox;
+        protected CheckBoxWidget useStructureUpgradeCheckBox;
+        protected CheckBoxWidget useLargeTypesCheckBox;
         protected IntSliderWithButtons valvesWidget;
 
         public MoreEvaporationPlantWidget() {
@@ -71,6 +76,11 @@ public class MoreEvaporationPlantCategory extends MultiblockCategory<MoreEvapora
             return super.getSideBlocks() - 5;
         }
 
+        public int getFreeFrameCount() {
+            // 自由フレーム - コントローラ1個分
+            return 12 * (this.getDimensionHeight() - 4) - 1;
+        }
+
         @Override
         protected void collectOtherConfigs(Consumer<AbstractWidget> consumer) {
             super.collectOtherConfigs(consumer);
@@ -83,6 +93,12 @@ public class MoreEvaporationPlantCategory extends MultiblockCategory<MoreEvapora
                 this.useAdvancedSolarGeneratorCheckBox.addSelectedChangedHandler(this::onUseAdvancedSolarGeneratorChanged);
             }
 
+            consumer.accept(this.useStructureUpgradeCheckBox = new CheckBoxWidget(0, 0, 0, 0, Component.translatable("text.jei_mekanism_multiblocks.specs.use_things", MoreThermalEvaporationItems.STRUCTURE_UPGRADE.getItemStack().getHoverName()), false));
+            this.useStructureUpgradeCheckBox.addSelectedChangedHandler(this::onUseStructureUpgradeChanged);
+
+            consumer.accept(this.useLargeTypesCheckBox = new CheckBoxWidget(0, 0, 0, 0, Component.translatable("text.jei_mekanism_multiblocks.specs.use_things", MoreThermalEvaporationLang.MULTIBLOCK_TYPE.translate(MoreThermalEvaporationLang.TYPE_LARGE.translate())), false));
+            this.useLargeTypesCheckBox.addSelectedChangedHandler(this::onUseLargeTypeChanged);
+
             consumer.accept(this.valvesWidget = new IntSliderWithButtons(0, 0, 0, 0, "text.jei_mekanism_multiblocks.specs.valves", 0, 2, 0));
             this.valvesWidget.getSlider().addValueChangeHanlder(this::onValvesChanged);
 
@@ -94,6 +110,8 @@ public class MoreEvaporationPlantCategory extends MultiblockCategory<MoreEvapora
             super.load(tag);
 
             this.setUseAdvancedSolarGenerator(tag.getBoolean("UseAdvancedSolarGenerator"));
+            this.setUseStructureUpgrade(tag.getBoolean("UseStructureUpgrade"));
+            this.setUseLargeTypes(tag.getBoolean("UseLargeType"));
             this.setValveCount(tag.getInt("ValveCount"));
         }
 
@@ -102,6 +120,8 @@ public class MoreEvaporationPlantCategory extends MultiblockCategory<MoreEvapora
             super.save(tag);
 
             tag.putBoolean("UseAdvancedSolarGenerator", this.isUseAdvancedSolarGenerator());
+            tag.putBoolean("UseStructureUpgrade", this.isUseStructureUpgrade());
+            tag.putBoolean("UseLargeType", this.isUseLargeType());
             tag.putInt("ValveCount", this.getValveCount());
         }
 
@@ -116,8 +136,8 @@ public class MoreEvaporationPlantCategory extends MultiblockCategory<MoreEvapora
             IntSliderWidget valvesSlider = this.valvesWidget.getSlider();
             int minValves = valvesSlider.getMinValue();
             int valves = valvesSlider.getValue();
-            valvesSlider.setMinValue(this.useAdvancedSolarGeneratorCheckBox.isSelected() ? 2 : 3);
-            valvesSlider.setMaxValue(this.getSideBlocks());
+            valvesSlider.setMinValue(this.isUseAdvancedSolarGenerator() && !this.isUseLargeType() ? 2 : 3);
+            valvesSlider.setMaxValue(this.isUseLargeType() ? this.getFreeFrameCount() : this.getSideBlocks());
             valvesSlider.setValue(valves + (valvesSlider.getMinValue() - minValves));
         }
 
@@ -136,6 +156,35 @@ public class MoreEvaporationPlantCategory extends MultiblockCategory<MoreEvapora
             this.updateValveSliderLimit();
         }
 
+        protected void onUseStructureUpgradeChanged(boolean useStructureUpgrade) {
+            this.markNeedUpdate();
+
+            MoreThermalEvaporationTier tier = getTier();
+            int currentHeight = this.getDimensionHeight();
+
+            this.heightWidget.getSlider().setMaxValue(
+                    useStructureUpgrade
+                            ? tier.getHeight() + MoreThermalEvaporationUpgrade.STRUCTURE.getMax()
+                            : tier.getHeight()
+            );
+
+            this.heightWidget.getSlider().setValue(currentHeight);
+        }
+
+        protected void onUseLargeTypeChanged(boolean useLargeTypes) {
+            this.markNeedUpdate();
+
+            int currentHeight = this.getDimensionHeight();
+
+            this.heightWidget.getSlider().setMinValue(
+                    useLargeTypes ? 5 : 3
+            );
+
+            this.heightWidget.getSlider().setValue(currentHeight);
+
+            this.updateValveSliderLimit();
+        }
+
         @Override
         protected void collectCost(ICostConsumer consumer) {
             super.collectCost(consumer);
@@ -149,29 +198,58 @@ public class MoreEvaporationPlantCategory extends MultiblockCategory<MoreEvapora
             int casing = 0;
             int glasses = 0;
             int advancedSolarGenerators = 0;
+            int upgrades = 0;
 
-            if (this.isUseGlass()) {
-                casing = corners;
-                glasses = sides;
+            if (isUseLargeType()) {
+                final int top = 24;
+                final int centerFrame = 32 * 2;
+                final int bottom = 49;
+                int frame = 20 * (this.getDimensionHeight() - 4);
+
+                if (this.isUseGlass()) {
+                    // getLargeSideBlocks() は「コントローラー1個分」が除外済みの自由枠数
+                    // 自由枠のうちバルブ以外の場所をすべてガラスにする
+                    glasses = this.getFreeFrameCount() - valves;
+                } else {
+                    // 自由枠のうちバルブ以外の場所をすべてCasingとして加算する
+                    casing += this.getFreeFrameCount() - valves;
+                }
 
                 if (this.isUseAdvancedSolarGenerator()) {
-                    // Replace top corner to solar generator
-                    casing -= 4;
                     advancedSolarGenerators += 4;
-                } else {
-                    // Replace top side to glass
-                    casing -= 8;
-                    glasses += 8;
                 }
+
+                casing += top + centerFrame + frame + bottom;
 
             } else {
-                // Remove top vertices
-                casing = corners + sides - 4;
 
-                if (this.isUseAdvancedSolarGenerator()) {
-                    advancedSolarGenerators += 4;
+                if (this.isUseGlass()) {
+                    casing = corners;
+                    glasses = sides;
+
+                    if (this.isUseAdvancedSolarGenerator()) {
+                        // Replace top corner to solar generator
+                        casing -= 4;
+                        advancedSolarGenerators += 4;
+                    } else {
+                        // Replace top side to glass
+                        casing -= 8;
+                        glasses += 8;
+                    }
+
+                } else {
+                    // Remove top vertices
+                    casing = corners + sides - 4;
+
+                    if (this.isUseAdvancedSolarGenerator()) {
+                        advancedSolarGenerators += 4;
+                    }
+
                 }
+            }
 
+            if (this.isUseStructureUpgrade()) {
+                upgrades = this.getDimensionHeight() - 18;
             }
 
             consumer.accept(new ItemStack(MoreThermalEvaporationBlocks.CONTROLLERS.get(tier), 1));
@@ -183,24 +261,31 @@ public class MoreEvaporationPlantCategory extends MultiblockCategory<MoreEvapora
                 consumer.accept(new ItemStack(GeneratorsBlocks.ADVANCED_SOLAR_GENERATOR, advancedSolarGenerators));
             }
 
+            consumer.accept(new ItemStack(MoreThermalEvaporationItems.STRUCTURE_UPGRADE.get(), upgrades));
+
         }
 
         @Override
         protected void collectResult(Consumer<AbstractWidget> consumer) {
             super.collectResult(consumer);
             MoreThermalEvaporationTier tier = getTier();
-
             long dimHeight = this.getDimensionHeight();
-            long inputCapacity = tier == MoreThermalEvaporationTier.CREATIVE ? Integer.MAX_VALUE : dimHeight * 4 * tier.getInputTankCapacity();
-            long outputCapacity = tier.getOutputTankCapacity();
-            double maxTemp = tier.getMultiplierTemp();
-            // TODO スライダーとgetDimensionHeightMax()が連動しているが計算が合わないので変更
+            long inputCapacity = tier == MoreThermalEvaporationTier.CREATIVE ? Integer.MAX_VALUE : getInputCapacity(tier, dimHeight);
+            long outputCapacity = (long) tier.getOutputTankCapacity() * (isUseLargeType() ? MoreThermalEvaporationType.LARGE.getMultiplier() : MoreThermalEvaporationType.NORMAL.getMultiplier());
+            double maxTemp = tier.getMultiplierTemp() * (isUseLargeType() ? MoreThermalEvaporationType.LARGE.getMultiplier() : MoreThermalEvaporationType.NORMAL.getMultiplier());
             double maxSpeed = (maxTemp - HeatAPI.AMBIENT_TEMP) * MekanismConfig.general.evaporationTempMultiplier.get() * ((double) dimHeight / MoreThermalEvaporationMultiblockData.MAX_HEIGHT);
             ResultWidget speedWidget = new ResultWidget(Component.translatable("text.jei_mekanism_multiblocks.result.max_speed"), Component.literal("x" + TextUtils.format(maxSpeed)));
             speedWidget.setTooltip(TooltipHelper.createMessageOnly(Component.translatable("text.jei_mekanism_multiblocks.tooltip.when_temp_ge", MekanismUtils.getTemperatureDisplay(maxTemp, TemperatureUnit.KELVIN, false))));
             consumer.accept(speedWidget);
             consumer.accept(new ResultWidget(Component.translatable("text.jei_mekanism_multiblocks.result.input_tank"), VolumeTextHelper.formatMB(inputCapacity)));
             consumer.accept(new ResultWidget(Component.translatable("text.jei_mekanism_multiblocks.result.output_tank"), VolumeTextHelper.formatMB(outputCapacity)));
+        }
+
+        public long getInputCapacity(MoreThermalEvaporationTier tier, long dimHeight) {
+            if (isUseLargeType()) {
+                return ((dimHeight * 81) / 4) * tier.getInputTankCapacity();
+            }
+            return dimHeight * 4 * tier.getInputTankCapacity();
         }
 
         public int getValveCount() {
@@ -217,6 +302,22 @@ public class MoreEvaporationPlantCategory extends MultiblockCategory<MoreEvapora
 
         public void setUseAdvancedSolarGenerator(boolean useAdvancedSolarGenerator) {
             this.useAdvancedSolarGeneratorCheckBox.setSelected(useAdvancedSolarGenerator);
+        }
+
+        public boolean isUseStructureUpgrade() {
+            return this.useStructureUpgradeCheckBox.isSelected();
+        }
+
+        public boolean isUseLargeType() {
+            return this.useLargeTypesCheckBox.isSelected();
+        }
+
+        public void setUseStructureUpgrade(boolean useStructureUpgrade) {
+            this.useStructureUpgradeCheckBox.setSelected(useStructureUpgrade);
+        }
+
+        public void setUseLargeTypes(boolean useLargeType) {
+            this.useLargeTypesCheckBox.setSelected(useLargeType);
         }
 
         @Override
