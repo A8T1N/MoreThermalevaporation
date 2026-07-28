@@ -7,6 +7,7 @@ import morethermalevaporation.common.tier.MoreThermalEvaporationTier;
 import net.minecraft.Util;
 
 import java.util.EnumMap;
+import java.util.Locale;
 
 @NothingNullByDefault
 public enum MoreThermalEvaporationLang implements ILangEntry {
@@ -70,6 +71,13 @@ public enum MoreThermalEvaporationLang implements ILangEntry {
 
     DESCRIPTION_CREATIVE_THERMAL_EVAPORATION_COMPACT("description", "creative_thermal_evaporation_compact"),
     CREATIVE_EVAPORATION_COMPACT("evaporation", "creative_evaporation_compact"),
+
+    // MultiBlock
+    MULTIBLOCK_TYPE("multiblock", "type"),
+
+    // Type
+    TYPE_NORMAL("type", "normal"),
+    TYPE_LARGE("type", "large"),
     ;
 
     private final String key;
@@ -87,52 +95,21 @@ public enum MoreThermalEvaporationLang implements ILangEntry {
         return key;
     }
 
-    private static final EnumMap<MoreThermalEvaporationTier, MoreThermalEvaporationLang> DESCRIPTION_BLOCK_LANGS = new EnumMap<>(MoreThermalEvaporationTier.class);
-    private static final EnumMap<MoreThermalEvaporationTier, MoreThermalEvaporationLang> DESCRIPTION_VALVE_LANGS = new EnumMap<>(MoreThermalEvaporationTier.class);
-    private static final EnumMap<MoreThermalEvaporationTier, MoreThermalEvaporationLang> DESCRIPTION_CONTROLLER_LANGS = new EnumMap<>(MoreThermalEvaporationTier.class);
-    private static final EnumMap<MoreThermalEvaporationTier, MoreThermalEvaporationLang> PLANT_LANGS = new EnumMap<>(MoreThermalEvaporationTier.class);
-    private static final EnumMap<MoreThermalEvaporationTier, MoreThermalEvaporationLang> DESCRIPTION_COMPACT_LANGS = new EnumMap<>(MoreThermalEvaporationTier.class);
-    private static final EnumMap<MoreThermalEvaporationTier, MoreThermalEvaporationLang> COMPACT_LANGS = new EnumMap<>(MoreThermalEvaporationTier.class);
+    private static final EnumMap<MoreThermalEvaporationTier, MoreThermalEvaporationLang> DESCRIPTION_BLOCK_LANGS = createTierMap("DESCRIPTION_%s_THERMAL_EVAPORATION_BLOCK");
+    private static final EnumMap<MoreThermalEvaporationTier, MoreThermalEvaporationLang> DESCRIPTION_VALVE_LANGS = createTierMap("DESCRIPTION_%s_THERMAL_EVAPORATION_VALVE");
+    private static final EnumMap<MoreThermalEvaporationTier, MoreThermalEvaporationLang> DESCRIPTION_CONTROLLER_LANGS = createTierMap("DESCRIPTION_%s_THERMAL_EVAPORATION_CONTROLLER");
+    private static final EnumMap<MoreThermalEvaporationTier, MoreThermalEvaporationLang> PLANT_LANGS = createTierMap("%s_EVAPORATION_PLANT");
+    private static final EnumMap<MoreThermalEvaporationTier, MoreThermalEvaporationLang> DESCRIPTION_COMPACT_LANGS = createTierMap("DESCRIPTION_%s_THERMAL_EVAPORATION_COMPACT");
+    private static final EnumMap<MoreThermalEvaporationTier, MoreThermalEvaporationLang> COMPACT_LANGS = createTierMap("%s_EVAPORATION_COMPACT");
 
-
-    static {
-        DESCRIPTION_BLOCK_LANGS.put(MoreThermalEvaporationTier.BASIC, DESCRIPTION_BASIC_THERMAL_EVAPORATION_BLOCK);
-        DESCRIPTION_BLOCK_LANGS.put(MoreThermalEvaporationTier.ADVANCED, DESCRIPTION_ADVANCED_THERMAL_EVAPORATION_BLOCK);
-        DESCRIPTION_BLOCK_LANGS.put(MoreThermalEvaporationTier.ELITE, DESCRIPTION_ELITE_THERMAL_EVAPORATION_BLOCK);
-        DESCRIPTION_BLOCK_LANGS.put(MoreThermalEvaporationTier.ULTIMATE, DESCRIPTION_ULTIMATE_THERMAL_EVAPORATION_BLOCK);
-        DESCRIPTION_BLOCK_LANGS.put(MoreThermalEvaporationTier.CREATIVE, DESCRIPTION_CREATIVE_THERMAL_EVAPORATION_BLOCK);
-
-        DESCRIPTION_VALVE_LANGS.put(MoreThermalEvaporationTier.BASIC, DESCRIPTION_BASIC_THERMAL_EVAPORATION_VALVE);
-        DESCRIPTION_VALVE_LANGS.put(MoreThermalEvaporationTier.ADVANCED, DESCRIPTION_ADVANCED_THERMAL_EVAPORATION_VALVE);
-        DESCRIPTION_VALVE_LANGS.put(MoreThermalEvaporationTier.ELITE, DESCRIPTION_ELITE_THERMAL_EVAPORATION_VALVE);
-        DESCRIPTION_VALVE_LANGS.put(MoreThermalEvaporationTier.ULTIMATE, DESCRIPTION_ULTIMATE_THERMAL_EVAPORATION_VALVE);
-        DESCRIPTION_VALVE_LANGS.put(MoreThermalEvaporationTier.CREATIVE, DESCRIPTION_CREATIVE_THERMAL_EVAPORATION_VALVE);
-
-        DESCRIPTION_CONTROLLER_LANGS.put(MoreThermalEvaporationTier.BASIC, DESCRIPTION_BASIC_THERMAL_EVAPORATION_CONTROLLER);
-        DESCRIPTION_CONTROLLER_LANGS.put(MoreThermalEvaporationTier.ADVANCED, DESCRIPTION_ADVANCED_THERMAL_EVAPORATION_CONTROLLER);
-        DESCRIPTION_CONTROLLER_LANGS.put(MoreThermalEvaporationTier.ELITE, DESCRIPTION_ELITE_THERMAL_EVAPORATION_CONTROLLER);
-        DESCRIPTION_CONTROLLER_LANGS.put(MoreThermalEvaporationTier.ULTIMATE, DESCRIPTION_ULTIMATE_THERMAL_EVAPORATION_CONTROLLER);
-        DESCRIPTION_CONTROLLER_LANGS.put(MoreThermalEvaporationTier.CREATIVE, DESCRIPTION_CREATIVE_THERMAL_EVAPORATION_CONTROLLER);
-
-        PLANT_LANGS.put(MoreThermalEvaporationTier.BASIC, BASIC_EVAPORATION_PLANT);
-        PLANT_LANGS.put(MoreThermalEvaporationTier.ADVANCED, ADVANCED_EVAPORATION_PLANT);
-        PLANT_LANGS.put(MoreThermalEvaporationTier.ELITE, ELITE_EVAPORATION_PLANT);
-        PLANT_LANGS.put(MoreThermalEvaporationTier.ULTIMATE, ULTIMATE_EVAPORATION_PLANT);
-        PLANT_LANGS.put(MoreThermalEvaporationTier.CREATIVE, CREATIVE_EVAPORATION_PLANT);
-
-        DESCRIPTION_COMPACT_LANGS.put(MoreThermalEvaporationTier.BASIC,DESCRIPTION_BASIC_THERMAL_EVAPORATION_COMPACT);
-        DESCRIPTION_COMPACT_LANGS.put(MoreThermalEvaporationTier.ADVANCED,DESCRIPTION_ADVANCED_THERMAL_EVAPORATION_COMPACT);
-        DESCRIPTION_COMPACT_LANGS.put(MoreThermalEvaporationTier.ELITE,DESCRIPTION_ELITE_THERMAL_EVAPORATION_COMPACT);
-        DESCRIPTION_COMPACT_LANGS.put(MoreThermalEvaporationTier.ULTIMATE,DESCRIPTION_ULTIMATE_THERMAL_EVAPORATION_COMPACT);
-        DESCRIPTION_COMPACT_LANGS.put(MoreThermalEvaporationTier.CREATIVE,DESCRIPTION_CREATIVE_THERMAL_EVAPORATION_COMPACT);
-
-        COMPACT_LANGS.put(MoreThermalEvaporationTier.BASIC,BASIC_EVAPORATION_COMPACT);
-        COMPACT_LANGS.put(MoreThermalEvaporationTier.ADVANCED,ADVANCED_EVAPORATION_COMPACT);
-        COMPACT_LANGS.put(MoreThermalEvaporationTier.ELITE,ELITE_EVAPORATION_COMPACT);
-        COMPACT_LANGS.put(MoreThermalEvaporationTier.ULTIMATE,ULTIMATE_EVAPORATION_COMPACT);
-        COMPACT_LANGS.put(MoreThermalEvaporationTier.CREATIVE,CREATIVE_EVAPORATION_COMPACT);
+    private static EnumMap<MoreThermalEvaporationTier, MoreThermalEvaporationLang> createTierMap(String mapName) {
+        EnumMap<MoreThermalEvaporationTier, MoreThermalEvaporationLang> map = new EnumMap<>(MoreThermalEvaporationTier.class);
+        for (MoreThermalEvaporationTier tier : MoreThermalEvaporationTier.values()) {
+            String enumName = String.format(mapName, tier.name().toUpperCase(Locale.ROOT));
+            map.put(tier, MoreThermalEvaporationLang.valueOf(enumName));
+        }
+        return map;
     }
-
 
     public static MoreThermalEvaporationLang getLangDescriptionBlock(MoreThermalEvaporationTier tier) {
         return DESCRIPTION_BLOCK_LANGS.get(tier);
@@ -142,7 +119,7 @@ public enum MoreThermalEvaporationLang implements ILangEntry {
         return DESCRIPTION_VALVE_LANGS.get(tier);
     }
 
-    public static MoreThermalEvaporationLang getLangDescriptionController (MoreThermalEvaporationTier tier) {
+    public static MoreThermalEvaporationLang getLangDescriptionController(MoreThermalEvaporationTier tier) {
         return DESCRIPTION_CONTROLLER_LANGS.get(tier);
     }
 
@@ -150,11 +127,11 @@ public enum MoreThermalEvaporationLang implements ILangEntry {
         return PLANT_LANGS.get(tier);
     }
 
-    public static MoreThermalEvaporationLang getLangDescriptionCompact(MoreThermalEvaporationTier tier){
+    public static MoreThermalEvaporationLang getLangDescriptionCompact(MoreThermalEvaporationTier tier) {
         return DESCRIPTION_COMPACT_LANGS.get(tier);
     }
 
-    public static MoreThermalEvaporationLang getLangCompact(MoreThermalEvaporationTier tier){
+    public static MoreThermalEvaporationLang getLangCompact(MoreThermalEvaporationTier tier) {
         return COMPACT_LANGS.get(tier);
     }
 
