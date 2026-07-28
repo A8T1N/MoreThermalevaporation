@@ -73,5 +73,16 @@
   "mbtool.structure.morethermalevaporation_ultimate_evaporation_tower": "Usina de Evaporação Térmica Ultimate MET",
   "mbtool.structure.morethermalevaporation_creative_evaporation_tower": "Usina de Evaporação Térmica Criativa MET",
 
+  "mbtool.structure.morethermalevaporation_basic_evaporation_large_tower": "Usina Grande de Evaporação Térmica Básica MET",
+  "mbtool.structure.morethermalevaporation_advanced_evaporation_large_tower": "Usina Grande de Evaporação Térmica Avançada MET",
+  "mbtool.structure.morethermalevaporation_elite_evaporation_large_tower": "Usina Grande de Evaporação Térmica Elite MET",
+  "mbtool.structure.morethermalevaporation_ultimate_evaporation_large_tower": "Usina Grande de Evaporação Térmica Ultimate MET",
+  "mbtool.structure.morethermalevaporation_creative_evaporation_large_tower": "Usina Grande de Evaporação Térmica Criativa MET",
+
+  "multiblock.morethermalevaporation.type": "Tipo: %1$s",
+
+  "type.morethermalevaporation.normal": "Normal",
+  "type.morethermalevaporation.large": "Grande",
+
   "creativetab.morethermalevaporation.tab": "More Thermal Evaporation"
 }

@@ -73,5 +73,16 @@
   "mbtool.structure.morethermalevaporation_ultimate_evaporation_tower": "MTE 究極加温蒸発濃縮プラント",
   "mbtool.structure.morethermalevaporation_creative_evaporation_tower": "MTE クリエイティブ加温蒸発濃縮プラント",
 
+  "mbtool.structure.morethermalevaporation_basic_evaporation_large_tower": "MTE 基本加温蒸発濃縮大型プラント",
+  "mbtool.structure.morethermalevaporation_advanced_evaporation_large_tower": "MTE 発展加温蒸発濃縮大型プラント",
+  "mbtool.structure.morethermalevaporation_elite_evaporation_large_tower": "MTE 精鋭加温蒸発濃縮大型プラント",
+  "mbtool.structure.morethermalevaporation_ultimate_evaporation_large_tower": "MTE 究極加温蒸発濃縮大型プラント",
+  "mbtool.structure.morethermalevaporation_creative_evaporation_large_tower": "MTE クリエイティブ加温蒸発濃縮大型プラント",
+
+  "multiblock.morethermalevaporation.type": "タイプ: %1$s",
+
+  "type.morethermalevaporation.normal": "標準型",
+  "type.morethermalevaporation.large": "大型",
+
   "creativetab.morethermalevaporation.tab": "More Thermal Evaporation"
 }

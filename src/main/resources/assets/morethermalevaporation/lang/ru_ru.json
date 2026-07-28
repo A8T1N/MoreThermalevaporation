@@ -69,9 +69,20 @@
 
   "mbtool.structure.morethermalevaporation_basic_evaporation_tower": "MTE Базовый Установка теплового испарителя",
   "mbtool.structure.morethermalevaporation_advanced_evaporation_tower": "MTE Продвинутый Установка теплового испарителя",
-  "mbtool.structure.morethermalevaporation_elite_evaporation_tower": "MTE литный Установка теплового испарителя",
+  "mbtool.structure.morethermalevaporation_elite_evaporation_tower": "MTE Элитный Установка теплового испарителя",
   "mbtool.structure.morethermalevaporation_ultimate_evaporation_tower": "MTE Совершенный Установка теплового испарителя",
   "mbtool.structure.morethermalevaporation_creative_evaporation_tower": "MTE Творческий Установка теплового испарителя",
+
+  "mbtool.structure.morethermalevaporation_basic_evaporation_large_tower": "MTE Большой Базовый Установка теплового испарителя",
+  "mbtool.structure.morethermalevaporation_advanced_evaporation_large_tower": "MTE Большой Продвинутый Установка теплового испарителя",
+  "mbtool.structure.morethermalevaporation_elite_evaporation_large_tower": "MTE Большой Элитный Установка теплового испарителя",
+  "mbtool.structure.morethermalevaporation_ultimate_evaporation_large_tower": "MTE Большой Совершенный Установка теплового испарителя",
+  "mbtool.structure.morethermalevaporation_creative_evaporation_large_tower": "MTE Большой Творческий Установка теплового испарителя",
+
+  "multiblock.morethermalevaporation.type": "Тип: %1$s",
+
+  "type.morethermalevaporation.normal": "Стандартный",
+  "type.morethermalevaporation.large": "Большой",
 
   "creativetab.morethermalevaporation.tab": "бо́лее теплового испарителя"
 }
