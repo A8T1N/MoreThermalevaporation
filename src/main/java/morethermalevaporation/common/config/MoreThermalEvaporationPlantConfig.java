@@ -4,6 +4,7 @@ import mekanism.common.config.BaseMekanismConfig;
 import mekanism.common.config.value.CachedBooleanValue;
 import mekanism.common.config.value.CachedDoubleValue;
 import mekanism.common.config.value.CachedIntValue;
+import morethermalevaporation.common.content.evaporation.MoreThermalEvaporationType;
 import morethermalevaporation.common.tier.MoreThermalEvaporationTier;
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.fml.config.ModConfig;
@@ -12,20 +13,32 @@ import java.util.Locale;
 
 public class MoreThermalEvaporationPlantConfig extends BaseMekanismConfig {
     public static final ForgeConfigSpec.Builder builder = new ForgeConfigSpec.Builder();
-    public final CachedBooleanValue RenderFluid;
+    public final CachedBooleanValue renderFluid;
+    public final CachedBooleanValue enabledLargeType;
     public final ForgeConfigSpec configSpec;
 
     MoreThermalEvaporationPlantConfig() {
 
-        addMoreThermalEvaporationCategory(builder);
+        // Tier settings
+        builder.comment("More Thermal Evaporations Settings").push("more_thermal_evaporation");
+        addMoreThermalEvaporationCategory();
+
+        // Render settings
         builder.comment("Settings for the Render fluid");
-        RenderFluid = CachedBooleanValue.wrap(this, builder.comment("Render fluid inside of Thermal Evaporation Plants.").define("RenderFluid", true));
-        builder.pop(); // Render
+        renderFluid = CachedBooleanValue.wrap(this, builder.comment("Render fluid inside of More Thermal Evaporation Plants.").define("RenderFluid", true));
+
+        // Type settings
+        builder.comment("Settings for the Type");
+        enabledLargeType = CachedBooleanValue.wrap(this, builder.comment("Enable Large More Thermal Evaporation Plants.").define("EnabledLargeType", true));
+        CachedIntValue multiplierReference = CachedIntValue.wrap(this, builder.comment("Performance multiplier for Large More Thermal Evaporation Plants.").defineInRange("LargeMultiplier", MoreThermalEvaporationType.LARGE.getBaseMultiplier(), 1, 2147483646));
+        MoreThermalEvaporationType.LARGE.setConfigReference(multiplierReference);
+
+        builder.pop();
+
         configSpec = builder.build();
     }
 
-    private void addMoreThermalEvaporationCategory(ForgeConfigSpec.Builder builder) {
-        builder.comment("More Thermal Evaporations Settings").push("more_thermal_evaporation");
+    private void addMoreThermalEvaporationCategory() {
         for (MoreThermalEvaporationTier tier : MoreThermalEvaporationTier.values()) {
             String tierName = tier.getBaseTier().getSimpleName();
             CachedDoubleValue multiplierTempReference = CachedDoubleValue.wrap(this, builder.comment("Maximum " + "temperature capping the temperature multiplier for the " + tierName + " Thermal Evaporation Plant.")
