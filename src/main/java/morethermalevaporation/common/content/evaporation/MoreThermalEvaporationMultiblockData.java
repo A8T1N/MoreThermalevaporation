@@ -39,6 +39,7 @@ import mekanism.common.util.CapabilityUtils;
 import mekanism.common.util.MekanismUtils;
 import mekanism.common.util.NBTUtils;
 import mekanism.common.util.WorldUtils;
+import morethermalevaporation.common.config.MoreThermalEvaporationConfig;
 import morethermalevaporation.common.tier.MoreThermalEvaporationTier;
 import morethermalevaporation.common.tile.multiblock.TileEntityMoreThermalEvaporationBlock;
 import net.minecraft.core.BlockPos;
@@ -101,7 +102,7 @@ public class MoreThermalEvaporationMultiblockData extends MultiblockData impleme
     private double biomeAmbientTemp;
     private double tempMultiplier;
     private int inputTankCapacity;
-    private int allowedHeight;
+    private final int allowedHeight;
 
     public MoreThermalEvaporationMultiblockData(TileEntityMoreThermalEvaporationBlock tile, MoreThermalEvaporationTier tier) {
         super(tile);
@@ -111,8 +112,8 @@ public class MoreThermalEvaporationMultiblockData extends MultiblockData impleme
         recheckAllRecipeErrors = TileEntityRecipeMachine.shouldRecheckAllErrors(tile);
         maxMultiplierTemp = this.tier.getMultiplierTemp();
         biomeAmbientTemp = HeatAPI.getAmbientTemp(tile.getLevel(), tile.getTilePos());
-        fluidTanks.add(inputTank = VariableCapacityFluidTank.input(this, this::getMaxFluid, this::containsRecipe, createSaveAndComparator(recipeCacheLookupMonitor)));
-        fluidTanks.add(outputTank = VariableCapacityFluidTank.output(this, this.tier::getOutputTankCapacity, BasicFluidTank.alwaysTrue, this));
+        fluidTanks.add(inputTank = VariableCapacityFluidTank.input(this, this::getInputTankCapacity, this::containsRecipe, createSaveAndComparator(recipeCacheLookupMonitor)));
+        fluidTanks.add(outputTank = VariableCapacityFluidTank.output(this, this::getOutputTankCapacity, BasicFluidTank.alwaysTrue, this));
         inputHandler = InputHelper.getInputHandler(inputTank, RecipeError.NOT_ENOUGH_INPUT);
         outputHandler = OutputHelper.getOutputHandler(outputTank, RecipeError.NOT_ENOUGH_OUTPUT_SPACE);
         inventorySlots.add(inputInputSlot = FluidInventorySlot.fill(inputTank, this, 28, 20));
@@ -140,7 +141,7 @@ public class MoreThermalEvaporationMultiblockData extends MultiblockData impleme
         lastEnvironmentLoss = simulateEnvironment();
         // update temperature
         updateHeatCapacitors(null);
-        tempMultiplier = (Math.min(maxMultiplierTemp, getTemperature()) - HeatAPI.AMBIENT_TEMP) * MekanismConfig.general.evaporationTempMultiplier.get() *
+        tempMultiplier = (Math.min(maxMultiplierTemp * getType().getMultiplier(), getTemperature()) - HeatAPI.AMBIENT_TEMP) * MekanismConfig.general.evaporationTempMultiplier.get() *
                 ((double) height() / MAX_HEIGHT);
         inputOutputSlot.drainTank(outputOutputSlot);
         inputInputSlot.fillTank(outputInputSlot);
@@ -199,14 +200,18 @@ public class MoreThermalEvaporationMultiblockData extends MultiblockData impleme
         if (getVolume() != volume) {
             super.setVolume(volume);
             //Note: We only count the inner volume for the tank capacity for the evap tower
-            inputTankCapacity = this.tier == MoreThermalEvaporationTier.CREATIVE
+            inputTankCapacity = tier == MoreThermalEvaporationTier.CREATIVE
                     ? Integer.MAX_VALUE
-                    : (volume / 4) * this.tier.getInputTankCapacity();
+                    : (volume / 4) * tier.getInputTankCapacity();
         }
     }
 
-    public int getMaxFluid() {
+    public int getInputTankCapacity() {
         return inputTankCapacity;
+    }
+
+    public int getOutputTankCapacity() {
+        return tier.getOutputTankCapacity() * getType().getMultiplier();
     }
 
     @NotNull
@@ -288,7 +293,7 @@ public class MoreThermalEvaporationMultiblockData extends MultiblockData impleme
 
     public void updateSolarSpot(Level world, BlockPos pos) {
         BlockPos maxPos = getMaxPos();
-        if (pos.getY() == maxPos.getY() && getBounds().isOnCorner(pos)) {
+        if (getType() == MoreThermalEvaporationType.NORMAL && pos.getY() == maxPos.getY() && getBounds().isOnCorner(pos)) {
             int i = 0;
             if (pos.getX() + 3 == maxPos.getX()) {
                 i++;
@@ -297,15 +302,31 @@ public class MoreThermalEvaporationMultiblockData extends MultiblockData impleme
                 i += 2;
             }
             updateSolarSpot(world, pos, i);
+        } else if (getType() == MoreThermalEvaporationType.LARGE && pos.getY() == maxPos.getY()) {
+            int i = -1;
+            if (pos.getX() == maxPos.getX() - 1 && pos.getZ() == maxPos.getZ() - 1) {
+                i = 0;
+            }
+            if (pos.getX() == maxPos.getX() - 7 && pos.getZ() == maxPos.getZ() - 1) {
+                i = 1;
+            }
+            if (pos.getX() == maxPos.getX() - 1 && pos.getZ() == maxPos.getZ() - 7) {
+                i = 2;
+            }
+            if (pos.getX() == maxPos.getX() - 7 && pos.getZ() == maxPos.getZ() - 7) {
+                i = 3;
+            }
+            if (i != -1) {
+                updateSolarSpot(world, pos, i);
+            }
         }
     }
 
     private void updateSolars(Level world) {
         BlockPos maxPos = getMaxPos();
-        updateSolarSpot(world, maxPos, 0);
-        updateSolarSpot(world, maxPos.west(3), 1);
-        updateSolarSpot(world, maxPos.north(3), 2);
-        updateSolarSpot(world, maxPos.offset(-3, 0, -3), 3);
+        for (int i = 0; i < 4; i++) {
+            updateSolarSpot(world, getSolarSpotPos(maxPos, i), i);
+        }
     }
 
     @Override
@@ -317,6 +338,34 @@ public class MoreThermalEvaporationMultiblockData extends MultiblockData impleme
     public void remove(Level world) {
         cachedSolar.clear();
         super.remove(world);
+    }
+
+    public int getAllowedHeight() {
+        return allowedHeight;
+    }
+
+    public MoreThermalEvaporationType getType() {
+        return MoreThermalEvaporationConfig.config.enabledLargeType.get() && width() == 9
+                ? MoreThermalEvaporationType.LARGE
+                : MoreThermalEvaporationType.NORMAL;
+    }
+
+    private BlockPos getSolarSpotPos(BlockPos maxPos, int corner) {
+        if (getType() == MoreThermalEvaporationType.NORMAL) {
+            return switch (corner) {
+                case 1 -> maxPos.west(3);
+                case 2 -> maxPos.north(3);
+                case 3 -> maxPos.offset(-3, 0, -3);
+                default -> maxPos; //Corner 0
+            };
+        }
+
+        return switch (corner) {
+            case 1 -> maxPos.offset(-7, 0, -1);
+            case 2 -> maxPos.offset(-1, 0, -7);
+            case 3 -> maxPos.offset(-7, 0, -7);
+            default -> maxPos.offset(-1, 0, -1); //Corner 0
+        };
     }
 
     private static class RefreshListener implements NonNullConsumer<LazyOptional<IEvaporationSolar>> {
@@ -333,21 +382,11 @@ public class MoreThermalEvaporationMultiblockData extends MultiblockData impleme
             MoreThermalEvaporationMultiblockData multiblockData = multiblock.get();
             if (multiblockData != null && multiblockData.isFormed()) {
                 BlockPos maxPos = multiblockData.getMaxPos();
-                BlockPos pos = switch (corner) {
-                    case 1 -> maxPos.west(3);
-                    case 2 -> maxPos.north(3);
-                    case 3 -> maxPos.offset(-3, 0, -3);
-                    default -> maxPos;//Corner 0
-                };
+                BlockPos pos = multiblockData.getSolarSpotPos(maxPos, corner);
                 if (WorldUtils.isBlockLoaded(multiblockData.getWorld(), pos)) {
                     multiblockData.updateSolarSpot(multiblockData.getWorld(), pos, corner);
                 }
             }
         }
     }
-
-    public int getAllowedHeight() {
-        return allowedHeight;
-    }
-
 }
