@@ -18,6 +18,7 @@ import mekanism.common.inventory.warning.IWarningTracker;
 import mekanism.common.inventory.warning.WarningTracker.WarningType;
 import mekanism.common.util.MekanismUtils;
 import mekanism.common.util.UnitDisplayUtils.TemperatureUnit;
+import morethermalevaporation.common.MoreThermalEvaporationLang;
 import morethermalevaporation.common.content.evaporation.MoreThermalEvaporationMultiblockData;
 import morethermalevaporation.common.tier.MoreThermalEvaporationTier;
 import morethermalevaporation.common.tile.multiblock.TileEntityMoreThermalEvaporationController;
@@ -39,15 +40,18 @@ public class GuiMoreThermalEvaporationController extends GuiMekanismTile<TileEnt
         inventoryLabelY += 2;
         titleLabelY = 4;
         dynamicSlots = true;
-        this.tier = getTileEntity().getTier();
+        this.tier = tile.getTier();
     }
 
     @Override
     protected void addGuiElements() {
         super.addGuiElements();
-        addRenderableWidget(new GuiInnerScreen(this, 48, 19, 80, 40, () -> {
+        addRenderableWidget(new GuiInnerScreen(this, 48, 15, 80, 46, () -> {
                     MoreThermalEvaporationMultiblockData multiblock = tile.getMultiblock();
-                    return List.of(MekanismLang.MULTIBLOCK_FORMED.translate(), MekanismLang.EVAPORATION_HEIGHT.translate(multiblock.height()),
+                    return List.of(
+                            MekanismLang.MULTIBLOCK_FORMED.translate(),
+                            MoreThermalEvaporationLang.MULTIBLOCK_TYPE.translate(multiblock.getType().getLang().translate()),
+                            MekanismLang.EVAPORATION_HEIGHT.translate(multiblock.height()),
                             MekanismLang.TEMPERATURE.translate(MekanismUtils.getTemperatureDisplay(multiblock.getTemperature(), TemperatureUnit.KELVIN, true)),
                             MekanismLang.FLUID_PRODUCTION.translate(Math.round(multiblock.lastGain * 100D) / 100D));
                 }).spacing(1)
