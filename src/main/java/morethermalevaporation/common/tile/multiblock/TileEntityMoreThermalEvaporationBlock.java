@@ -24,7 +24,7 @@ import java.util.List;
 
 public class TileEntityMoreThermalEvaporationBlock extends TileEntityMultiblock<MoreThermalEvaporationMultiblockData> {
 
-    public MoreThermalEvaporationTier tier;
+    private MoreThermalEvaporationTier tier;
     private static final int DEFAULT_HEIGHT = 18;
     private int allowedHeight = DEFAULT_HEIGHT;
 
