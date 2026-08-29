@@ -9,8 +9,8 @@ import org.jetbrains.annotations.NotNull;
 
 public class ItemBlockMoreThermalEvaporation extends ItemBlockTooltip<BlockBasicMultiblock<?>> {
 
-    public ItemBlockMoreThermalEvaporation(BlockBasicMultiblock<?> block) {
-        super(block, new Item.Properties());
+    public ItemBlockMoreThermalEvaporation(BlockBasicMultiblock<?> block, Item.Properties properties) {
+        super(block, properties);
     }
 
     @NotNull
