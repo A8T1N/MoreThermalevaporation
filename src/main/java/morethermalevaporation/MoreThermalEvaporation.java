@@ -43,6 +43,7 @@ public class MoreThermalEvaporation {
         MoreThermalEvaporationCreativeTabs.register(modEventBus);
         MoreThermalEvaporationConfig.registerConfig(modContainer);
         NeoForge.EVENT_BUS.addListener(EventPriority.HIGHEST, this::registerCommands);
+        modEventBus.addListener(MoreThermalEvaporationConfig::onConfigLoad);
     }
 
     public static ResourceLocation rl(String path) {
