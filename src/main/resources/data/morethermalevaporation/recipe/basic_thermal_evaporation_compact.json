@@ -2,7 +2,7 @@
   "type": "minecraft:crafting_shaped",
   "key": {
     "A": {
-      "tag": "forge:pellets/antimatter"
+      "tag": "c:pellets/antimatter"
     },
     "B": {
       "item": "morethermalevaporation:ultimate_thermal_evaporation_block"
@@ -23,7 +23,7 @@
     "BGB"
   ],
   "result": {
-    "item": "morethermalevaporation:basic_thermal_evaporation_compact",
+    "id": "morethermalevaporation:basic_thermal_evaporation_compact",
     "count": 1
   }
 }

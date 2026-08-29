@@ -5,7 +5,7 @@
       "tag": "mekanism:alloys/basic"
     },
     "C": {
-      "tag": "forge:circuits/basic"
+      "tag": "c:circuits/basic"
     },
     "#": {
       "item": "mekanism:thermal_evaporation_block"
@@ -17,7 +17,7 @@
     "A#A"
   ],
   "result": {
-    "item": "morethermalevaporation:basic_thermal_evaporation_block",
+    "id": "morethermalevaporation:basic_thermal_evaporation_block",
     "count": 4
   }
 }

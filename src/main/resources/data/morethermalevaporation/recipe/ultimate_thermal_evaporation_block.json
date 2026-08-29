@@ -5,7 +5,7 @@
       "tag": "mekanism:alloys/atomic"
     },
     "C": {
-      "tag": "forge:circuits/ultimate"
+      "tag": "c:circuits/ultimate"
     },
     "#": {
       "item": "morethermalevaporation:elite_thermal_evaporation_block"
@@ -17,7 +17,7 @@
     "A#A"
   ],
   "result": {
-    "item": "morethermalevaporation:ultimate_thermal_evaporation_block",
+    "id": "morethermalevaporation:ultimate_thermal_evaporation_block",
     "count": 4
   }
 }

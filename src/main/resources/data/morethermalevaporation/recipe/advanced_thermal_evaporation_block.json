@@ -5,7 +5,7 @@
       "tag": "mekanism:alloys/infused"
     },
     "C": {
-      "tag": "forge:circuits/advanced"
+      "tag": "c:circuits/advanced"
     },
     "#": {
       "item": "morethermalevaporation:basic_thermal_evaporation_block"
@@ -17,7 +17,7 @@
     "A#A"
   ],
   "result": {
-    "item": "morethermalevaporation:advanced_thermal_evaporation_block",
+    "id": "morethermalevaporation:advanced_thermal_evaporation_block",
     "count": 4
   }
 }

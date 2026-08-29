@@ -5,7 +5,7 @@
       "tag": "mekanism:alloys/reinforced"
     },
     "C": {
-      "tag": "forge:circuits/elite"
+      "tag": "c:circuits/elite"
     },
     "#": {
       "item": "morethermalevaporation:advanced_thermal_evaporation_block"
@@ -17,7 +17,7 @@
     "A#A"
   ],
   "result": {
-    "item": "morethermalevaporation:elite_thermal_evaporation_block",
+    "id": "morethermalevaporation:elite_thermal_evaporation_block",
     "count": 4
   }
 }

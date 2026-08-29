@@ -5,10 +5,10 @@
       "tag": "mekanism:alloys/reinforced"
     },
     "C": {
-      "tag": "forge:circuits/elite"
+      "tag": "c:circuits/elite"
     },
     "I": {
-      "tag": "forge:ingots/gold"
+      "tag": "c:ingots/gold"
     },
     "P": {
       "item": "morethermalevaporation:advanced_thermal_evaporation_compact"
@@ -20,6 +20,6 @@
     "ACA"
   ],
   "result": {
-    "item": "morethermalevaporation:elite_thermal_evaporation_compact"
+    "id": "morethermalevaporation:elite_thermal_evaporation_compact"
   }
 }

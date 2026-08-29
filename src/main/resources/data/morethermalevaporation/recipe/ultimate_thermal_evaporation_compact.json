@@ -5,10 +5,10 @@
       "tag": "mekanism:alloys/atomic"
     },
     "C": {
-      "tag": "forge:circuits/ultimate"
+      "tag": "c:circuits/ultimate"
     },
     "I": {
-      "tag": "forge:gems/diamond"
+      "tag": "c:gems/diamond"
     },
     "P": {
       "item": "morethermalevaporation:elite_thermal_evaporation_compact"
@@ -20,6 +20,6 @@
     "ACA"
   ],
   "result": {
-    "item": "morethermalevaporation:ultimate_thermal_evaporation_compact"
+    "id": "morethermalevaporation:ultimate_thermal_evaporation_compact"
   }
 }

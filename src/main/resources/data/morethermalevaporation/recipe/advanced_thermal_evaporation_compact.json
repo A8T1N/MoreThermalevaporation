@@ -5,10 +5,10 @@
       "tag": "mekanism:alloys/infused"
     },
     "C": {
-      "tag": "forge:circuits/advanced"
+      "tag": "c:circuits/advanced"
     },
     "I": {
-      "tag": "forge:ingots/osmium"
+      "tag": "c:ingots/osmium"
     },
     "P": {
       "item": "morethermalevaporation:basic_thermal_evaporation_compact"
@@ -20,6 +20,6 @@
     "ACA"
   ],
   "result": {
-    "item": "morethermalevaporation:advanced_thermal_evaporation_compact"
+    "id": "morethermalevaporation:advanced_thermal_evaporation_compact"
   }
 }
