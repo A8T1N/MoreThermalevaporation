@@ -1,0 +1,88 @@
+{
+  "block.morethermalevaporation.basic_thermal_evaporation_block": "基本加温蒸発濃縮ブロック",
+  "block.morethermalevaporation.basic_thermal_evaporation_controller": "基本加温蒸発濃縮コントローラー",
+  "block.morethermalevaporation.basic_thermal_evaporation_valve": "基本加温蒸発濃縮バルブ",
+
+  "block.morethermalevaporation.advanced_thermal_evaporation_block": "発展加温蒸発濃縮ブロック",
+  "block.morethermalevaporation.advanced_thermal_evaporation_controller": "発展加温蒸発濃縮コントローラー",
+  "block.morethermalevaporation.advanced_thermal_evaporation_valve": "発展加温蒸発濃縮バルブ",
+
+  "block.morethermalevaporation.elite_thermal_evaporation_block": "精鋭加温蒸発濃縮ブロック",
+  "block.morethermalevaporation.elite_thermal_evaporation_controller": "精鋭加温蒸発濃縮コントローラー",
+  "block.morethermalevaporation.elite_thermal_evaporation_valve": "精鋭加温蒸発濃縮バルブ",
+
+  "block.morethermalevaporation.ultimate_thermal_evaporation_block": "究極加温蒸発濃縮ブロック",
+  "block.morethermalevaporation.ultimate_thermal_evaporation_controller": "究極加温蒸発濃縮コントローラー",
+  "block.morethermalevaporation.ultimate_thermal_evaporation_valve": "究極加温蒸発濃縮バルブ",
+
+  "block.morethermalevaporation.creative_thermal_evaporation_block": "クリエイティブ加温蒸発濃縮ブロック",
+  "block.morethermalevaporation.creative_thermal_evaporation_controller": "クリエイティブ加温蒸発濃縮コントローラー",
+  "block.morethermalevaporation.creative_thermal_evaporation_valve": "クリエイティブ加温蒸発濃縮バルブ",
+
+  "block.morethermalevaporation.basic_thermal_evaporation_compact": "基本加温蒸発濃縮コンパクト",
+  "block.morethermalevaporation.advanced_thermal_evaporation_compact": "発展加温蒸発濃縮コンパクト",
+  "block.morethermalevaporation.elite_thermal_evaporation_compact": "精鋭加温蒸発濃縮コンパクト",
+  "block.morethermalevaporation.ultimate_thermal_evaporation_compact": "究極加温蒸発濃縮コンパクト",
+  "block.morethermalevaporation.creative_thermal_evaporation_compact": "クリエイティブ加温蒸発濃縮コンパクト",
+
+  "description.morethermalevaporation.basic_thermal_evaporation_block": "基本加温蒸発濃縮プラントの組み立てに使う銅合金製の筐体です。 処理に必要な沢山の熱を発展的な素材が伝えます。",
+  "description.morethermalevaporation.basic_thermal_evaporation_controller": "基本加温蒸発濃縮プラントの根幹となるブロックです。 基本加温蒸発濃縮プラント1機につき1つだけ配置出来ます。",
+  "description.morethermalevaporation.basic_thermal_evaporation_valve": "基本加温蒸発濃縮プラントのバルブです。 熱力学的コンダクターからの導熱、パイプからの流体の搬入出をサポートします。",
+
+  "description.morethermalevaporation.advanced_thermal_evaporation_block": "発展加温蒸発濃縮プラントの組み立てに使う銅合金製の筐体です。 処理に必要な沢山の熱を発展的な素材が伝えます。",
+  "description.morethermalevaporation.advanced_thermal_evaporation_controller": "発展加温蒸発濃縮プラントの根幹となるブロックです。 発展加温蒸発濃縮プラント1機につき1つだけ配置出来ます。",
+  "description.morethermalevaporation.advanced_thermal_evaporation_valve": "発展加温蒸発濃縮プラントのバルブです。 熱力学的コンダクターからの導熱、パイプからの流体の搬入出をサポートします。",
+
+  "description.morethermalevaporation.elite_thermal_evaporation_block": "精鋭加温蒸発濃縮プラントの組み立てに使う銅合金製の筐体です。 処理に必要な沢山の熱を発展的な素材が伝えます。",
+  "description.morethermalevaporation.elite_thermal_evaporation_controller": "精鋭加温蒸発濃縮プラントの根幹となるブロックです。 精鋭加温蒸発濃縮プラント1機につき1つだけ配置出来ます。",
+  "description.morethermalevaporation.elite_thermal_evaporation_valve": "精鋭加温蒸発濃縮プラントのバルブです。 熱力学的コンダクターからの導熱、パイプからの流体の搬入出をサポートします。",
+
+  "description.morethermalevaporation.ultimate_thermal_evaporation_block": "究極加温蒸発濃縮プラントの組み立てに使う銅合金製の筐体です。 処理に必要な沢山の熱を発展的な素材が伝えます。",
+  "description.morethermalevaporation.ultimate_thermal_evaporation_controller": "究極加温蒸発濃縮プラントの根幹となるブロックです。 究極加温蒸発濃縮プラント1機につき1つだけ配置出来ます。",
+  "description.morethermalevaporation.ultimate_thermal_evaporation_valve": "究極加温蒸発濃縮プラントのバルブです。 熱力学的コンダクターからの導熱、パイプからの流体の搬入出をサポートします。",
+
+  "description.morethermalevaporation.creative_thermal_evaporation_block": "クリエイティブ加温蒸発濃縮プラントの組み立てに使う銅合金製の筐体です。 処理に必要な沢山の熱を発展的な素材が伝えます。",
+  "description.morethermalevaporation.creative_thermal_evaporation_controller": "クリエイティブ加温蒸発濃縮プラントの根幹となるブロックです。 クリエイティブ加温蒸発濃縮プラント1機につき1つだけ配置出来ます。",
+  "description.morethermalevaporation.creative_thermal_evaporation_valve": "クリエイティブ加温蒸発濃縮プラントのバルブです。 熱力学的コンダクターからの導熱、パイプからの流体の搬入出をサポートします。",
+
+  "description.morethermalevaporation.basic_thermal_evaporation_compact": "基本加温蒸発濃縮プラントの全機能を１つの筐体に統合した非常に先進的な機械です。",
+  "description.morethermalevaporation.advanced_thermal_evaporation_compact": "発展加温蒸発濃縮プラントの全機能を１つの筐体に統合した非常に先進的な機械です。",
+  "description.morethermalevaporation.elite_thermal_evaporation_compact": "精鋭加温蒸発濃縮プラントの全機能を１つの筐体に統合した非常に先進的な機械です。",
+  "description.morethermalevaporation.ultimate_thermal_evaporation_compact": "究極加温蒸発濃縮プラントの全機能を１つの筐体に統合した非常に先進的な機械です。",
+  "description.morethermalevaporation.creative_thermal_evaporation_compact": "クリエイティブ加温蒸発濃縮プラントの全機能を１つの筐体に統合した非常に先進的な機械です。",
+
+  "evaporation.morethermalevaporation.basic_evaporation_plant" : "基本加温蒸発濃縮プラント",
+  "evaporation.morethermalevaporation.advanced_evaporation_plant" : "発展加温蒸発濃縮プラント",
+  "evaporation.morethermalevaporation.elite_evaporation_plant" : "精鋭加温蒸発濃縮プラント",
+  "evaporation.morethermalevaporation.ultimate_evaporation_plant" : "究極加温蒸発濃縮プラント",
+  "evaporation.morethermalevaporation.creative_evaporation_plant" : "クリエイティブ加温蒸発濃縮プラント",
+
+  "evaporation.morethermalevaporation.basic_evaporation_compact" : "基本加温蒸発濃縮コンパクト",
+  "evaporation.morethermalevaporation.advanced_evaporation_compact" : "発展加温蒸発濃縮コンパクト",
+  "evaporation.morethermalevaporation.elite_evaporation_compact" : "精鋭加温蒸発濃縮コンパクト",
+  "evaporation.morethermalevaporation.ultimate_evaporation_compact" : "究極加温蒸発濃縮コンパクト",
+  "evaporation.morethermalevaporation.creative_evaporation_compact" : "クリエイティブ加温蒸発濃縮コンパクト",
+
+  "item.morethermalevaporation.upgrade_structure" : "ストラクチャーアップグレード",
+  "upgrade.mekanism.structure": "ストラクチャー",
+  "upgrade.mekanism.structure.description" : "プラントの最大高さを増やします。",
+
+  "mbtool.structure.morethermalevaporation_basic_evaporation_tower": "MTE 基本加温蒸発濃縮プラント",
+  "mbtool.structure.morethermalevaporation_advanced_evaporation_tower": "MTE 発展加温蒸発濃縮プラント",
+  "mbtool.structure.morethermalevaporation_elite_evaporation_tower": "MTE 精鋭加温蒸発濃縮プラント",
+  "mbtool.structure.morethermalevaporation_ultimate_evaporation_tower": "MTE 究極加温蒸発濃縮プラント",
+  "mbtool.structure.morethermalevaporation_creative_evaporation_tower": "MTE クリエイティブ加温蒸発濃縮プラント",
+
+  "mbtool.structure.morethermalevaporation_basic_evaporation_large_tower": "MTE 基本加温蒸発濃縮大型プラント",
+  "mbtool.structure.morethermalevaporation_advanced_evaporation_large_tower": "MTE 発展加温蒸発濃縮大型プラント",
+  "mbtool.structure.morethermalevaporation_elite_evaporation_large_tower": "MTE 精鋭加温蒸発濃縮大型プラント",
+  "mbtool.structure.morethermalevaporation_ultimate_evaporation_large_tower": "MTE 究極加温蒸発濃縮大型プラント",
+  "mbtool.structure.morethermalevaporation_creative_evaporation_large_tower": "MTE クリエイティブ加温蒸発濃縮大型プラント",
+
+  "multiblock.morethermalevaporation.type": "タイプ: %1$s",
+
+  "type.morethermalevaporation.normal": "標準型",
+  "type.morethermalevaporation.large": "大型",
+
+  "creativetab.morethermalevaporation.tab": "More Thermal Evaporation"
+}

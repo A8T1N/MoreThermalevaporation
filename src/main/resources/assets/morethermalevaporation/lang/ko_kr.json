@@ -1,0 +1,88 @@
+{
+  "block.morethermalevaporation.basic_thermal_evaporation_block": "기본 열적 증발 블록",
+  "block.morethermalevaporation.basic_thermal_evaporation_controller": "기본 열적 증발 제어기",
+  "block.morethermalevaporation.basic_thermal_evaporation_valve": "기본 열적 증발 밸브",
+
+  "block.morethermalevaporation.advanced_thermal_evaporation_block": "고급 열적 증발 블록",
+  "block.morethermalevaporation.advanced_thermal_evaporation_controller": "고급 열적 증발 제어기",
+  "block.morethermalevaporation.advanced_thermal_evaporation_valve": "고급 열적 증발 밸브",
+
+  "block.morethermalevaporation.elite_thermal_evaporation_block": "엘리트 열적 증발 블록",
+  "block.morethermalevaporation.elite_thermal_evaporation_controller": "엘리트 열적 증발 제어기",
+  "block.morethermalevaporation.elite_thermal_evaporation_valve": "엘리트 열적 증발 밸브",
+
+  "block.morethermalevaporation.ultimate_thermal_evaporation_block": "궁극 열적 증발 블록",
+  "block.morethermalevaporation.ultimate_thermal_evaporation_controller": "궁극 열적 증발 제어기",
+  "block.morethermalevaporation.ultimate_thermal_evaporation_valve": "궁극 열적 증발 밸브",
+
+  "block.morethermalevaporation.creative_thermal_evaporation_block": "크리에이티브 열적 증발 블록",
+  "block.morethermalevaporation.creative_thermal_evaporation_controller": "크리에이티브 열적 증발 제어기",
+  "block.morethermalevaporation.creative_thermal_evaporation_valve": "크리에이티브 열적 증발 밸브",
+
+  "block.morethermalevaporation.basic_thermal_evaporation_compact": "기본 열적 증발 컴팩트",
+  "block.morethermalevaporation.advanced_thermal_evaporation_compact": "고급 열적 증발 컴팩트",
+  "block.morethermalevaporation.elite_thermal_evaporation_compact": "엘리트 열적 증발 컴팩트",
+  "block.morethermalevaporation.ultimate_thermal_evaporation_compact": "궁극 열적 증발 컴팩트",
+  "block.morethermalevaporation.creative_thermal_evaporation_compact": "크리에이티브 열적 증발 컴팩트",
+
+  "description.morethermalevaporation.basic_thermal_evaporation_block": "청동 합금 케이싱으로, 기본 열적 증발 장치 멀티블록의 구성에 사용됩니다. 처리에 필요한 많은 열을 모을 수 있습니다.",
+  "description.morethermalevaporation.basic_thermal_evaporation_controller": "기본 열적 증발 장치 멀티블록의 제어기입니다. 이 블록은 열적 증발 장치 멀티블록 구조물 하나당 한개씩만 배치되어야 합니다.",
+  "description.morethermalevaporation.basic_thermal_evaporation_valve": "기본 열적 증발 장치 멀티블록에 사용되는 밸브로, 유체를 투입 및 방출할 수 있도록 해줍니다.",
+
+  "description.morethermalevaporation.advanced_thermal_evaporation_block": "청동 합금 케이싱으로, 고급 열적 증발 장치 멀티블록의 구성에 사용됩니다. 처리에 필요한 많은 열을 모을 수 있습니다.",
+  "description.morethermalevaporation.advanced_thermal_evaporation_controller": "고급 열적 증발 장치 멀티블록의 제어기입니다. 이 블록은 열적 증발 장치 멀티블록 구조물 하나당 한개씩만 배치되어야 합니다.",
+  "description.morethermalevaporation.advanced_thermal_evaporation_valve": "고급 열적 증발 장치 멀티블록에 사용되는 밸브로, 유체를 투입 및 방출할 수 있도록 해줍니다.",
+
+  "description.morethermalevaporation.elite_thermal_evaporation_block": "청동 합금 케이싱으로, 엘리트 열적 증발 장치 멀티블록의 구성에 사용됩니다. 처리에 필요한 많은 열을 모을 수 있습니다.",
+  "description.morethermalevaporation.elite_thermal_evaporation_controller": "엘리트 열적 증발 장치 멀티블록의 제어기입니다. 이 블록은 열적 증발 장치 멀티블록 구조물 하나당 한개씩만 배치되어야 합니다.",
+  "description.morethermalevaporation.elite_thermal_evaporation_valve": "엘리트 열적 증발 장치 멀티블록에 사용되는 밸브로, 유체를 투입 및 방출할 수 있도록 해줍니다.",
+
+  "description.morethermalevaporation.ultimate_thermal_evaporation_block": "청동 합금 케이싱으로, 크리에이티브 열적 증발 장치 멀티블록의 구성에 사용됩니다. 처리에 필요한 많은 열을 모을 수 있습니다.",
+  "description.morethermalevaporation.ultimate_thermal_evaporation_controller": "크리에이티브 열적 증발 장치 멀티블록의 제어기입니다. 이 블록은 열적 증발 장치 멀티블록 구조물 하나당 한개씩만 배치되어야 합니다.",
+  "description.morethermalevaporation.ultimate_thermal_evaporation_valve": "크리에이티브 열적 증발 장치 멀티블록에 사용되는 밸브로, 유체를 투입 및 방출할 수 있도록 해줍니다.",
+
+  "description.morethermalevaporation.creative_thermal_evaporation_block": "청동 합금 케이싱으로, 크리에이티브 열적 증발 장치 멀티블록의 구성에 사용됩니다. 처리에 필요한 많은 열을 모을 수 있습니다.",
+  "description.morethermalevaporation.creative_thermal_evaporation_controller": "크리에이티브 열적 증발 장치 멀티블록의 제어기입니다. 이 블록은 열적 증발 장치 멀티블록 구조물 하나당 한개씩만 배치되어야 합니다.",
+  "description.morethermalevaporation.creative_thermal_evaporation_valve": "크리에이티브 열적 증발 장치 멀티블록에 사용되는 밸브로, 유체를 투입 및 방출할 수 있도록 해줍니다.",
+
+  "description.morethermalevaporation.basic_thermal_evaporation_compact": "기본 열적 증발 장치의 모든 기능을 하나의 장치에 통합한 매우 발전된 기계입니다.",
+  "description.morethermalevaporation.advanced_thermal_evaporation_compact": "고급 열적 증발 장치의 모든 기능을 하나의 장치에 통합한 매우 발전된 기계입니다.",
+  "description.morethermalevaporation.elite_thermal_evaporation_compact": "엘리트 열적 증발 장치의 모든 기능을 하나의 장치에 통합한 매우 발전된 기계입니다.",
+  "description.morethermalevaporation.ultimate_thermal_evaporation_compact": "궁극 열적 증발 장치의 모든 기능을 하나의 장치에 통합한 매우 발전된 기계입니다.",
+  "description.morethermalevaporation.creative_thermal_evaporation_compact": "크리에이티브 열적 증발 장치의 모든 기능을 하나의 장치에 통합한 매우 발전된 기계입니다.",
+
+  "evaporation.morethermalevaporation.basic_evaporation_plant" : "기본 열 증발 설비",
+  "evaporation.morethermalevaporation.advanced_evaporation_plant" : "고급 열 증발 설비",
+  "evaporation.morethermalevaporation.elite_evaporation_plant" : "엘리트 열 증발 설비",
+  "evaporation.morethermalevaporation.ultimate_evaporation_plant" : "궁극 열 증발 설비",
+  "evaporation.morethermalevaporation.creative_evaporation_plant" : "크리에이티브 열 증발 설비",
+
+  "evaporation.morethermalevaporation.basic_evaporation_compact" : "기본 열적 증발 컴팩트",
+  "evaporation.morethermalevaporation.advanced_evaporation_compact" : "고급 열적 증발 컴팩트",
+  "evaporation.morethermalevaporation.elite_evaporation_compact" : "엘리트 열적 증발 컴팩트",
+  "evaporation.morethermalevaporation.ultimate_evaporation_compact" : "궁극 열적 증발 컴팩트",
+  "evaporation.morethermalevaporation.creative_evaporation_compact" : "크리에이티브 열적 증발 컴팩트",
+
+  "item.morethermalevaporation.upgrade_structure" : "구조 업그레이드",
+  "upgrade.mekanism.structure": "구조",
+  "upgrade.mekanism.structure.description" : "설비의 최대 높이를 증가시킵니다.",
+
+  "mbtool.structure.morethermalevaporation_basic_evaporation_tower": "MTE 기본 열 증발 설비",
+  "mbtool.structure.morethermalevaporation_advanced_evaporation_tower": "MTE 고급 열 증발 설비",
+  "mbtool.structure.morethermalevaporation_elite_evaporation_tower": "MTE 엘리트 열 증발 설비",
+  "mbtool.structure.morethermalevaporation_ultimate_evaporation_tower": "MTE 궁극 열 증발 설비",
+  "mbtool.structure.morethermalevaporation_creative_evaporation_tower": "MTE 크리에이티브 열 증발 설비",
+
+  "mbtool.structure.morethermalevaporation_basic_evaporation_large_tower": "MTE 기본 열 증발 대형 설비",
+  "mbtool.structure.morethermalevaporation_advanced_evaporation_large_tower": "MTE 고급 열 증발 대형 설비",
+  "mbtool.structure.morethermalevaporation_elite_evaporation_large_tower": "MTE 엘리트 열 증발 대형 설비",
+  "mbtool.structure.morethermalevaporation_ultimate_evaporation_large_tower": "MTE 궁극 열 증발 대형 설비",
+  "mbtool.structure.morethermalevaporation_creative_evaporation_large_tower": "MTE 크리에이티브 열 증발 대형 설비",
+
+  "multiblock.morethermalevaporation.type": "유형: %1$s",
+
+  "type.morethermalevaporation.normal": "일반형",
+  "type.morethermalevaporation.large": "대형",
+
+  "creativetab.morethermalevaporation.tab": "More Thermal Evaporation"
+}

@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "V": {
+      "item": "mekanism:thermal_evaporation_valve"
+    },
+    "#": {
+      "item": "morethermalevaporation:basic_thermal_evaporation_block"
+    }
+  },
+  "pattern": [
+    " # ",
+    "#V#",
+    " # "
+  ],
+  "result": {
+    "item": "morethermalevaporation:basic_thermal_evaporation_valve",
+    "count": 1
+  }
+}

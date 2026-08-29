@@ -1,0 +1,25 @@
+{
+  "type": "mekanism:mek_data",
+  "key": {
+    "A": {
+      "tag": "mekanism:alloys/infused"
+    },
+    "C": {
+      "tag": "forge:circuits/advanced"
+    },
+    "I": {
+      "tag": "forge:ingots/osmium"
+    },
+    "P": {
+      "item": "morethermalevaporation:basic_thermal_evaporation_compact"
+    }
+  },
+  "pattern": [
+    "ACA",
+    "IPI",
+    "ACA"
+  ],
+  "result": {
+    "item": "morethermalevaporation:advanced_thermal_evaporation_compact"
+  }
+}

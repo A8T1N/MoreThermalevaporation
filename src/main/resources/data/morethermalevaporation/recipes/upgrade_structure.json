@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "#": {
+      "tag": "forge:pellets/polonium"
+    },
+    "A": {
+      "tag": "mekanism:alloys/infused"
+    },
+    "G": {
+      "tag": "forge:glass/silica"
+    }
+  },
+  "pattern": [
+    " G ",
+    "A#A",
+    " G "
+  ],
+  "result": {
+    "item": "morethermalevaporation:upgrade_structure"
+  }
+}

@@ -1,0 +1,174 @@
+{
+	"credit": "Made with Blockbench",
+	"parent": "mekanism:block/machine",
+	"render_type": "cutout",
+	"ambientocclusion": false,
+	"textures": {
+		"particle": "mekanism:block/thermal_evaporation_controller",
+		"controller": "mekanism:block/thermal_evaporation_controller",
+		"block": "morethermalevaporation:block/basic/basic_thermal_evaporation_block",
+		"glass": "mekanism:block/structural_glass",
+		"ports": "mekanism:block/models/ports",
+		"ports_led": "mekanism:block/models/ports_led"
+	},
+	"elements": [
+		{
+			"name": "top",
+			"from": [0, 14, 2],
+			"to": [16, 16, 16],
+			"rotation": {"angle": 0, "axis": "y", "origin": [16, 0, 16]},
+			"faces": {
+				"north": {"uv": [0, 0, 16, 2], "texture": "#block"},
+				"east": {"uv": [0, 0, 14, 2], "texture": "#block"},
+				"south": {"uv": [0, 0, 16, 2], "texture": "#block"},
+				"west": {"uv": [1, 0, 16, 2], "texture": "#block"},
+				"up": {"uv": [16, 14, 0, 0], "texture": "#block"},
+				"down": {"uv": [16, 0, 0, 14], "texture": "#block"}
+			}
+		},
+		{
+			"name": "bottom",
+			"from": [0, 0, 2],
+			"to": [16, 2, 16],
+			"rotation": {"angle": 0, "axis": "y", "origin": [16, 0, 16]},
+			"faces": {
+				"north": {"uv": [0, 14, 16, 16], "texture": "#block"},
+				"east": {"uv": [0, 14, 14, 16], "texture": "#block"},
+				"south": {"uv": [0, 14, 16, 16], "texture": "#block"},
+				"west": {"uv": [2, 14, 16, 16], "texture": "#block"},
+				"up": {"uv": [16, 14, 0, 0], "texture": "#block"},
+				"down": {"uv": [16, 0, 0, 14], "texture": "#block"}
+			}
+		},
+		{
+			"name": "front",
+			"from": [0, 0, 0],
+			"to": [16, 16, 2],
+			"rotation": {"angle": 0, "axis": "y", "origin": [16, 1, 2]},
+			"faces": {
+				"north": {"uv": [0, 0, 16, 16], "texture": "#controller"},
+				"east": {"uv": [14, 0, 16, 16], "texture": "#block"},
+				"south": {"uv": [0, 0, 16, 16], "texture": "#block"},
+				"west": {"uv": [0, 0, 2, 16], "texture": "#block"},
+				"up": {"uv": [16, 16, 0, 14], "texture": "#block"},
+				"down": {"uv": [16, 14, 0, 16], "texture": "#block"}
+			}
+		},
+		{
+			"name": "column1",
+			"from": [14, 2, 14],
+			"to": [16, 14, 16],
+			"rotation": {"angle": 0, "axis": "y", "origin": [16, 1, 16]},
+			"faces": {
+				"north": {"uv": [0, 2, 2, 14], "texture": "#block"},
+				"east": {"uv": [0, 2, 2, 14], "texture": "#block"},
+				"south": {"uv": [14, 2, 16, 14], "texture": "#block"},
+				"west": {"uv": [14, 2, 16, 14], "texture": "#block"},
+				"up": {"uv": [14, 14, 16, 16], "texture": "#block"},
+				"down": {"uv": [14, 0, 16, 2], "texture": "#block"}
+			}
+		},
+		{
+			"name": "column2",
+			"from": [0, 2, 14],
+			"to": [2, 14, 16],
+			"rotation": {"angle": 0, "axis": "y", "origin": [1, 1, 16]},
+			"faces": {
+				"north": {"uv": [14, 2, 16, 14], "texture": "#block"},
+				"east": {"uv": [0, 2, 2, 14], "texture": "#block"},
+				"south": {"uv": [0, 2, 2, 14], "texture": "#block"},
+				"west": {"uv": [14, 2, 16, 14], "texture": "#block"},
+				"up": {"uv": [16, 14, 14, 16], "texture": "#block"},
+				"down": {"uv": [0, 0, 2, 2], "texture": "#block"}
+			}
+		},
+		{
+			"name": "glass_back",
+			"from": [2, 2, 15.5],
+			"to": [14, 14, 15.75],
+			"rotation": {"angle": 0, "axis": "y", "origin": [2, 2, 14]},
+			"faces": {
+				"north": {"uv": [0, 0, 16, 16], "texture": "#glass"},
+				"east": {"uv": [0.03125, 0, 1, 16], "texture": "#glass"},
+				"south": {"uv": [0, 0, 16, 16], "texture": "#glass"},
+				"west": {"uv": [0, 0, 1, 16], "texture": "#glass"},
+				"up": {"uv": [0, 0, 16, 0.96875], "texture": "#glass"},
+				"down": {"uv": [0, 0.03125, 16, 1], "texture": "#glass"}
+			}
+		},
+		{
+			"name": "glass_east",
+			"from": [15.5, 2, 2],
+			"to": [15.75, 14, 14],
+			"rotation": {"angle": 0, "axis": "y", "origin": [1.25, 1, 15]},
+			"faces": {
+				"north": {"uv": [0, 16, 16, 0], "texture": "#glass"},
+				"east": {"uv": [0, 0, 16, 16], "texture": "#glass"},
+				"south": {"uv": [1, 1, 15, 15], "texture": "#glass"},
+				"west": {"uv": [0, 0, 16, 16], "texture": "#glass"},
+				"up": {"uv": [16, 16, 0, 1], "texture": "#glass"},
+				"down": {"uv": [0, 1, 16, 16], "texture": "#glass"}
+			}
+		},
+		{
+			"name": "glass_west",
+			"from": [0.25, 2, 2],
+			"to": [0.5, 14, 14],
+			"rotation": {"angle": 0, "axis": "y", "origin": [-14.25, 1, 15]},
+			"faces": {
+				"north": {"uv": [0, 16, 16, 0], "texture": "#glass"},
+				"east": {"uv": [0, 0, 16, 16], "texture": "#glass"},
+				"south": {"uv": [1, 1, 15, 15], "texture": "#glass"},
+				"west": {"uv": [0, 0, 16, 16], "texture": "#glass"},
+				"up": {"uv": [16, 16, 0, 1], "texture": "#glass"},
+				"down": {"uv": [0, 1, 16, 16], "texture": "#glass"}
+			}
+		},
+		{
+			"name": "port_west",
+			"from": [0, 4, 4],
+			"to": [1, 12, 12],
+			"rotation": {"angle": 0, "axis": "y", "origin": [0, 6, 6]},
+			"faces": {
+				"north": {"uv": [7, 0, 15, 1], "texture": "#ports"},
+				"east": {"uv": [0, 8, 8, 16], "texture": "#ports"},
+				"south": {"uv": [8, 0, 16, 1], "texture": "#ports"},
+				"west": {"uv": [0, 0, 8, 8], "texture": "#ports"},
+				"up": {"uv": [8, 0, 16, 1], "texture": "#ports"},
+				"down": {"uv": [8, 0, 16, 1], "texture": "#ports"}
+			}
+		},
+		{
+			"name": "port_west_led",
+			"from": [0, 4, 4],
+			"to": [0, 12, 12],
+			"rotation": {"angle": 0, "axis": "y", "origin": [0, 7, 5]},
+			"faces": {
+				"west": {"uv": [0, 0, 8, 8], "texture": "#ports_led"}
+			}
+		},
+		{
+			"name": "port_east",
+			"from": [15, 4, 4],
+			"to": [16, 12, 12],
+			"rotation": {"angle": 0, "axis": "y", "origin": [16, 7, 5]},
+			"faces": {
+				"north": {"uv": [15, 0, 7, 1], "texture": "#ports"},
+				"east": {"uv": [8, 0, 0, 8], "texture": "#ports"},
+				"south": {"uv": [16, 0, 8, 1], "texture": "#ports"},
+				"west": {"uv": [8, 8, 0, 16], "texture": "#ports"},
+				"up": {"uv": [16, 0, 8, 1], "texture": "#ports"},
+				"down": {"uv": [16, 0, 8, 1], "texture": "#ports"}
+			}
+		},
+		{
+			"name": "port_east_led",
+			"from": [16, 4, 4],
+			"to": [16, 12, 12],
+			"rotation": {"angle": 0, "axis": "y", "origin": [16, 7, 5]},
+			"faces": {
+				"east": {"uv": [8, 0, 0, 8], "texture": "#ports_led"}
+			}
+		}
+	]
+}
