@@ -200,9 +200,12 @@ public class MoreThermalEvaporationMultiblockData extends MultiblockData impleme
         if (getVolume() != volume) {
             super.setVolume(volume);
             //Note: We only count the inner volume for the tank capacity for the evap tower
-            inputTankCapacity = tier == MoreThermalEvaporationTier.CREATIVE
-                    ? Integer.MAX_VALUE
-                    : (volume / 4) * tier.getInputTankCapacity();
+            if (tier == MoreThermalEvaporationTier.CREATIVE) {
+                inputTankCapacity = Integer.MAX_VALUE;
+            } else {
+                long cap = (long) (volume / 4) * tier.getInputTankCapacity();
+                inputTankCapacity = (int) Math.min(Integer.MAX_VALUE, cap);
+            }
         }
     }
 
@@ -211,7 +214,8 @@ public class MoreThermalEvaporationMultiblockData extends MultiblockData impleme
     }
 
     public int getOutputTankCapacity() {
-        return tier.getOutputTankCapacity() * getType().getMultiplier();
+        long cap = (long) tier.getOutputTankCapacity() * getType().getMultiplier();
+        return (int) Math.min(Integer.MAX_VALUE, cap);
     }
 
     @NotNull
