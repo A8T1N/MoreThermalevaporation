@@ -29,9 +29,10 @@ public class RenderMoreThermalEvaporationPlant extends MultiblockTileEntityRende
     @Override
     protected void render(TileEntityMoreThermalEvaporationController tile, MoreThermalEvaporationMultiblockData multiblock, float partialTick, PoseStack matrix, MultiBufferSource renderer, int light, int overlayLight, ProfilerFiller profiler) {
         VertexConsumer buffer = renderer.getBuffer(Sheets.translucentCullBlockSheet());
+        int size = multiblock.getType().getRenderSize();
         FluidRenderData data = RenderData.Builder.create(multiblock.inputTank.getFluid())
-                .of(multiblock)
-                .height(multiblock.height() - 1)
+                .location(multiblock.renderLocation.offset(1, 0, 1))
+                .dimensions(size, multiblock.height() - 2, size)
                 .build();
         renderObject(data, multiblock.valves, tile.getBlockPos(), matrix, buffer, overlayLight, Math.min(1, multiblock.prevScale));
     }
