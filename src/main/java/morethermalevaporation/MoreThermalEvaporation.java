@@ -17,7 +17,9 @@ import net.minecraft.resources.ResourceLocation;
 import net.neoforged.bus.api.EventPriority;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModContainer;
+import net.neoforged.fml.ModList;
 import net.neoforged.fml.common.Mod;
+import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.RegisterCommandsEvent;
 
@@ -27,6 +29,7 @@ import java.util.EnumMap;
 public class MoreThermalEvaporation {
 
     public static final String MODID = "morethermalevaporation";
+    public static boolean JustEnoughMekanismMultiblocksLoaded = false;
 
     public static final EnumMap<MoreThermalEvaporationTier, MultiblockManager<MoreThermalEvaporationMultiblockData>> MoreThermalEvaporationManagers = new EnumMap<>(MoreThermalEvaporationTier.class);
 
@@ -43,7 +46,13 @@ public class MoreThermalEvaporation {
         MoreThermalEvaporationCreativeTabs.register(modEventBus);
         MoreThermalEvaporationConfig.registerConfig(modContainer);
         NeoForge.EVENT_BUS.addListener(EventPriority.HIGHEST, this::registerCommands);
+        modEventBus.addListener(MoreThermalEvaporation::onCommonSetup);
         modEventBus.addListener(MoreThermalEvaporationConfig::onConfigLoad);
+    }
+
+    public static void onCommonSetup(FMLCommonSetupEvent e) {
+        ModList modList = ModList.get();
+        JustEnoughMekanismMultiblocksLoaded = modList.isLoaded("jei_mekanism_multiblocks");
     }
 
     public static ResourceLocation rl(String path) {

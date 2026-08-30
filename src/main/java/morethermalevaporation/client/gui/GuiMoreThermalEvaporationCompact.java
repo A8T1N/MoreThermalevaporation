@@ -63,7 +63,7 @@ public class GuiMoreThermalEvaporationCompact extends GuiConfigurableTile<TileEn
             public double getLevel() {
                 return Math.min(1, tile.getTemperature() / tier.getMultiplierTemp());
             }
-        }, 48, 63))
+        }, 58, 63))
                 .warning(WarningType.INPUT_DOESNT_PRODUCE_OUTPUT, getWarningCheck(RecipeError.INPUT_DOESNT_PRODUCE_OUTPUT));
         addRenderableWidget(new GuiFluidGauge(() -> tile.inputTank, () -> tile.getFluidTanks(null), GaugeType.STANDARD, this, 6, 13))
                 .warning(WarningType.NO_MATCHING_RECIPE, getWarningCheck(RecipeError.NOT_ENOUGH_INPUT));
