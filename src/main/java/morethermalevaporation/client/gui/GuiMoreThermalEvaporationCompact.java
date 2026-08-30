@@ -4,7 +4,6 @@ import mekanism.api.recipes.cache.CachedRecipe.OperationTracker.RecipeError;
 import mekanism.client.gui.GuiConfigurableTile;
 import mekanism.client.gui.element.GuiDownArrow;
 import mekanism.client.gui.element.GuiDumpButton;
-import mekanism.client.gui.element.GuiElement;
 import mekanism.client.gui.element.GuiInnerScreen;
 import mekanism.client.gui.element.bar.GuiBar.IBarInfoHandler;
 import mekanism.client.gui.element.bar.GuiHorizontalRateBar;
@@ -33,26 +32,27 @@ import java.util.function.BooleanSupplier;
 public class GuiMoreThermalEvaporationCompact extends GuiConfigurableTile<TileEntityMoreThermalEvaporationCompact, MekanismTileContainer<TileEntityMoreThermalEvaporationCompact>> {
 
     private final MoreThermalEvaporationTier tier;
-    private GuiElement inputGauge, outputGauge;
 
     public GuiMoreThermalEvaporationCompact(MekanismTileContainer<TileEntityMoreThermalEvaporationCompact> container, Inventory inv, Component title) {
         super(container, inv, title);
+        imageWidth += 20;
+        inventoryLabelX += 10;
         inventoryLabelY += 2;
-        titleLabelY = 4;
+        titleLabelY -= 2;
         dynamicSlots = true;
-        this.tier = getTileEntity().getTier();
+        this.tier = tile.getTier();
     }
 
     @Override
     protected void addGuiElements() {
 
         super.addGuiElements();
-        addRenderableWidget(new GuiInnerScreen(this, 48, 19, 80, 40, () -> List.of(
+        addRenderableWidget(new GuiInnerScreen(this, 48, 19, 100, 40, () -> List.of(
                 MekanismLang.TEMPERATURE.translate(MekanismUtils.getTemperatureDisplay(tile.getTemperature(), TemperatureUnit.KELVIN, true)),
                 MekanismLang.FLUID_PRODUCTION.translate(Math.round(tile.lastGain * 100D) / 100D))).padding(3).clearSpacing().recipeViewerCategories(RecipeViewerRecipeType.EVAPORATING)
         );
         addRenderableWidget(new GuiDownArrow(this, 32, 39));
-        addRenderableWidget(new GuiDownArrow(this, 136, 39));
+        addRenderableWidget(new GuiDownArrow(this, 156, 39));
         addRenderableWidget(new GuiHorizontalRateBar(this, new IBarInfoHandler() {
             @Override
             public Component getTooltip() {
@@ -65,15 +65,15 @@ public class GuiMoreThermalEvaporationCompact extends GuiConfigurableTile<TileEn
             }
         }, 48, 63))
                 .warning(WarningType.INPUT_DOESNT_PRODUCE_OUTPUT, getWarningCheck(RecipeError.INPUT_DOESNT_PRODUCE_OUTPUT));
-        inputGauge = addRenderableWidget(new GuiFluidGauge(() -> tile.inputTank, () -> tile.getFluidTanks(null), GaugeType.STANDARD, this, 6, 13))
+        addRenderableWidget(new GuiFluidGauge(() -> tile.inputTank, () -> tile.getFluidTanks(null), GaugeType.STANDARD, this, 6, 13))
                 .warning(WarningType.NO_MATCHING_RECIPE, getWarningCheck(RecipeError.NOT_ENOUGH_INPUT));
-        outputGauge = addRenderableWidget(new GuiFluidGauge(() -> tile.outputTank, () -> tile.getFluidTanks(null), GaugeType.STANDARD, this, 152, 13))
+        addRenderableWidget(new GuiFluidGauge(() -> tile.outputTank, () -> tile.getFluidTanks(null), GaugeType.STANDARD, this, 172, 13))
                 .warning(WarningType.NO_SPACE_IN_OUTPUT, getWarningCheck(RecipeError.NOT_ENOUGH_OUTPUT_SPACE));
         addRenderableWidget(new GuiHeatTab(this, () -> {
             Component environment = MekanismUtils.getTemperatureDisplay(tile.lastEnvironmentLoss, TemperatureUnit.KELVIN, false);
             return Collections.singletonList(MekanismLang.DISSIPATED_RATE.translate(environment));
         }));
-        addRenderableWidget(new GuiDumpButton<>(this, tile, 130, 71));
+        addRenderableWidget(new GuiDumpButton<>(this, tile, 150, 71));
     }
 
     private BooleanSupplier getWarningCheck(RecipeError error) {
@@ -87,7 +87,7 @@ public class GuiMoreThermalEvaporationCompact extends GuiConfigurableTile<TileEn
 
     @Override
     protected void drawForegroundText(@NotNull GuiGraphics guiGraphics, int mouseX, int mouseY) {
-        renderTitleTextWithOffset(guiGraphics, inputGauge.getRelativeRight(), outputGauge.getRelativeX());
+        renderTitleTextWithOffset(guiGraphics, 0, getXSize());
         renderInventoryText(guiGraphics);
         super.drawForegroundText(guiGraphics, mouseX, mouseY);
     }

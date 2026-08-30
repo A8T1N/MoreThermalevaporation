@@ -316,12 +316,12 @@ public class TileEntityMoreThermalEvaporationCompact extends TileEntityRecipeMac
 
         builder.addSlot(
                 inputOutputSlot =
-                        FluidInventorySlot.drain(outputTank, listener, 132, 20)
+                        FluidInventorySlot.drain(outputTank, listener, 152, 20)
         );
 
         builder.addSlot(
                 outputOutputSlot =
-                        OutputInventorySlot.at(listener, 132, 51)
+                        OutputInventorySlot.at(listener, 152, 51)
         );
 
         inputInputSlot.setSlotType(ContainerSlotType.INPUT);
