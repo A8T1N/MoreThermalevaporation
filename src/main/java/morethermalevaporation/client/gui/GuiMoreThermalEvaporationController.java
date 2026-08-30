@@ -71,7 +71,7 @@ public class GuiMoreThermalEvaporationController extends GuiMekanismTile<TileEnt
 
             @Override
             public double getLevel() {
-                return Math.min(1, tile.getMultiblock().getTemperature() / tier.getMultiplierTemp());
+                return Math.min(1, tile.getMultiblock().getTemperature() / (tier.getMultiplierTemp() * tile.getMultiblock().getType().getMultiplier()));
             }
         }, 58, 63))
                 .warning(WarningType.INPUT_DOESNT_PRODUCE_OUTPUT, getWarningCheck(RecipeError.INPUT_DOESNT_PRODUCE_OUTPUT));
