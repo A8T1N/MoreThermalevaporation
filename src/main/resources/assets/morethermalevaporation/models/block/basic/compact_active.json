@@ -147,7 +147,7 @@
 			"faces": {
 				"west": {"uv": [0, 0, 8, 8], "texture": "#ports_led"}
 			},
-			"forge_data": {
+			"neoforge_data": {
 				"block_light": 15,
 				"sky_light": 15
 			}
@@ -174,7 +174,7 @@
 			"faces": {
 				"east": {"uv": [8, 0, 0, 8], "texture": "#ports_led"}
 			},
-			"forge_data": {
+			"neoforge_data": {
 				"block_light": 15,
 				"sky_light": 15
 			}
@@ -191,7 +191,7 @@
 				"up": {"uv": [0, 0, 2, 0], "texture": "#front_led"},
 				"down": {"uv": [0, 0.25, 2, 0.25], "texture": "#front_led"}
 			},
-			"forge_data": {
+			"neoforge_data": {
 				"block_light": 15,
 				"sky_light": 15
 			}
