@@ -18,8 +18,8 @@ public class MoreThermalEvaporationContainerTypes {
 
     static {
         for (MoreThermalEvaporationTier tier : MoreThermalEvaporationTier.values()) {
-            MORE_THERMAL_EVAPORATION_CONTROLLER.put(tier, CONTAINER_TYPES.register(MoreThermalEvaporationBlocks.CONTROLLERS.get(tier), TileEntityMoreThermalEvaporationController.class));
-            MORE_THERMAL_EVAPORATION_COMPACT.put(tier, CONTAINER_TYPES.register(MoreThermalEvaporationBlocks.COMPACTS.get(tier), TileEntityMoreThermalEvaporationCompact.class));
+            MORE_THERMAL_EVAPORATION_CONTROLLER.put(tier, CONTAINER_TYPES.custom(MoreThermalEvaporationBlocks.CONTROLLERS.get(tier), TileEntityMoreThermalEvaporationController.class).offset(10, 0).build());
+            MORE_THERMAL_EVAPORATION_COMPACT.put(tier, CONTAINER_TYPES.custom(MoreThermalEvaporationBlocks.COMPACTS.get(tier), TileEntityMoreThermalEvaporationCompact.class).offset(10, 0).build());
         }
     }
 
