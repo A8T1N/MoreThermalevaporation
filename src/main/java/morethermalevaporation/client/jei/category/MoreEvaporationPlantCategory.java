@@ -8,13 +8,18 @@ import giselle.jei_mekanism_multiblocks.client.jei.MultiblockCategory;
 import giselle.jei_mekanism_multiblocks.client.jei.MultiblockWidget;
 import giselle.jei_mekanism_multiblocks.client.jei.ResultWidget;
 import giselle.jei_mekanism_multiblocks.client.jei.category.ICostConsumer;
+import giselle.jei_mekanism_multiblocks.client.jei.category.ResistiveHeaterCategory;
 import giselle.jei_mekanism_multiblocks.common.JEI_MekanismMultiblocks;
 import giselle.jei_mekanism_multiblocks.common.util.VolumeTextHelper;
 import mekanism.api.heat.HeatAPI;
+import mekanism.api.math.FloatingLong;
+import mekanism.common.MekanismLang;
 import mekanism.common.config.MekanismConfig;
+import mekanism.common.content.evaporation.EvaporationMultiblockData;
 import mekanism.common.registries.MekanismBlocks;
 import mekanism.common.util.MekanismUtils;
 import mekanism.common.util.UnitDisplayUtils.TemperatureUnit;
+import mekanism.common.util.text.EnergyDisplay;
 import mekanism.common.util.text.TextUtils;
 import mekanism.generators.common.registries.GeneratorsBlocks;
 import mezz.jei.api.helpers.IGuiHelper;
@@ -279,6 +284,38 @@ public class MoreEvaporationPlantCategory extends MultiblockCategory<MoreEvapora
             consumer.accept(speedWidget);
             consumer.accept(new ResultWidget(Component.translatable("text.jei_mekanism_multiblocks.result.input_tank"), VolumeTextHelper.formatMB(inputCapacity)));
             consumer.accept(new ResultWidget(Component.translatable("text.jei_mekanism_multiblocks.result.output_tank"), VolumeTextHelper.formatMB(outputCapacity)));
+
+            this.createRequiredHeaterEnergyWidget(consumer);
+        }
+
+        private void createRequiredHeaterEnergyWidget(Consumer<AbstractWidget> consumer) {
+            FloatingLong plainRequiredEnergy = this.getRequiredHeaterEnergy(HeatAPI.AMBIENT_TEMP);
+            FloatingLong coldestRequiredEnergy = this.getRequiredHeaterEnergy(HeatAPI.getAmbientTemp(Integer.MIN_VALUE));
+            FloatingLong hotestRequiredEnergy = this.getRequiredHeaterEnergy(HeatAPI.getAmbientTemp(Integer.MAX_VALUE));
+            ResultWidget requiredEnergyWidget = new ResultWidget(Component.translatable("text.jei_mekanism_multiblocks.result.required_heater_usage"), Component.translatable("%s/t", EnergyDisplay.of(plainRequiredEnergy).getTextComponent()));
+            Component heaterName = new ItemStack(MekanismBlocks.RESISTIVE_HEATER).getHoverName();
+            Component valveName = new ItemStack(MekanismBlocks.THERMAL_EVAPORATION_VALVE).getHoverName();
+            requiredEnergyWidget.setTooltip(TooltipHelper.createMessageOnly(//
+                    Component.translatable("text.jei_mekanism_multiblocks.tooltip.required_heater_usage.plain", Component.translatable("%s %s/t", TextUtils.format(plainRequiredEnergy.longValue()), Component.translatable(MekanismLang.ENERGY_JOULES_SHORT.getTranslationKey()))), //
+                    Component.translatable("text.jei_mekanism_multiblocks.tooltip.required_heater_usage.coldest", Component.translatable("%s %s/t", TextUtils.format(coldestRequiredEnergy.longValue()), Component.translatable(MekanismLang.ENERGY_JOULES_SHORT.getTranslationKey()))), //
+                    Component.translatable("text.jei_mekanism_multiblocks.tooltip.required_heater_usage.hottest", Component.translatable("%s %s/t", TextUtils.format(hotestRequiredEnergy.longValue()), Component.translatable(MekanismLang.ENERGY_JOULES_SHORT.getTranslationKey()))), //
+                    Component.translatable("text.jei_mekanism_multiblocks.tooltip.heater_near_and_1_sink_1", heaterName, valveName), //
+                    Component.translatable("text.jei_mekanism_multiblocks.tooltip.heater_near_and_1_sink_2", heaterName, valveName)));
+            consumer.accept(requiredEnergyWidget);
+        }
+
+        public FloatingLong getRequiredHeaterEnergy(double ambientTemp) {
+            double heat = this.getMaxMultiplierHeat(ambientTemp);
+            return ResistiveHeaterCategory.getHeatTransferableEnergy(ambientTemp, heat, HeatAPI.DEFAULT_INVERSE_CONDUCTION).ceil();
+        }
+
+        public double getMaxMultiplierHeat(double ambientTemp) {
+            int activeSolars = this.isUseAdvancedSolarGenerator() ? 4 : 0;
+            double heatCapacity = this.getDimensionHeight() * MekanismConfig.general.evaporationHeatCapacity.get();
+            double maxMultiplierTemp = this.getTier().getMultiplierTemp() * (isUseLargeType() ? MoreThermalEvaporationType.LARGE.getMultiplier() : MoreThermalEvaporationType.NORMAL.getMultiplier());
+            double gain = activeSolars * MekanismConfig.general.evaporationSolarMultiplier.get() * heatCapacity;
+            double loss = MekanismConfig.general.evaporationHeatDissipation.get() * Math.sqrt(Math.abs(maxMultiplierTemp - ambientTemp)) * heatCapacity;
+            return loss - gain;
         }
 
         public long getInputCapacity(MoreThermalEvaporationTier tier, long dimHeight) {
