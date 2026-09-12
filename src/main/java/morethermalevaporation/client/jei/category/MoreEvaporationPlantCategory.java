@@ -400,4 +400,32 @@ public class MoreEvaporationPlantCategory extends MultiblockCategory<MoreEvapora
         }
     }
 
+    public static class OverclockedEvaporationPlantWidget extends MoreEvaporationPlantWidget {
+        @Override
+        protected MoreThermalEvaporationTier getTier() {
+            return MoreThermalEvaporationTier.OVERCLOCKED;
+        }
+    }
+
+    public static class QuantumEvaporationPlantWidget extends MoreEvaporationPlantWidget {
+        @Override
+        protected MoreThermalEvaporationTier getTier() {
+            return MoreThermalEvaporationTier.QUANTUM;
+        }
+    }
+
+    public static class DenseEvaporationPlantWidget extends MoreEvaporationPlantWidget {
+        @Override
+        protected MoreThermalEvaporationTier getTier() {
+            return MoreThermalEvaporationTier.DENSE;
+        }
+    }
+
+    public static class MultiversalEvaporationPlantWidget extends MoreEvaporationPlantWidget {
+        @Override
+        protected MoreThermalEvaporationTier getTier() {
+            return MoreThermalEvaporationTier.MULTIVERSAL;
+        }
+    }
+
 }
