@@ -14,9 +14,10 @@ public class MoreThermalEvaporationMachine<TILE extends TileEntityMekanism> exte
 
     public MoreThermalEvaporationMachine(Supplier<TileEntityTypeRegistryObject<TILE>> tileEntityRegistrar, ILangEntry description, MoreThermalEvaporationTier tier) {
         super(tileEntityRegistrar, description);
-        if (tier.ordinal() < MoreThermalEvaporationTier.values().length - 1) {
-            add(new AttributeUpgradeable(() -> MoreThermalEvaporationBlocks.COMPACTS.get(MoreThermalEvaporationTier.values()[tier.ordinal() + 1])));
-        }
+
+        MoreThermalEvaporationTier.getUpgradeTarget(tier).ifPresent(upgradeTier -> {
+            add(new AttributeUpgradeable(() -> MoreThermalEvaporationBlocks.COMPACTS.get(upgradeTier)));
+        });
     }
 
     public static class MoreThermalEvaporationMachineBuilder<MACHINE extends MoreThermalEvaporationMachine<TILE>, TILE extends TileEntityMekanism, T extends MoreThermalEvaporationMachine.MoreThermalEvaporationMachineBuilder<MACHINE, TILE, T>> extends BlockTypeTile.BlockTileBuilder<MACHINE, TILE, T> {
