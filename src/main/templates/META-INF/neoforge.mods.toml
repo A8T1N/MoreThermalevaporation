@@ -99,3 +99,17 @@ type="optional"
 versionRange="[1.1.28,]"
 ordering="NONE"
 side="BOTH"
+
+[[dependencies."${mod_id}"]]
+modId="evolvedmekanism"
+type="optional"
+versionRange="[1.2.1-fix3,)"
+ordering="AFTER"
+side="BOTH"
+
+[[dependencies."${mod_id}"]]
+modId="igleelib"
+type="optional"
+versionRange="[1.2.7,)"
+ordering="AFTER"
+side="BOTH"
