@@ -22,18 +22,18 @@ public class ClientRegistration {
 
     @SubscribeEvent
     public static void registerRenderers(EntityRenderersEvent.RegisterRenderers event) {
-        for (MoreThermalEvaporationTier tier : MoreThermalEvaporationTier.values()) {
+        MoreThermalEvaporationTier.availableTiers().forEach(tier -> {
             event.registerBlockEntityRenderer(MoreThermalEvaporationTileEntityTypes.CONTROLLERS.get(tier).get(), (context) -> new RenderMoreThermalEvaporationPlant(tier, context));
             event.registerBlockEntityRenderer(MoreThermalEvaporationTileEntityTypes.COMPACTS.get(tier).get(), (context) -> new RenderMoreThermalEvaporationCompact(tier, context));
-        }
+        });
     }
 
     @SubscribeEvent(priority = EventPriority.LOW)
     public static void registerContainers(RegisterMenuScreensEvent event) {
-        for (MoreThermalEvaporationTier tier : MoreThermalEvaporationTier.values()) {
+        MoreThermalEvaporationTier.availableTiers().forEach(tier -> {
             ClientRegistrationUtil.registerScreen(event, MoreThermalEvaporationContainerTypes.MORE_THERMAL_EVAPORATION_CONTROLLER.get(tier), GuiMoreThermalEvaporationController::new);
             ClientRegistrationUtil.registerScreen(event, MoreThermalEvaporationContainerTypes.MORE_THERMAL_EVAPORATION_COMPACT.get(tier), GuiMoreThermalEvaporationCompact::new);
-        }
+        });
     }
 
     @SubscribeEvent

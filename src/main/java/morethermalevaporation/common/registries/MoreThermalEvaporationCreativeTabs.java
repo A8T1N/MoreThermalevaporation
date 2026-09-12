@@ -25,12 +25,12 @@ public class MoreThermalEvaporationCreativeTabs {
                                             .asItem()
                             ))
                             .displayItems((parameters, output) -> {
-                                for (MoreThermalEvaporationTier tier : MoreThermalEvaporationTier.values()) {
+                                MoreThermalEvaporationTier.availableTiers().forEach(tier -> {
                                     output.accept(MoreThermalEvaporationBlocks.BLOCKS.get(tier));
                                     output.accept(MoreThermalEvaporationBlocks.VALVES.get(tier));
                                     output.accept(MoreThermalEvaporationBlocks.CONTROLLERS.get(tier));
                                     output.accept(MoreThermalEvaporationBlocks.COMPACTS.get(tier));
-                                }
+                                });
                             })
                             .build()
             );

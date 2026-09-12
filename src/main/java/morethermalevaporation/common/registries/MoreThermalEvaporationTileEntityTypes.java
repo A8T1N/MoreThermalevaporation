@@ -24,7 +24,7 @@ public class MoreThermalEvaporationTileEntityTypes {
     public static final EnumMap<MoreThermalEvaporationTier, TileEntityTypeRegistryObject<TileEntityMoreThermalEvaporationCompact>> COMPACTS = new EnumMap<>(MoreThermalEvaporationTier.class);
 
     static {
-        for (MoreThermalEvaporationTier tier : MoreThermalEvaporationTier.values()) {
+        MoreThermalEvaporationTier.availableTiers().forEach(tier -> {
 
             BLOCKS.put(
                     tier,
@@ -80,7 +80,7 @@ public class MoreThermalEvaporationTileEntityTypes {
                             .serverTicker(TileEntityMekanism::tickServer)
                             .build()
             );
-        }
+        });
     }
 
     private MoreThermalEvaporationTileEntityTypes() {

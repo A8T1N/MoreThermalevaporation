@@ -30,12 +30,12 @@ public class MoreThermalEvaporationBlocks {
 
 
     static {
-        for (MoreThermalEvaporationTier tier : MoreThermalEvaporationTier.values()) {
+        MoreThermalEvaporationTier.availableTiers().forEach(tier -> {
             BLOCKS.put(tier, registerMoreThermalEvaporationPart(tier, "block", MoreThermalEvaporationBlockTypes.BLOCKS.get(tier)));
             VALVES.put(tier, registerMoreThermalEvaporationPart(tier, "valve", MoreThermalEvaporationBlockTypes.VALVES.get(tier)));
             CONTROLLERS.put(tier, registerMoreThermalEvaporationPart(tier, "controller", MoreThermalEvaporationBlockTypes.CONTROLLERS.get(tier)));
             COMPACTS.put(tier, registerMoreThermalEvaporationCompact(tier, MoreThermalEvaporationBlockTypes.COMPACTS.get(tier)));
-        }
+        });
     }
 
     private MoreThermalEvaporationBlocks() {

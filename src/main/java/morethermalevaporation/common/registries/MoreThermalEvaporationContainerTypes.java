@@ -17,10 +17,10 @@ public class MoreThermalEvaporationContainerTypes {
     public static final EnumMap<MoreThermalEvaporationTier, ContainerTypeRegistryObject<MekanismTileContainer<TileEntityMoreThermalEvaporationCompact>>> MORE_THERMAL_EVAPORATION_COMPACT = new EnumMap<>(MoreThermalEvaporationTier.class);
 
     static {
-        for (MoreThermalEvaporationTier tier : MoreThermalEvaporationTier.values()) {
+        MoreThermalEvaporationTier.availableTiers().forEach(tier -> {
             MORE_THERMAL_EVAPORATION_CONTROLLER.put(tier, CONTAINER_TYPES.custom(MoreThermalEvaporationBlocks.CONTROLLERS.get(tier), TileEntityMoreThermalEvaporationController.class).offset(10, 0).build());
             MORE_THERMAL_EVAPORATION_COMPACT.put(tier, CONTAINER_TYPES.custom(MoreThermalEvaporationBlocks.COMPACTS.get(tier), TileEntityMoreThermalEvaporationCompact.class).offset(10, 0).build());
-        }
+        });
     }
 
     private MoreThermalEvaporationContainerTypes() {

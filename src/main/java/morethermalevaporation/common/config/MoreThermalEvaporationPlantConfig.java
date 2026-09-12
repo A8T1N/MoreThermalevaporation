@@ -39,7 +39,7 @@ public class MoreThermalEvaporationPlantConfig extends BaseMekanismConfig {
     }
 
     private void addMoreThermalEvaporationCategory() {
-        for (MoreThermalEvaporationTier tier : MoreThermalEvaporationTier.values()) {
+        MoreThermalEvaporationTier.availableTiers().forEach(tier -> {
             String tierName = tier.getBaseTier().getSimpleName();
             CachedDoubleValue multiplierTempReference = CachedDoubleValue.wrap(this, builder.comment("Maximum " + "temperature capping the temperature multiplier for the " + tierName + " Thermal Evaporation Plant.")
                     .defineInRange(tierName.toLowerCase(Locale.ROOT) + "ThermalEvaporationMultiplierTempCap",
@@ -55,7 +55,7 @@ public class MoreThermalEvaporationPlantConfig extends BaseMekanismConfig {
                     .defineInRange(tierName.toLowerCase(Locale.ROOT) + "ThermalEvaporationOutputTankCapacity", tier.getBaseOutputTankCapacity(), 1, 2147483646));
 
             tier.setConfigReference(multiplierTempReference, heightReference, inputTankCapacityReference, outputTankCapacityReference);
-        }
+        });
     }
 
     @Override

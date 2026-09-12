@@ -153,10 +153,10 @@ public enum MoreThermalEvaporationLang implements ILangEntry {
 
     private static EnumMap<MoreThermalEvaporationTier, MoreThermalEvaporationLang> createTierMap(String mapName) {
         EnumMap<MoreThermalEvaporationTier, MoreThermalEvaporationLang> map = new EnumMap<>(MoreThermalEvaporationTier.class);
-        for (MoreThermalEvaporationTier tier : MoreThermalEvaporationTier.values()) {
+        MoreThermalEvaporationTier.availableTiers().forEach(tier -> {
             String enumName = String.format(mapName, tier.name().toUpperCase(Locale.ROOT));
             map.put(tier, MoreThermalEvaporationLang.valueOf(enumName));
-        }
+        });
         return map;
     }
 

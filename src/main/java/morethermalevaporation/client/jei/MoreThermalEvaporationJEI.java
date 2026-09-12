@@ -64,12 +64,12 @@ public class MoreThermalEvaporationJEI implements IModPlugin {
     private static List<ItemLike> getWorkstations() {
         List<ItemLike> workstations = new ArrayList<>();
 
-        for (MoreThermalEvaporationTier tier : MoreThermalEvaporationTier.values()) {
+        MoreThermalEvaporationTier.availableTiers().forEach(tier -> {
             workstations.add(MoreThermalEvaporationBlocks.CONTROLLERS.get(tier));
             workstations.add(MoreThermalEvaporationBlocks.VALVES.get(tier));
             workstations.add(MoreThermalEvaporationBlocks.BLOCKS.get(tier));
             workstations.add(MoreThermalEvaporationBlocks.COMPACTS.get(tier));
-        }
+        });
 
         return workstations;
     }

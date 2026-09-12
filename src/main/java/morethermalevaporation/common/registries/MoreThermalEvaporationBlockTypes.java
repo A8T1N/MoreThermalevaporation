@@ -28,12 +28,12 @@ public class MoreThermalEvaporationBlockTypes {
     public static final EnumMap<MoreThermalEvaporationTier, MoreThermalEvaporationMachine<TileEntityMoreThermalEvaporationCompact>> COMPACTS = new EnumMap<>(MoreThermalEvaporationTier.class);
 
     static {
-        for (MoreThermalEvaporationTier tier : MoreThermalEvaporationTier.values()) {
+        MoreThermalEvaporationTier.availableTiers().forEach(tier -> {
             BLOCKS.put(tier, createMoreThermalEvaporationBlock(tier, MoreThermalEvaporationLang.getLangDescriptionBlock(tier)));
             VALVES.put(tier, createMoreThermalEvaporationValve(tier, MoreThermalEvaporationLang.getLangDescriptionValve(tier)));
             CONTROLLERS.put(tier, createMoreThermalEvaporationController(tier, MoreThermalEvaporationLang.getLangDescriptionController(tier)));
             COMPACTS.put(tier, createMoreThermalEvaporationCompact(tier, MoreThermalEvaporationLang.getLangDescriptionCompact(tier)));
-        }
+        });
     }
 
     private MoreThermalEvaporationBlockTypes() {
