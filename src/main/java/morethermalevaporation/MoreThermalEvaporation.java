@@ -30,13 +30,14 @@ public class MoreThermalEvaporation {
 
     public static final String MODID = "morethermalevaporation";
     public static boolean JustEnoughMekanismMultiblocksLoaded = false;
+    public static boolean EvolvedMekanismLoaded = false;
 
     public static final EnumMap<MoreThermalEvaporationTier, MultiblockManager<MoreThermalEvaporationMultiblockData>> MoreThermalEvaporationManagers = new EnumMap<>(MoreThermalEvaporationTier.class);
 
     static {
-        for (MoreThermalEvaporationTier tier : MoreThermalEvaporationTier.values()) {
+        MoreThermalEvaporationTier.availableTiers().forEach(tier -> {
             MoreThermalEvaporationManagers.put(tier, new MultiblockManager<>(tier.getBaseTier().getSimpleName() + "ThermalEvaporation", MultiblockCache::new, () -> new MoreThermalEvaporationValidator(tier)));
-        }
+        });
     }
 
     public MoreThermalEvaporation(IEventBus modEventBus, ModContainer modContainer) {
@@ -53,6 +54,7 @@ public class MoreThermalEvaporation {
     public static void onCommonSetup(FMLCommonSetupEvent e) {
         ModList modList = ModList.get();
         JustEnoughMekanismMultiblocksLoaded = modList.isLoaded("jei_mekanism_multiblocks");
+        EvolvedMekanismLoaded = modList.isLoaded("evolvedmekanism");
     }
 
     public static ResourceLocation rl(String path) {
@@ -60,10 +62,8 @@ public class MoreThermalEvaporation {
     }
 
     private void registerCommands(RegisterCommandsEvent event) {
-        BuildCommand.register("evaporation_basic", MoreThermalEvaporationLang.BASIC_EVAPORATION_PLANT, new MoreEvaporationBuilder(MoreThermalEvaporationTier.BASIC));
-        BuildCommand.register("evaporation_advanced", MoreThermalEvaporationLang.ADVANCED_EVAPORATION_PLANT, new MoreEvaporationBuilder(MoreThermalEvaporationTier.ADVANCED));
-        BuildCommand.register("evaporation_elite", MoreThermalEvaporationLang.ELITE_EVAPORATION_PLANT, new MoreEvaporationBuilder(MoreThermalEvaporationTier.ELITE));
-        BuildCommand.register("evaporation_ultimate", MoreThermalEvaporationLang.ULTIMATE_EVAPORATION_PLANT, new MoreEvaporationBuilder(MoreThermalEvaporationTier.ULTIMATE));
-        BuildCommand.register("evaporation_creative", MoreThermalEvaporationLang.CREATIVE_EVAPORATION_PLANT, new MoreEvaporationBuilder(MoreThermalEvaporationTier.CREATIVE));
+        MoreThermalEvaporationTier.availableTiers().forEach(tier -> {
+            BuildCommand.register("evaporation_" + tier.getBaseTier().getLowerName(), MoreThermalEvaporationLang.getLangPlant(tier), new MoreEvaporationBuilder(tier));
+        });
     }
 }
