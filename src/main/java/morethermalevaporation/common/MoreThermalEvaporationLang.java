@@ -72,6 +72,55 @@ public enum MoreThermalEvaporationLang implements ILangEntry {
     DESCRIPTION_CREATIVE_THERMAL_EVAPORATION_COMPACT("description", "creative_thermal_evaporation_compact"),
     CREATIVE_EVAPORATION_COMPACT("evaporation", "creative_evaporation_compact"),
 
+    // Evolved Mekanism
+    // Overclocked
+    DESCRIPTION_OVERCLOCKED_THERMAL_EVAPORATION_BLOCK("description", "overclocked_thermal_evaporation_block"),
+    DESCRIPTION_OVERCLOCKED_THERMAL_EVAPORATION_VALVE("description", "overclocked_thermal_evaporation_valve"),
+    DESCRIPTION_OVERCLOCKED_THERMAL_EVAPORATION_CONTROLLER("description", "overclocked_thermal_evaporation_controller"),
+
+    OVERCLOCKED_EVAPORATION_HEIGHT("evaporation", "overclocked_height"),
+    OVERCLOCKED_FLUID_PRODUCTION("evaporation", "overclocked_fluid_production"),
+    OVERCLOCKED_EVAPORATION_PLANT("evaporation", "overclocked_evaporation_plant"),
+
+    DESCRIPTION_OVERCLOCKED_THERMAL_EVAPORATION_COMPACT("description", "overclocked_thermal_evaporation_compact"),
+    OVERCLOCKED_EVAPORATION_COMPACT("evaporation", "overclocked_evaporation_compact"),
+
+    // Quantum
+    DESCRIPTION_QUANTUM_THERMAL_EVAPORATION_BLOCK("description", "quantum_thermal_evaporation_block"),
+    DESCRIPTION_QUANTUM_THERMAL_EVAPORATION_VALVE("description", "quantum_thermal_evaporation_valve"),
+    DESCRIPTION_QUANTUM_THERMAL_EVAPORATION_CONTROLLER("description", "quantum_thermal_evaporation_controller"),
+
+    QUANTUM_EVAPORATION_HEIGHT("evaporation", "quantum_height"),
+    QUANTUM_FLUID_PRODUCTION("evaporation", "quantum_fluid_production"),
+    QUANTUM_EVAPORATION_PLANT("evaporation", "quantum_evaporation_plant"),
+
+    DESCRIPTION_QUANTUM_THERMAL_EVAPORATION_COMPACT("description", "quantum_thermal_evaporation_compact"),
+    QUANTUM_EVAPORATION_COMPACT("evaporation", "quantum_evaporation_compact"),
+
+    // Dense
+    DESCRIPTION_DENSE_THERMAL_EVAPORATION_BLOCK("description", "dense_thermal_evaporation_block"),
+    DESCRIPTION_DENSE_THERMAL_EVAPORATION_VALVE("description", "dense_thermal_evaporation_valve"),
+    DESCRIPTION_DENSE_THERMAL_EVAPORATION_CONTROLLER("description", "dense_thermal_evaporation_controller"),
+
+    DENSE_EVAPORATION_HEIGHT("evaporation", "dense_height"),
+    DENSE_FLUID_PRODUCTION("evaporation", "dense_fluid_production"),
+    DENSE_EVAPORATION_PLANT("evaporation", "dense_evaporation_plant"),
+
+    DESCRIPTION_DENSE_THERMAL_EVAPORATION_COMPACT("description", "dense_thermal_evaporation_compact"),
+    DENSE_EVAPORATION_COMPACT("evaporation", "dense_evaporation_compact"),
+
+    // Multiversal
+    DESCRIPTION_MULTIVERSAL_THERMAL_EVAPORATION_BLOCK("description", "multiversal_thermal_evaporation_block"),
+    DESCRIPTION_MULTIVERSAL_THERMAL_EVAPORATION_VALVE("description", "multiversal_thermal_evaporation_valve"),
+    DESCRIPTION_MULTIVERSAL_THERMAL_EVAPORATION_CONTROLLER("description", "multiversal_thermal_evaporation_controller"),
+
+    MULTIVERSAL_EVAPORATION_HEIGHT("evaporation", "multiversal_height"),
+    MULTIVERSAL_FLUID_PRODUCTION("evaporation", "multiversal_fluid_production"),
+    MULTIVERSAL_EVAPORATION_PLANT("evaporation", "multiversal_evaporation_plant"),
+
+    DESCRIPTION_MULTIVERSAL_THERMAL_EVAPORATION_COMPACT("description", "multiversal_thermal_evaporation_compact"),
+    MULTIVERSAL_EVAPORATION_COMPACT("evaporation", "multiversal_evaporation_compact"),
+
     // MultiBlock
     MULTIBLOCK_TYPE("multiblock", "type"),
 
