@@ -1,0 +1,25 @@
+{
+  "type": "mekanism:mek_data",
+  "key": {
+    "A": {
+      "tag": "evolvedmekanism:alloys/exoversal"
+    },
+    "C": {
+      "tag": "c:circuits/multiversal"
+    },
+    "I": {
+      "tag": "c:gems/diamond"
+    },
+    "P": {
+      "item": "morethermalevaporation:dense_thermal_evaporation_compact"
+    }
+  },
+  "pattern": [
+    "ACA",
+    "IPI",
+    "ACA"
+  ],
+  "result": {
+    "id": "morethermalevaporation:multiversal_thermal_evaporation_compact"
+  }
+}

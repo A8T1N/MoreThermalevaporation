@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "C": {
+      "tag": "c:circuits/overclocked"
+    },
+    "G": {
+      "tag": "c:glass_panes"
+    },
+    "#": {
+      "item": "morethermalevaporation:overclocked_thermal_evaporation_block"
+    },
+    "T": {
+      "item": "morethermalevaporation:ultimate_thermal_evaporation_controller"
+    }
+  },
+  "pattern": [
+    "CGC",
+    "#T#",
+    "###"
+  ],
+  "result": {
+    "id": "morethermalevaporation:overclocked_thermal_evaporation_controller",
+    "count": 1
+  }
+}

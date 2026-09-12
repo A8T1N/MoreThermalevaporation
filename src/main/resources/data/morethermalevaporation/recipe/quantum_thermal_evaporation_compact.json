@@ -1,0 +1,25 @@
+{
+  "type": "mekanism:mek_data",
+  "key": {
+    "A": {
+      "tag": "evolvedmekanism:alloys/subatomic"
+    },
+    "C": {
+      "tag": "c:circuits/quantum"
+    },
+    "I": {
+      "tag": "c:gems/diamond"
+    },
+    "P": {
+      "item": "morethermalevaporation:overclocked_thermal_evaporation_compact"
+    }
+  },
+  "pattern": [
+    "ACA",
+    "IPI",
+    "ACA"
+  ],
+  "result": {
+    "id": "morethermalevaporation:quantum_thermal_evaporation_compact"
+  }
+}

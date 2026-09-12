@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "A": {
+      "tag": "evolvedmekanism:alloys/singular"
+    },
+    "C": {
+      "tag": "c:circuits/dense"
+    },
+    "#": {
+      "item": "morethermalevaporation:quantum_thermal_evaporation_block"
+    }
+  },
+  "pattern": [
+    "A#A",
+    "#C#",
+    "A#A"
+  ],
+  "result": {
+    "id": "morethermalevaporation:dense_thermal_evaporation_block",
+    "count": 4
+  }
+}

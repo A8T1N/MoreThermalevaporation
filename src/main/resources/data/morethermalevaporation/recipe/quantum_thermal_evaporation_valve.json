@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "V": {
+      "item": "morethermalevaporation:overclocked_thermal_evaporation_valve"
+    },
+    "#": {
+      "item": "morethermalevaporation:quantum_thermal_evaporation_block"
+    }
+  },
+  "pattern": [
+    " # ",
+    "#V#",
+    " # "
+  ],
+  "result": {
+    "id": "morethermalevaporation:quantum_thermal_evaporation_valve",
+    "count": 1
+  }
+}

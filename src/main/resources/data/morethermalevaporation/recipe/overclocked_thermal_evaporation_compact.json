@@ -1,0 +1,25 @@
+{
+  "type": "mekanism:mek_data",
+  "key": {
+    "A": {
+      "tag": "evolvedmekanism:alloys/hypercharged"
+    },
+    "C": {
+      "tag": "c:circuits/overclocked"
+    },
+    "I": {
+      "tag": "c:gems/diamond"
+    },
+    "P": {
+      "item": "morethermalevaporation:ultimate_thermal_evaporation_compact"
+    }
+  },
+  "pattern": [
+    "ACA",
+    "IPI",
+    "ACA"
+  ],
+  "result": {
+    "id": "morethermalevaporation:overclocked_thermal_evaporation_compact"
+  }
+}

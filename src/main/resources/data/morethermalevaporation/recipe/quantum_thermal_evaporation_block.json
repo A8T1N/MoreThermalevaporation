@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "A": {
+      "tag": "evolvedmekanism:alloys/subatomic"
+    },
+    "C": {
+      "tag": "c:circuits/quantum"
+    },
+    "#": {
+      "item": "morethermalevaporation:overclocked_thermal_evaporation_block"
+    }
+  },
+  "pattern": [
+    "A#A",
+    "#C#",
+    "A#A"
+  ],
+  "result": {
+    "id": "morethermalevaporation:quantum_thermal_evaporation_block",
+    "count": 4
+  }
+}

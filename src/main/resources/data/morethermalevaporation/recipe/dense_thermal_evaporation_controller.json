@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "C": {
+      "tag": "c:circuits/dense"
+    },
+    "G": {
+      "tag": "c:glass_panes"
+    },
+    "#": {
+      "item": "morethermalevaporation:dense_thermal_evaporation_block"
+    },
+    "T": {
+      "item": "morethermalevaporation:quantum_thermal_evaporation_controller"
+    }
+  },
+  "pattern": [
+    "CGC",
+    "#T#",
+    "###"
+  ],
+  "result": {
+    "id": "morethermalevaporation:dense_thermal_evaporation_controller",
+    "count": 1
+  }
+}

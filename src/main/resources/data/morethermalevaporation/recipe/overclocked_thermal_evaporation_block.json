@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "A": {
+      "tag": "evolvedmekanism:alloys/hypercharged"
+    },
+    "C": {
+      "tag": "c:circuits/overclocked"
+    },
+    "#": {
+      "item": "morethermalevaporation:ultimate_thermal_evaporation_block"
+    }
+  },
+  "pattern": [
+    "A#A",
+    "#C#",
+    "A#A"
+  ],
+  "result": {
+    "id": "morethermalevaporation:overclocked_thermal_evaporation_block",
+    "count": 4
+  }
+}

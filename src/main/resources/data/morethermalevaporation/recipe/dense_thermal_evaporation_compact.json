@@ -1,0 +1,25 @@
+{
+  "type": "mekanism:mek_data",
+  "key": {
+    "A": {
+      "tag": "evolvedmekanism:alloys/singular"
+    },
+    "C": {
+      "tag": "c:circuits/dense"
+    },
+    "I": {
+      "tag": "c:gems/diamond"
+    },
+    "P": {
+      "item": "morethermalevaporation:quantum_thermal_evaporation_compact"
+    }
+  },
+  "pattern": [
+    "ACA",
+    "IPI",
+    "ACA"
+  ],
+  "result": {
+    "id": "morethermalevaporation:dense_thermal_evaporation_compact"
+  }
+}
