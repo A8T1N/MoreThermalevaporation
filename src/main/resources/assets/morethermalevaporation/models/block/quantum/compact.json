@@ -1,0 +1,6 @@
+{
+  "parent": "morethermalevaporation:block/basic/compact",
+  "textures": {
+    "block": "morethermalevaporation:block/quantum/quantum_thermal_evaporation_block"
+  }
+}

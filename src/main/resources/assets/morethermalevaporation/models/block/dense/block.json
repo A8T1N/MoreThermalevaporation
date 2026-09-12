@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/cube_bottom_top",
+  "textures": {
+    "top": "morethermalevaporation:block/dense/dense_thermal_evaporation_block",
+    "bottom": "morethermalevaporation:block/dense/dense_thermal_evaporation_block",
+    "side": "morethermalevaporation:block/dense/dense_thermal_evaporation_block"
+  }
+}
