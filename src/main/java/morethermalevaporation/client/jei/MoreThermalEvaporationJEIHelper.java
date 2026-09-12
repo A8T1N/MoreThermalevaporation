@@ -18,10 +18,7 @@ import net.minecraft.nbt.CompoundTag;
 import net.neoforged.neoforge.common.ModConfigSpec;
 
 import java.lang.reflect.InvocationTargetException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 import java.util.function.Supplier;
 
 public class MoreThermalEvaporationJEIHelper {
@@ -32,11 +29,15 @@ public class MoreThermalEvaporationJEIHelper {
         ClientConfig config = JEI_MekanismMultiblocks_Config.CLIENT;
         IGuiHelper guiHelper = registry.getJeiHelpers().getGuiHelper();
         categories.clear();
-        addCategory(config.evaporationPlantVisible, () -> new MoreEvaporationPlantCategory(guiHelper, MoreThermalEvaporationTier.BASIC, MoreEvaporationPlantCategory.BasicEvaporationPlantWidget.class));
-        addCategory(config.evaporationPlantVisible, () -> new MoreEvaporationPlantCategory(guiHelper, MoreThermalEvaporationTier.ADVANCED, MoreEvaporationPlantCategory.AdvancedEvaporationPlantWidget.class));
-        addCategory(config.evaporationPlantVisible, () -> new MoreEvaporationPlantCategory(guiHelper, MoreThermalEvaporationTier.ELITE, MoreEvaporationPlantCategory.EliteEvaporationPlantWidget.class));
-        addCategory(config.evaporationPlantVisible, () -> new MoreEvaporationPlantCategory(guiHelper, MoreThermalEvaporationTier.ULTIMATE, MoreEvaporationPlantCategory.UltimateEvaporationPlantWidget.class));
-        addCategory(config.evaporationPlantVisible, () -> new MoreEvaporationPlantCategory(guiHelper, MoreThermalEvaporationTier.CREATIVE, MoreEvaporationPlantCategory.CreativeEvaporationPlantWidget.class));
+
+        MoreThermalEvaporationTier.availableTiers().forEach(tier -> {
+            Class<? extends MoreEvaporationPlantCategory.MoreEvaporationPlantWidget> widgetClass = MTE_WIDGETS.get(tier);
+
+            if (widgetClass != null) {
+                addCategory(config.evaporationPlantVisible, () -> new MoreEvaporationPlantCategory(guiHelper, tier, widgetClass));
+            }
+        });
+
         for (MultiblockCategory<?> category : getCategories()) {
             registry.addRecipeCategories(category);
         }
@@ -46,7 +47,6 @@ public class MoreThermalEvaporationJEIHelper {
         if (config.get()) {
             categories.add(constructor.get());
         }
-
     }
 
     public static void registerRecipes(IRecipeRegistration registry) {
@@ -76,7 +76,6 @@ public class MoreThermalEvaporationJEIHelper {
                  InvocationTargetException | NoSuchMethodException | SecurityException e) {
             throw new RuntimeException("Category: " + category.getRecipeType(), e);
         }
-
     }
 
     private static void onWidgetChanged(MultiblockCategory<?> category, MultiblockWidget widget) {
@@ -96,4 +95,18 @@ public class MoreThermalEvaporationJEIHelper {
             category.registerRecipeCatalysts(registry);
         }
     }
+
+    private static final Map<MoreThermalEvaporationTier, Class<? extends MoreEvaporationPlantCategory.MoreEvaporationPlantWidget>> MTE_WIDGETS = Map.ofEntries(
+            Map.entry(MoreThermalEvaporationTier.BASIC, MoreEvaporationPlantCategory.BasicEvaporationPlantWidget.class),
+            Map.entry(MoreThermalEvaporationTier.ADVANCED, MoreEvaporationPlantCategory.AdvancedEvaporationPlantWidget.class),
+            Map.entry(MoreThermalEvaporationTier.ELITE, MoreEvaporationPlantCategory.EliteEvaporationPlantWidget.class),
+            Map.entry(MoreThermalEvaporationTier.ULTIMATE, MoreEvaporationPlantCategory.UltimateEvaporationPlantWidget.class),
+
+            Map.entry(MoreThermalEvaporationTier.OVERCLOCKED, MoreEvaporationPlantCategory.OverclockedEvaporationPlantWidget.class),
+            Map.entry(MoreThermalEvaporationTier.QUANTUM, MoreEvaporationPlantCategory.QuantumEvaporationPlantWidget.class),
+            Map.entry(MoreThermalEvaporationTier.DENSE, MoreEvaporationPlantCategory.DenseEvaporationPlantWidget.class),
+            Map.entry(MoreThermalEvaporationTier.MULTIVERSAL, MoreEvaporationPlantCategory.MultiversalEvaporationPlantWidget.class),
+
+            Map.entry(MoreThermalEvaporationTier.CREATIVE, MoreEvaporationPlantCategory.CreativeEvaporationPlantWidget.class)
+    );
 }
