@@ -1,4 +1,10 @@
 {
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:item_exists",
+      "item": "morethermalevaporation:multiversal_thermal_evaporation_block"
+    }
+  ],
   "type": "minecraft:block",
   "pools": [
     {

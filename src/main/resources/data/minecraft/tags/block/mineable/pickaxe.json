@@ -25,24 +25,69 @@
     "morethermalevaporation:creative_thermal_evaporation_valve",
     "morethermalevaporation:creative_thermal_evaporation_compact",
 
-    "morethermalevaporation:overclocked_thermal_evaporation_block",
-    "morethermalevaporation:overclocked_thermal_evaporation_controller",
-    "morethermalevaporation:overclocked_thermal_evaporation_valve",
-    "morethermalevaporation:overclocked_thermal_evaporation_compact",
-
-    "morethermalevaporation:quantum_thermal_evaporation_block",
-    "morethermalevaporation:quantum_thermal_evaporation_controller",
-    "morethermalevaporation:quantum_thermal_evaporation_valve",
-    "morethermalevaporation:quantum_thermal_evaporation_compact",
-
-    "morethermalevaporation:dense_thermal_evaporation_block",
-    "morethermalevaporation:dense_thermal_evaporation_controller",
-    "morethermalevaporation:dense_thermal_evaporation_valve",
-    "morethermalevaporation:dense_thermal_evaporation_compact",
-
-    "morethermalevaporation:multiversal_thermal_evaporation_block",
-    "morethermalevaporation:multiversal_thermal_evaporation_controller",
-    "morethermalevaporation:multiversal_thermal_evaporation_valve",
-    "morethermalevaporation:multiversal_thermal_evaporation_compact"
+    {
+      "id": "morethermalevaporation:overclocked_thermal_evaporation_block",
+      "required": false
+    },
+    {
+      "id": "morethermalevaporation:overclocked_thermal_evaporation_controller",
+      "required": false
+    },
+    {
+      "id": "morethermalevaporation:overclocked_thermal_evaporation_valve",
+      "required": false
+    },
+    {
+      "id": "morethermalevaporation:overclocked_thermal_evaporation_compact",
+      "required": false
+    },
+    {
+      "id": "morethermalevaporation:quantum_thermal_evaporation_block",
+      "required": false
+    },
+    {
+      "id": "morethermalevaporation:quantum_thermal_evaporation_controller",
+      "required": false
+    },
+    {
+      "id": "morethermalevaporation:quantum_thermal_evaporation_valve",
+      "required": false
+    },
+    {
+      "id": "morethermalevaporation:quantum_thermal_evaporation_compact",
+      "required": false
+    },
+    {
+      "id": "morethermalevaporation:dense_thermal_evaporation_block",
+      "required": false
+    },
+    {
+      "id": "morethermalevaporation:dense_thermal_evaporation_controller",
+      "required": false
+    },
+    {
+      "id": "morethermalevaporation:dense_thermal_evaporation_valve",
+      "required": false
+    },
+    {
+      "id": "morethermalevaporation:dense_thermal_evaporation_compact",
+      "required": false
+    },
+    {
+      "id": "morethermalevaporation:multiversal_thermal_evaporation_block",
+      "required": false
+    },
+    {
+      "id": "morethermalevaporation:multiversal_thermal_evaporation_controller",
+      "required": false
+    },
+    {
+      "id": "morethermalevaporation:multiversal_thermal_evaporation_valve",
+      "required": false
+    },
+    {
+      "id": "morethermalevaporation:multiversal_thermal_evaporation_compact",
+      "required": false
+    }
   ]
 }

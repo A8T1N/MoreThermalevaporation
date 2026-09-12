@@ -1,4 +1,10 @@
 {
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:item_exists",
+      "item": "morethermalevaporation:quantum_thermal_evaporation_controller"
+    }
+  ],
   "type": "minecraft:block",
   "pools": [
     {

@@ -1,4 +1,10 @@
 {
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:item_exists",
+      "item": "morethermalevaporation:dense_thermal_evaporation_valve"
+    }
+  ],
   "type": "minecraft:block",
   "pools": [
     {

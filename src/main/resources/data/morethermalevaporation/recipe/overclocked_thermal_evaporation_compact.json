@@ -1,4 +1,10 @@
 {
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:item_exists",
+      "item": "morethermalevaporation:overclocked_thermal_evaporation_compact"
+    }
+  ],
   "type": "mekanism:mek_data",
   "key": {
     "A": {
