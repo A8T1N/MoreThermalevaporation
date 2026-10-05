@@ -11,24 +11,51 @@ import javax.annotation.Nullable;
 import java.util.Arrays;
 import java.util.Map;
 import java.util.Optional;
+import java.util.Set;
 import java.util.function.Supplier;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 @NothingNullByDefault
 public enum MoreThermalEvaporationTier implements ITier {
-    BASIC(() -> BaseTier.BASIC, 6_000, 18, 64000, 20000),
-    ADVANCED(() -> BaseTier.ADVANCED, 12_000, 18, 64000, 80000),
-    ELITE(() -> BaseTier.ELITE, 24_000, 18, 64000, 640000),
-    ULTIMATE(() -> BaseTier.ULTIMATE, 48_000, 18, 64000, 10240000),
+    BASIC(() -> BaseTier.BASIC, 6_000, 18, 64_000, 20_000),
+    ADVANCED(() -> BaseTier.ADVANCED, 12_000, 18, 64_000, 80_000),
+    ELITE(() -> BaseTier.ELITE, 24_000, 18, 64_000, 640_000),
+    ULTIMATE(() -> BaseTier.ULTIMATE, 48_000, 18, 64_000, 10_240_000),
 
     // Evolved Mekanism
-    OVERCLOCKED(() -> getOptionalBaseTier("OVERCLOCKED"), 96_000, 18, 128000, 20480000),
-    QUANTUM(() -> getOptionalBaseTier("QUANTUM"), 192_000, 18, 256000, 40960000),
-    DENSE(() -> getOptionalBaseTier("DENSE"), 384_000, 18, 512000, 81920000),
-    MULTIVERSAL(() -> getOptionalBaseTier("MULTIVERSAL"), 768_000, 18, 1024000, 163840000),
+    OVERCLOCKED(() -> getAddonTier("OVERCLOCKED"), 96_000, 18, 128_000, 20_480_000),
+    QUANTUM(() -> getAddonTier("QUANTUM"), 192_000, 18, 256_000, 40_960_000),
+    DENSE(() -> getAddonTier("DENSE"), 384_000, 18, 512_000, 81_920_000),
+    MULTIVERSAL(() -> getAddonTier("MULTIVERSAL"), 768_000, 18, 1_024_000, 163_840_000),
 
     CREATIVE(() -> BaseTier.CREATIVE, Integer.MAX_VALUE, 18, Integer.MAX_VALUE, Integer.MAX_VALUE),
     ;
+
+    private static final Set<String> BASE_TIER_NAMES = Arrays.stream(BaseTier.values())
+            .map(BaseTier::name)
+            .collect(Collectors.toUnmodifiableSet());
+
+    /**
+     * Mekanism Tier FROM -> TO
+     */
+    private static final Map<MoreThermalEvaporationTier, MoreThermalEvaporationTier> BASE_UPGRADES = Map.of(
+            BASIC, ADVANCED,
+            ADVANCED, ELITE,
+            ELITE, ULTIMATE,
+            ULTIMATE, CREATIVE
+    );
+
+    /**
+     * Evolved Mekanism Tier FROM -> TO
+     */
+    private static final Map<MoreThermalEvaporationTier, MoreThermalEvaporationTier> EVOLVED_UPGRADES = Map.of(
+            ULTIMATE, OVERCLOCKED,
+            OVERCLOCKED, QUANTUM,
+            QUANTUM, DENSE,
+            DENSE, MULTIVERSAL,
+            MULTIVERSAL, CREATIVE
+    );
 
     private final Supplier<BaseTier> baseTier;
     private final double baseMultiplierTemp;
@@ -96,12 +123,7 @@ public enum MoreThermalEvaporationTier implements ITier {
     }
 
     public boolean isAvailable() {
-        return Arrays.stream(BaseTier.values())
-                .anyMatch(tier -> tier.name().equals(name()));
-    }
-
-    private static BaseTier getOptionalBaseTier(String tierName) {
-        return BaseTier.valueOf(tierName.toUpperCase());
+        return BASE_TIER_NAMES.contains(name());
     }
 
     public static Optional<MoreThermalEvaporationTier> getUpgradeTarget(MoreThermalEvaporationTier tier) {
@@ -119,33 +141,16 @@ public enum MoreThermalEvaporationTier implements ITier {
     }
 
     /**
-     * Mekanism Tier TO FROM
-     */
-    private static final Map<MoreThermalEvaporationTier, MoreThermalEvaporationTier> BASE_UPGRADES = Map.of(
-            BASIC, ADVANCED,
-            ADVANCED, ELITE,
-            ELITE, ULTIMATE,
-            ULTIMATE, CREATIVE
-    );
-
-    /**
-     * Evolved Mekanism Tier TO FROM
-     */
-    private static final Map<MoreThermalEvaporationTier, MoreThermalEvaporationTier> EVOLVED_UPGRADES = Map.of(
-            ULTIMATE, OVERCLOCKED,
-            OVERCLOCKED, QUANTUM,
-            QUANTUM, DENSE,
-            DENSE, MULTIVERSAL,
-            MULTIVERSAL, CREATIVE
-    );
-
-    /**
-     * ONLY CALL THIS FROM TierConfig. It is used to give the FluidTankTier a reference to the actual config value object
+     * ONLY CALL THIS FROM TierConfig. It is used to give the MoreThermalEvaporationTier a reference to the actual config value object.
      */
     public void setConfigReference(CachedDoubleValue multiplierTempReference, CachedIntValue heightReference, CachedIntValue inputTankCapacityReference, CachedIntValue outputTankCapacityReference) {
         this.multiplierTempReference = multiplierTempReference;
         this.heightReference = heightReference;
         this.inputTankCapacityReference = inputTankCapacityReference;
         this.outputTankCapacityReference = outputTankCapacityReference;
+    }
+
+    private static BaseTier getAddonTier(String tierName) {
+        return BaseTier.valueOf(tierName);
     }
 }
