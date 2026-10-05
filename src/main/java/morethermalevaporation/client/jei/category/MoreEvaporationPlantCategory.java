@@ -8,10 +8,13 @@ import giselle.jei_mekanism_multiblocks.client.jei.MultiblockWidget;
 import giselle.jei_mekanism_multiblocks.client.jei.ResultWidget;
 import giselle.jei_mekanism_multiblocks.client.jei.category.ICostConsumer;
 import giselle.jei_mekanism_multiblocks.client.jei.category.ResistiveHeaterCategory;
+import giselle.jei_mekanism_multiblocks.client.preview.IPreviewBuilder;
+import giselle.jei_mekanism_multiblocks.client.preview.PreviewSelectors;
 import giselle.jei_mekanism_multiblocks.common.JEI_MekanismMultiblocks;
 import giselle.jei_mekanism_multiblocks.common.util.VolumeTextHelper;
 import mekanism.api.heat.HeatAPI;
 import mekanism.common.MekanismLang;
+import mekanism.common.block.attribute.Attribute;
 import mekanism.common.config.MekanismConfig;
 import mekanism.common.registries.MekanismBlocks;
 import mekanism.common.util.MekanismUtils;
@@ -20,29 +23,33 @@ import mekanism.common.util.text.EnergyDisplay;
 import mekanism.common.util.text.TextUtils;
 import mekanism.generators.common.registries.GeneratorsBlocks;
 import mezz.jei.api.helpers.IGuiHelper;
-import morethermalevaporation.MoreThermalEvaporation;
+import mezz.jei.api.recipe.RecipeType;
 import morethermalevaporation.common.MoreThermalEvaporationLang;
 import morethermalevaporation.common.content.evaporation.MoreThermalEvaporationMultiblockData;
 import morethermalevaporation.common.content.evaporation.MoreThermalEvaporationType;
 import morethermalevaporation.common.registries.MoreThermalEvaporationBlocks;
 import morethermalevaporation.common.tier.MoreThermalEvaporationTier;
 import net.minecraft.client.gui.components.AbstractWidget;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.core.Vec3i;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.util.Mth;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.BlockState;
 
 import java.util.function.Consumer;
 
 public class MoreEvaporationPlantCategory extends MultiblockCategory<MoreEvaporationPlantCategory.MoreEvaporationPlantWidget> {
     private final MoreThermalEvaporationTier tier;
 
-    public MoreEvaporationPlantCategory(IGuiHelper helper, MoreThermalEvaporationTier tier, Class<? extends MoreEvaporationPlantWidget> widgetClass) {
-        // NOTE JEI表示順の為にティア順をパスに追加
+    public MoreEvaporationPlantCategory(IGuiHelper helper, MoreThermalEvaporationTier tier, RecipeType<MoreEvaporationPlantWidget> recipeType) {
         super(
                 helper,
-                MoreThermalEvaporation.rl(tier.ordinal() + "_" + tier.getBaseTier().getLowerName() + "_evaporation_plant"),
-                widgetClass,
+                recipeType,
                 MoreThermalEvaporationLang.getLangPlant(tier).translate(),
                 new ItemStack(MoreThermalEvaporationBlocks.CONTROLLERS.get(tier))
         );
@@ -65,8 +72,12 @@ public class MoreEvaporationPlantCategory extends MultiblockCategory<MoreEvapora
 
     public abstract static class MoreEvaporationPlantWidget extends MultiblockWidget {
         protected CheckBoxWidget useAdvancedSolarGeneratorCheckBox;
+        protected CheckBoxWidget useFuelwoodHeaterCheckBox;
         protected CheckBoxWidget useLargeTypesCheckBox;
         protected IntSliderWithButtons valvesWidget;
+
+        private boolean needHeatSource;
+        private int fuelwoodHeaters;
 
         public MoreEvaporationPlantWidget() {
 
@@ -98,13 +109,16 @@ public class MoreEvaporationPlantCategory extends MultiblockCategory<MoreEvapora
                 this.useAdvancedSolarGeneratorCheckBox.addSelectedChangedHandler(this::onUseAdvancedSolarGeneratorChanged);
             }
 
+            consumer.accept(this.useFuelwoodHeaterCheckBox = new CheckBoxWidget(0, 0, 0, 0, Component.translatable("text.jei_mekanism_multiblocks.specs.use_things", new ItemStack(MekanismBlocks.FUELWOOD_HEATER).getHoverName()), true));
+            this.useFuelwoodHeaterCheckBox.addSelectedChangedHandler(this::onUseFuelwoodHeaterChanged);
+
             consumer.accept(this.useLargeTypesCheckBox = new CheckBoxWidget(0, 0, 0, 0, Component.translatable("text.jei_mekanism_multiblocks.specs.use_things", MoreThermalEvaporationLang.MULTIBLOCK_TYPE.translate(MoreThermalEvaporationLang.TYPE_LARGE.translate())), false));
             this.useLargeTypesCheckBox.addSelectedChangedHandler(this::onUseLargeTypeChanged);
 
             consumer.accept(this.valvesWidget = new IntSliderWithButtons(0, 0, 0, 0, "text.jei_mekanism_multiblocks.specs.valves", 0, 2, 0));
             this.valvesWidget.getSlider().addValueChangeHanlder(this::onValvesChanged);
 
-            this.updateValveSliderLimit();
+            this.onThermalModelChanged();
         }
 
         @Override
@@ -113,6 +127,7 @@ public class MoreEvaporationPlantCategory extends MultiblockCategory<MoreEvapora
 
             this.setUseAdvancedSolarGenerator(tag.getBoolean("UseAdvancedSolarGenerator"));
             this.setUseLargeTypes(tag.getBoolean("UseLargeType"));
+            this.setUseFuelwoodHeater(tag.getBoolean("UseFuelwoodHeater"));
             this.setValveCount(tag.getInt("ValveCount"));
         }
 
@@ -122,6 +137,7 @@ public class MoreEvaporationPlantCategory extends MultiblockCategory<MoreEvapora
 
             tag.putBoolean("UseAdvancedSolarGenerator", this.isUseAdvancedSolarGenerator());
             tag.putBoolean("UseLargeType", this.isUseLargeType());
+            tag.putBoolean("UseFuelwoodHeater", this.isUseFuelwoodHeater());
             tag.putInt("ValveCount", this.getValveCount());
         }
 
@@ -129,16 +145,32 @@ public class MoreEvaporationPlantCategory extends MultiblockCategory<MoreEvapora
         protected void onDimensionChanged() {
             super.onDimensionChanged();
 
-            this.updateValveSliderLimit();
+            this.onThermalModelChanged();
         }
 
         public void updateValveSliderLimit() {
             IntSliderWidget valvesSlider = this.valvesWidget.getSlider();
             int minValves = valvesSlider.getMinValue();
             int valves = valvesSlider.getValue();
-            valvesSlider.setMinValue(this.isUseAdvancedSolarGenerator() && !this.isUseLargeType() ? 2 : 3);
+            valvesSlider.setMinValue(2 + (this.isNeedHeatSource() ? (this.isUseFuelwoodHeater() ? this.getFuelwoodHeaters() : 1) : 0));
             valvesSlider.setMaxValue(this.isUseLargeType() ? this.getFreeFrameCount() : this.getSideBlocks());
             valvesSlider.setValue(valves + (valvesSlider.getMinValue() - minValves));
+        }
+
+        protected void onThermalModelChanged() {
+            double requiredHeat = this.getMaxMultiplierHeat(0.0D);
+            this.needHeatSource = requiredHeat > 0.0D;
+            this.fuelwoodHeaters = 0;
+
+            if (this.isNeedHeatSource()) {
+                if (this.isUseFuelwoodHeater()) {
+                    double heatPerTick = MekanismConfig.general.heatPerFuelTick.get() * MekanismConfig.general.fuelwoodTickMultiplier.get();
+                    this.fuelwoodHeaters = Mth.ceil(requiredHeat / heatPerTick);
+                }
+
+            }
+
+            this.updateValveSliderLimit();
         }
 
         protected void onValvesChanged(int valves) {
@@ -153,7 +185,51 @@ public class MoreEvaporationPlantCategory extends MultiblockCategory<MoreEvapora
         protected void onUseAdvancedSolarGeneratorChanged(boolean useAdvancedSolarGenerator) {
             this.markNeedUpdate();
 
-            this.updateValveSliderLimit();
+            this.onThermalModelChanged();
+        }
+
+        protected void onUseFuelwoodHeaterChanged(boolean useFuelwoodHeater) {
+            this.markNeedUpdate();
+
+            this.onThermalModelChanged();
+        }
+
+        @Override
+        public boolean canCreatePreview() {
+            return true;
+        }
+
+        @Override
+        protected void fillPreview(IPreviewBuilder builder) {
+            super.fillPreview(builder);
+
+            MoreThermalEvaporationTier tier = getTier();
+
+            Vec3i dimension = this.getDimension();
+            BlockPos controllerPos = new BlockPos(dimension.getX() - 2, 1, dimension.getZ() - 1);
+
+            boolean useGlass = this.isUseGlass();
+            boolean useAdvancedSolarGenerator = this.isUseAdvancedSolarGenerator();
+            BlockState edgeState = MoreThermalEvaporationBlocks.BLOCKS.get(tier).defaultState();
+            BlockState valveState = MoreThermalEvaporationBlocks.VALVES.get(tier).defaultState();
+            BlockState sideState = useGlass ? this.getGlassBlock().defaultBlockState() : edgeState;
+
+            builder.setBlockShell(edgeState, sideState);
+            builder.setBlock(PreviewSelectors.top(), Blocks.AIR.defaultBlockState());
+            builder.setBlock(controllerPos, Attribute.setFacing(Attribute.setActive(MoreThermalEvaporationBlocks.CONTROLLERS.get(tier).defaultState(), true), Direction.SOUTH));
+            builder.replaceBlock(PreviewSelectors.shellSidesCCW(), sideState, valveState, this.getValveCount());
+
+            if (useGlass && !useAdvancedSolarGenerator) {
+                builder.setBlock(PreviewSelectors.topCorners(), edgeState);
+                builder.setBlock(PreviewSelectors.topEdges(), sideState);
+            } else {
+                builder.setBlock(PreviewSelectors.topEdges(), edgeState);
+            }
+
+            if (useAdvancedSolarGenerator) {
+                builder.setBlock(PreviewSelectors.topCorners(), GeneratorsBlocks.ADVANCED_SOLAR_GENERATOR.defaultState());
+            }
+
         }
 
         protected void onUseLargeTypeChanged(boolean useLargeTypes) {
@@ -175,7 +251,7 @@ public class MoreEvaporationPlantCategory extends MultiblockCategory<MoreEvapora
             super.collectCost(consumer);
             MoreThermalEvaporationTier tier = getTier();
 
-            int corners = this.getCornerBlocks();
+            int edges = this.getEdgeBlocks();
             int sides = this.getSideBlocks();
             int valves = this.getValveCount();
             sides -= valves;
@@ -209,7 +285,7 @@ public class MoreEvaporationPlantCategory extends MultiblockCategory<MoreEvapora
             } else {
 
                 if (this.isUseGlass()) {
-                    casing = corners;
+                    casing = edges;
                     glasses = sides;
 
                     if (this.isUseAdvancedSolarGenerator()) {
@@ -224,7 +300,7 @@ public class MoreEvaporationPlantCategory extends MultiblockCategory<MoreEvapora
 
                 } else {
                     // Remove top vertices
-                    casing = corners + sides - 4;
+                    casing = edges + sides - 4;
 
                     if (this.isUseAdvancedSolarGenerator()) {
                         advancedSolarGenerators += 4;
@@ -242,6 +318,16 @@ public class MoreEvaporationPlantCategory extends MultiblockCategory<MoreEvapora
                 consumer.accept(new ItemStack(GeneratorsBlocks.ADVANCED_SOLAR_GENERATOR, advancedSolarGenerators));
             }
 
+
+            if (this.isNeedHeatSource()) {
+                if (this.isUseFuelwoodHeater()) {
+                    consumer.accept(new ItemStack(MekanismBlocks.FUELWOOD_HEATER, this.getFuelwoodHeaters()));
+                } else {
+                    consumer.accept(new ItemStack(MekanismBlocks.RESISTIVE_HEATER));
+                }
+
+            }
+
 //            consumer.accept(new ItemStack(MoreThermalEvaporationItems.STRUCTURE_UPGRADE.get(), upgrades));
 
         }
@@ -256,21 +342,26 @@ public class MoreEvaporationPlantCategory extends MultiblockCategory<MoreEvapora
             double maxTemp = tier.getMultiplierTemp() * (isUseLargeType() ? MoreThermalEvaporationType.LARGE.getMultiplier() : MoreThermalEvaporationType.NORMAL.getMultiplier());
             double maxSpeed = (maxTemp - HeatAPI.AMBIENT_TEMP) * MekanismConfig.general.evaporationTempMultiplier.get() * ((double) dimHeight / MoreThermalEvaporationMultiblockData.MAX_HEIGHT);
             ResultWidget speedWidget = new ResultWidget(Component.translatable("text.jei_mekanism_multiblocks.result.max_speed"), Component.literal("x" + TextUtils.format(maxSpeed)));
-            speedWidget.setJeiTooltip(Component.translatable("text.jei_mekanism_multiblocks.tooltip.when_temp_ge", MekanismUtils.getTemperatureDisplay(maxTemp, TemperatureUnit.KELVIN, false)));
+            speedWidget.setTooltipMessage(Component.translatable("text.jei_mekanism_multiblocks.tooltip.when_temp_ge", MekanismUtils.getTemperatureDisplay(maxTemp, TemperatureUnit.KELVIN, false)));
             consumer.accept(speedWidget);
             consumer.accept(new ResultWidget(Component.translatable("text.jei_mekanism_multiblocks.result.input_tank"), VolumeTextHelper.formatMB(inputCapacity)));
             consumer.accept(new ResultWidget(Component.translatable("text.jei_mekanism_multiblocks.result.output_tank"), VolumeTextHelper.formatMB(outputCapacity)));
-            this.createRequiredHeaterEnergyWidget(consumer);
+
+            if (this.isNeedHeatSource() && !this.isUseFuelwoodHeater()) {
+                this.createRequiredHeaterEnergyWidget(consumer);
+            }
         }
 
         private void createRequiredHeaterEnergyWidget(Consumer<AbstractWidget> consumer) {
+
+            MoreThermalEvaporationTier tier = getTier();
             long plainRequiredEnergy = this.getRequiredHeaterEnergy(HeatAPI.AMBIENT_TEMP);
             long coldestRequiredEnergy = this.getRequiredHeaterEnergy(HeatAPI.getAmbientTemp(Integer.MIN_VALUE));
             long hotestRequiredEnergy = this.getRequiredHeaterEnergy(HeatAPI.getAmbientTemp(Integer.MAX_VALUE));
             ResultWidget requiredEnergyWidget = new ResultWidget(Component.translatable("text.jei_mekanism_multiblocks.result.required_heater_usage"), Component.translatable("%s/t", EnergyDisplay.of(plainRequiredEnergy).getTextComponent()));
             Component heaterName = new ItemStack(MekanismBlocks.RESISTIVE_HEATER).getHoverName();
-            Component valveName = new ItemStack(MekanismBlocks.THERMAL_EVAPORATION_VALVE).getHoverName();
-            requiredEnergyWidget.setJeiTooltip(//
+            Component valveName = new ItemStack(MoreThermalEvaporationBlocks.VALVES.get(tier)).getHoverName();
+            requiredEnergyWidget.setTooltipMessage(
                     Component.translatable("text.jei_mekanism_multiblocks.tooltip.required_heater_usage.plain", Component.translatable("%s %s/t", TextUtils.format(plainRequiredEnergy), Component.translatable(MekanismLang.ENERGY_JOULES_SHORT.getTranslationKey()))), //
                     Component.translatable("text.jei_mekanism_multiblocks.tooltip.required_heater_usage.coldest", Component.translatable("%s %s/t", TextUtils.format(coldestRequiredEnergy), Component.translatable(MekanismLang.ENERGY_JOULES_SHORT.getTranslationKey()))), //
                     Component.translatable("text.jei_mekanism_multiblocks.tooltip.required_heater_usage.hottest", Component.translatable("%s %s/t", TextUtils.format(hotestRequiredEnergy), Component.translatable(MekanismLang.ENERGY_JOULES_SHORT.getTranslationKey()))), //
@@ -314,6 +405,22 @@ public class MoreEvaporationPlantCategory extends MultiblockCategory<MoreEvapora
 
         public void setUseAdvancedSolarGenerator(boolean useAdvancedSolarGenerator) {
             this.useAdvancedSolarGeneratorCheckBox.setSelected(useAdvancedSolarGenerator);
+        }
+
+        public boolean isUseFuelwoodHeater() {
+            return this.useFuelwoodHeaterCheckBox.isSelected();
+        }
+
+        public void setUseFuelwoodHeater(boolean useFuelwoodHeater) {
+            this.useFuelwoodHeaterCheckBox.setSelected(useFuelwoodHeater);
+        }
+
+        public boolean isNeedHeatSource() {
+            return this.needHeatSource;
+        }
+
+        public int getFuelwoodHeaters() {
+            return this.fuelwoodHeaters;
         }
 
         public boolean isUseLargeType() {
