@@ -12,6 +12,7 @@ import mezz.jei.api.recipe.RecipeType;
 import mezz.jei.api.registration.IRecipeCatalystRegistration;
 import mezz.jei.api.registration.IRecipeCategoryRegistration;
 import mezz.jei.api.registration.IRecipeRegistration;
+import morethermalevaporation.MoreThermalEvaporation;
 import morethermalevaporation.client.jei.category.MoreEvaporationPlantCategory;
 import morethermalevaporation.common.tier.MoreThermalEvaporationTier;
 import net.minecraft.nbt.CompoundTag;
@@ -20,6 +21,8 @@ import net.neoforged.neoforge.common.ModConfigSpec;
 import java.lang.reflect.InvocationTargetException;
 import java.util.*;
 import java.util.function.Supplier;
+
+import static giselle.jei_mekanism_multiblocks.client.jei.MultiblockCategory.createRecipeType;
 
 public class MoreThermalEvaporationJEIHelper {
     private static final List<MultiblockCategory<? extends MultiblockWidget>> categories = new ArrayList<>();
@@ -31,10 +34,10 @@ public class MoreThermalEvaporationJEIHelper {
         categories.clear();
 
         MoreThermalEvaporationTier.availableTiers().forEach(tier -> {
-            Class<? extends MoreEvaporationPlantCategory.MoreEvaporationPlantWidget> widgetClass = MTE_WIDGETS.get(tier);
+            RecipeType<MoreEvaporationPlantCategory.MoreEvaporationPlantWidget> recipeType = MTE_RECIPE_TYPES.get(tier);
 
-            if (widgetClass != null) {
-                addCategory(config.evaporationPlantVisible, () -> new MoreEvaporationPlantCategory(guiHelper, tier, widgetClass));
+            if (recipeType != null) {
+                addCategory(config.evaporationPlantVisible, () -> new MoreEvaporationPlantCategory(guiHelper, tier, recipeType));
             }
         });
 
@@ -96,17 +99,17 @@ public class MoreThermalEvaporationJEIHelper {
         }
     }
 
-    private static final Map<MoreThermalEvaporationTier, Class<? extends MoreEvaporationPlantCategory.MoreEvaporationPlantWidget>> MTE_WIDGETS = Map.ofEntries(
-            Map.entry(MoreThermalEvaporationTier.BASIC, MoreEvaporationPlantCategory.BasicEvaporationPlantWidget.class),
-            Map.entry(MoreThermalEvaporationTier.ADVANCED, MoreEvaporationPlantCategory.AdvancedEvaporationPlantWidget.class),
-            Map.entry(MoreThermalEvaporationTier.ELITE, MoreEvaporationPlantCategory.EliteEvaporationPlantWidget.class),
-            Map.entry(MoreThermalEvaporationTier.ULTIMATE, MoreEvaporationPlantCategory.UltimateEvaporationPlantWidget.class),
-
-            Map.entry(MoreThermalEvaporationTier.OVERCLOCKED, MoreEvaporationPlantCategory.OverclockedEvaporationPlantWidget.class),
-            Map.entry(MoreThermalEvaporationTier.QUANTUM, MoreEvaporationPlantCategory.QuantumEvaporationPlantWidget.class),
-            Map.entry(MoreThermalEvaporationTier.DENSE, MoreEvaporationPlantCategory.DenseEvaporationPlantWidget.class),
-            Map.entry(MoreThermalEvaporationTier.MULTIVERSAL, MoreEvaporationPlantCategory.MultiversalEvaporationPlantWidget.class),
-
-            Map.entry(MoreThermalEvaporationTier.CREATIVE, MoreEvaporationPlantCategory.CreativeEvaporationPlantWidget.class)
-    );
+    private static final Map<MoreThermalEvaporationTier, RecipeType<MoreEvaporationPlantCategory.MoreEvaporationPlantWidget>> MTE_RECIPE_TYPES =
+            // NOTE JEI表示順の為にティア順をパスに追加
+            Map.ofEntries(
+                    Map.entry(MoreThermalEvaporationTier.BASIC, createRecipeType(MoreThermalEvaporation.rl("0_basic_evaporation_plant"), MoreEvaporationPlantCategory.BasicEvaporationPlantWidget.class)),
+                    Map.entry(MoreThermalEvaporationTier.ADVANCED, createRecipeType(MoreThermalEvaporation.rl("1_advanced_evaporation_plant"), MoreEvaporationPlantCategory.AdvancedEvaporationPlantWidget.class)),
+                    Map.entry(MoreThermalEvaporationTier.ELITE, createRecipeType(MoreThermalEvaporation.rl("2_elite_evaporation_plant"), MoreEvaporationPlantCategory.EliteEvaporationPlantWidget.class)),
+                    Map.entry(MoreThermalEvaporationTier.ULTIMATE, createRecipeType(MoreThermalEvaporation.rl("3_ultimate_evaporation_plant"), MoreEvaporationPlantCategory.UltimateEvaporationPlantWidget.class)),
+                    Map.entry(MoreThermalEvaporationTier.OVERCLOCKED, createRecipeType(MoreThermalEvaporation.rl("4_overclocked_evaporation_plant"), MoreEvaporationPlantCategory.OverclockedEvaporationPlantWidget.class)),
+                    Map.entry(MoreThermalEvaporationTier.QUANTUM, createRecipeType(MoreThermalEvaporation.rl("5_quantum_evaporation_plant"), MoreEvaporationPlantCategory.QuantumEvaporationPlantWidget.class)),
+                    Map.entry(MoreThermalEvaporationTier.DENSE, createRecipeType(MoreThermalEvaporation.rl("6_dense_evaporation_plant"), MoreEvaporationPlantCategory.DenseEvaporationPlantWidget.class)),
+                    Map.entry(MoreThermalEvaporationTier.MULTIVERSAL, createRecipeType(MoreThermalEvaporation.rl("7_multiversal_evaporation_plant"), MoreEvaporationPlantCategory.MultiversalEvaporationPlantWidget.class)),
+                    Map.entry(MoreThermalEvaporationTier.CREATIVE, createRecipeType(MoreThermalEvaporation.rl("8_creative_evaporation_plant"), MoreEvaporationPlantCategory.CreativeEvaporationPlantWidget.class))
+            );
 }
