@@ -89,7 +89,7 @@ side="CLIENT"
 [[dependencies."${mod_id}"]]
 modId="jei_mekanism_multiblocks"
 type="optional"
-versionRange="[7.18,]"
+versionRange="[7.23,]"
 ordering="NONE"
 side="CLIENT"
 

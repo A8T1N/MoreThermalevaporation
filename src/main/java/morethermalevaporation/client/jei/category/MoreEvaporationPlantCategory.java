@@ -199,6 +199,7 @@ public class MoreEvaporationPlantCategory extends MultiblockCategory<MoreEvapora
             return true;
         }
 
+        // TODO LargeType対応
         @Override
         protected void fillPreview(IPreviewBuilder builder) {
             super.fillPreview(builder);
