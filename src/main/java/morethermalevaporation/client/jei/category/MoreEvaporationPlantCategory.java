@@ -9,6 +9,7 @@ import giselle.jei_mekanism_multiblocks.client.jei.ResultWidget;
 import giselle.jei_mekanism_multiblocks.client.jei.category.ICostConsumer;
 import giselle.jei_mekanism_multiblocks.client.jei.category.ResistiveHeaterCategory;
 import giselle.jei_mekanism_multiblocks.client.preview.IPreviewBuilder;
+import giselle.jei_mekanism_multiblocks.client.preview.PreviewSelector;
 import giselle.jei_mekanism_multiblocks.client.preview.PreviewSelectors;
 import giselle.jei_mekanism_multiblocks.common.JEI_MekanismMultiblocks;
 import giselle.jei_mekanism_multiblocks.common.util.VolumeTextHelper;
@@ -41,7 +42,10 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.function.Consumer;
+import java.util.function.IntPredicate;
 
 public class MoreEvaporationPlantCategory extends MultiblockCategory<MoreEvaporationPlantCategory.MoreEvaporationPlantWidget> {
     private final MoreThermalEvaporationTier tier;
@@ -71,6 +75,52 @@ public class MoreEvaporationPlantCategory extends MultiblockCategory<MoreEvapora
     }
 
     public abstract static class MoreEvaporationPlantWidget extends MultiblockWidget {
+
+        private static final byte[][] BOTTOM_ALLOWED_GRID = {
+                {0, 0, 0, 0, 1, 0, 0, 0, 0},
+                {0, 0, 1, 1, 1, 1, 1, 0, 0},
+                {0, 1, 1, 1, 1, 1, 1, 1, 0},
+                {0, 1, 1, 1, 1, 1, 1, 1, 0},
+                {1, 1, 1, 1, 1, 1, 1, 1, 1},
+                {0, 1, 1, 1, 1, 1, 1, 1, 0},
+                {0, 1, 1, 1, 1, 1, 1, 1, 0},
+                {0, 0, 1, 1, 1, 1, 1, 0, 0},
+                {0, 0, 0, 0, 1, 0, 0, 0, 0}
+        };
+        private static final byte[][] CENTER_FRAME_ALLOWED_GRID = {
+                {0, 0, 1, 1, 1, 1, 1, 0, 0},
+                {0, 1, 1, 3, 3, 3, 1, 1, 0},
+                {1, 1, 3, 3, 3, 3, 3, 1, 1},
+                {1, 3, 3, 3, 3, 3, 3, 3, 1},
+                {1, 3, 3, 3, 3, 3, 3, 3, 1},
+                {1, 3, 3, 3, 3, 3, 3, 3, 1},
+                {1, 1, 3, 3, 3, 3, 3, 1, 1},
+                {0, 1, 1, 3, 3, 3, 1, 1, 0},
+                {0, 0, 1, 1, 1, 1, 1, 0, 0}
+        };
+        private static final byte[][] CENTER_ALLOWED_GRID = {
+                {0, 0, 1, 2, 2, 2, 1, 0, 0},
+                {0, 1, 1, 3, 3, 3, 1, 1, 0},
+                {1, 1, 3, 3, 3, 3, 3, 1, 1},
+                {2, 3, 3, 3, 3, 3, 3, 3, 2},
+                {2, 3, 3, 3, 3, 3, 3, 3, 2},
+                {2, 3, 3, 3, 3, 3, 3, 3, 2},
+                {1, 1, 3, 3, 3, 3, 3, 1, 1},
+                {0, 1, 1, 3, 3, 3, 1, 1, 0},
+                {0, 0, 1, 2, 2, 2, 1, 0, 0}
+        };
+        private static final byte[][] TOP_ALLOWED_GRID = {
+                {0, 0, 0, 0, 1, 0, 0, 0, 0},
+                {0, 4, 1, 1, 1, 1, 1, 4, 0},
+                {0, 1, 3, 3, 3, 3, 3, 1, 0},
+                {0, 1, 3, 3, 3, 3, 3, 1, 0},
+                {1, 1, 3, 3, 3, 3, 3, 1, 1},
+                {0, 1, 3, 3, 3, 3, 3, 1, 0},
+                {0, 1, 3, 3, 3, 3, 3, 1, 0},
+                {0, 4, 1, 1, 1, 1, 1, 4, 0},
+                {0, 0, 0, 0, 1, 0, 0, 0, 0}
+        };
+
         protected CheckBoxWidget useAdvancedSolarGeneratorCheckBox;
         protected CheckBoxWidget useFuelwoodHeaterCheckBox;
         protected CheckBoxWidget useLargeTypesCheckBox;
@@ -207,7 +257,6 @@ public class MoreEvaporationPlantCategory extends MultiblockCategory<MoreEvapora
             MoreThermalEvaporationTier tier = getTier();
 
             Vec3i dimension = this.getDimension();
-            BlockPos controllerPos = new BlockPos(dimension.getX() - 2, 1, dimension.getZ() - 1);
 
             boolean useGlass = this.isUseGlass();
             boolean useAdvancedSolarGenerator = this.isUseAdvancedSolarGenerator();
@@ -215,20 +264,63 @@ public class MoreEvaporationPlantCategory extends MultiblockCategory<MoreEvapora
             BlockState valveState = MoreThermalEvaporationBlocks.VALVES.get(tier).defaultState();
             BlockState sideState = useGlass ? this.getGlassBlock().defaultBlockState() : edgeState;
 
-            builder.setBlockShell(edgeState, sideState);
-            builder.setBlock(PreviewSelectors.top(), Blocks.AIR.defaultBlockState());
-            builder.setBlock(controllerPos, Attribute.setFacing(Attribute.setActive(MoreThermalEvaporationBlocks.CONTROLLERS.get(tier).defaultState(), true), Direction.SOUTH));
-            builder.replaceBlock(PreviewSelectors.shellSidesCCW(), sideState, valveState, this.getValveCount());
+            if (isUseLargeType()) {
+                // Bottom Frame
+                PreviewSelector bottomFramePositions = layerPattern(BOTTOM_ALLOWED_GRID, value -> value == 1, 0, 0);
+                builder.setBlock(bottomFramePositions, edgeState);
 
-            if (useGlass && !useAdvancedSolarGenerator) {
-                builder.setBlock(PreviewSelectors.topCorners(), edgeState);
-                builder.setBlock(PreviewSelectors.topEdges(), sideState);
+                // Bottom Center Frame
+                PreviewSelector bottomCenterFramePositions = layerPattern(CENTER_FRAME_ALLOWED_GRID, value -> value == 1, 1, 1);
+                builder.setBlock(bottomCenterFramePositions, edgeState);
+
+                // Center Frame
+                PreviewSelector centerFramePositions = layerPattern(CENTER_ALLOWED_GRID, value -> value == 1, 2, dimension.getY() - 3);
+                builder.setBlock(centerFramePositions, edgeState);
+
+                // Center Side
+                PreviewSelector centerSidePositions = layerPattern(CENTER_ALLOWED_GRID, value -> value == 2, 2, dimension.getY() - 3);
+                builder.setBlock(centerSidePositions, sideState);
+
+                // Controller
+                // NOTE replaceBlock前にコントローラを配置することで、sideStateの変換に巻き込まれない
+                BlockPos controllerPos = new BlockPos(dimension.getX() - 5, 2, dimension.getZ() - 1);
+                builder.setBlock(controllerPos, Attribute.setFacing(Attribute.setActive(MoreThermalEvaporationBlocks.CONTROLLERS.get(tier).defaultState(), true), Direction.SOUTH));
+
+                // Center Valve Replacement
+                builder.replaceBlock(centerSidePositions, sideState, valveState, this.getValveCount());
+
+                // Top Center Frame
+                PreviewSelector topCenterFramePositions = layerPattern(CENTER_FRAME_ALLOWED_GRID, value -> value == 1, dimension.getY() - 2, dimension.getY() - 2);
+                builder.setBlock(topCenterFramePositions, edgeState);
+
+                // Top Frame
+                PreviewSelector topFramePositions = layerPattern(TOP_ALLOWED_GRID, value -> value == 1, dimension.getY() - 1, dimension.getY() - 1);
+                builder.setBlock(topFramePositions, edgeState);
+
+                // Solar Generator
+                if (useAdvancedSolarGenerator) {
+                    PreviewSelector solarGeneratorPositions = layerPattern(TOP_ALLOWED_GRID, value -> value == 4, dimension.getY() - 1, dimension.getY() - 1);
+                    builder.setBlock(solarGeneratorPositions, GeneratorsBlocks.ADVANCED_SOLAR_GENERATOR.defaultState());
+                }
+
             } else {
-                builder.setBlock(PreviewSelectors.topEdges(), edgeState);
-            }
+                BlockPos controllerPos = new BlockPos(dimension.getX() - 2, 1, dimension.getZ() - 1);
+                builder.setBlockShell(edgeState, sideState);
+                builder.setBlock(PreviewSelectors.top(), Blocks.AIR.defaultBlockState());
+                builder.setBlock(controllerPos, Attribute.setFacing(Attribute.setActive(MoreThermalEvaporationBlocks.CONTROLLERS.get(tier).defaultState(), true), Direction.SOUTH));
+                builder.replaceBlock(PreviewSelectors.shellSidesCCW(), sideState, valveState, this.getValveCount());
 
-            if (useAdvancedSolarGenerator) {
-                builder.setBlock(PreviewSelectors.topCorners(), GeneratorsBlocks.ADVANCED_SOLAR_GENERATOR.defaultState());
+                if (useGlass && !useAdvancedSolarGenerator) {
+                    builder.setBlock(PreviewSelectors.topCorners(), edgeState);
+                    builder.setBlock(PreviewSelectors.topEdges(), sideState);
+                } else {
+                    builder.setBlock(PreviewSelectors.topEdges(), edgeState);
+                }
+
+                if (useAdvancedSolarGenerator) {
+                    builder.setBlock(PreviewSelectors.topCorners(), GeneratorsBlocks.ADVANCED_SOLAR_GENERATOR.defaultState());
+                }
+
             }
 
         }
@@ -433,6 +525,18 @@ public class MoreEvaporationPlantCategory extends MultiblockCategory<MoreEvapora
         }
 
         @Override
+        public Vec3i getDimension() {
+            Vec3i dimension = super.getDimension();
+
+            boolean large = this.useLargeTypesCheckBox != null && this.isUseLargeType();
+
+            int width = large ? 9 : 4;
+            int length = large ? 9 : 4;
+
+            return new Vec3i(width, dimension.getY(), length);
+        }
+
+        @Override
         public int getDimensionWidthMin() {
             return 4;
         }
@@ -534,6 +638,26 @@ public class MoreEvaporationPlantCategory extends MultiblockCategory<MoreEvapora
         protected MoreThermalEvaporationTier getTier() {
             return MoreThermalEvaporationTier.MULTIVERSAL;
         }
+    }
+
+    public static PreviewSelector layerPattern(byte[][] pattern, IntPredicate valuePredicate, int minY, int maxY) {
+        return (builder) -> {
+            int maxX = 9 - 1;
+            int maxZ = 9 - 1;
+            List<BlockPos> positions = new ArrayList<>();
+
+            for (int y = minY; y <= maxY; ++y) {
+                for (int x = 0; x <= maxX; ++x) {
+                    for (int z = 0; z <= maxZ; ++z) {
+                        if (valuePredicate.test(pattern[z][x])) {
+                            positions.add(new BlockPos(x, y, z));
+                        }
+                    }
+                }
+            }
+
+            return positions;
+        };
     }
 
 }
