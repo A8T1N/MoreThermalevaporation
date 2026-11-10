@@ -12,17 +12,17 @@ import mezz.jei.api.recipe.RecipeType;
 import mezz.jei.api.registration.IRecipeCatalystRegistration;
 import mezz.jei.api.registration.IRecipeCategoryRegistration;
 import mezz.jei.api.registration.IRecipeRegistration;
+import morethermalevaporation.MoreThermalEvaporation;
 import morethermalevaporation.client.jei.category.MoreEvaporationPlantCategory;
 import morethermalevaporation.common.tier.MoreThermalEvaporationTier;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraftforge.common.ForgeConfigSpec;
 
 import java.lang.reflect.InvocationTargetException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 import java.util.function.Supplier;
+
+import static giselle.jei_mekanism_multiblocks.client.jei.MultiblockCategory.createRecipeType;
 
 public class MoreThermalEvaporationJEIHelper {
     private static final List<MultiblockCategory<? extends MultiblockWidget>> categories = new ArrayList<>();
@@ -32,11 +32,12 @@ public class MoreThermalEvaporationJEIHelper {
         ClientConfig config = JEI_MekanismMultiblocks_Config.CLIENT;
         IGuiHelper guiHelper = registry.getJeiHelpers().getGuiHelper();
         categories.clear();
-        addCategory(config.evaporationPlantVisible, () -> new MoreEvaporationPlantCategory(guiHelper, MoreThermalEvaporationTier.BASIC, MoreEvaporationPlantCategory.BasicEvaporationPlantWidget.class));
-        addCategory(config.evaporationPlantVisible, () -> new MoreEvaporationPlantCategory(guiHelper, MoreThermalEvaporationTier.ADVANCED, MoreEvaporationPlantCategory.AdvancedEvaporationPlantWidget.class));
-        addCategory(config.evaporationPlantVisible, () -> new MoreEvaporationPlantCategory(guiHelper, MoreThermalEvaporationTier.ELITE, MoreEvaporationPlantCategory.EliteEvaporationPlantWidget.class));
-        addCategory(config.evaporationPlantVisible, () -> new MoreEvaporationPlantCategory(guiHelper, MoreThermalEvaporationTier.ULTIMATE, MoreEvaporationPlantCategory.UltimateEvaporationPlantWidget.class));
-        addCategory(config.evaporationPlantVisible, () -> new MoreEvaporationPlantCategory(guiHelper, MoreThermalEvaporationTier.CREATIVE, MoreEvaporationPlantCategory.CreativeEvaporationPlantWidget.class));
+
+        for (MoreThermalEvaporationTier tier : MoreThermalEvaporationTier.values()) {
+            RecipeType<MoreEvaporationPlantCategory.MoreEvaporationPlantWidget> recipeType = MTE_RECIPE_TYPES.get(tier);
+            addCategory(config.evaporationPlantVisible, () -> new MoreEvaporationPlantCategory(guiHelper, tier, recipeType));
+        }
+
         for (MultiblockCategory<?> category : getCategories()) {
             registry.addRecipeCategories(category);
         }
@@ -97,4 +98,14 @@ public class MoreThermalEvaporationJEIHelper {
             category.registerRecipeCatalysts(registry);
         }
     }
+
+    private static final Map<MoreThermalEvaporationTier, RecipeType<MoreEvaporationPlantCategory.MoreEvaporationPlantWidget>> MTE_RECIPE_TYPES =
+            // NOTE JEI表示順の為にティア順をパスに追加
+            Map.ofEntries(
+                    Map.entry(MoreThermalEvaporationTier.BASIC, createRecipeType(MoreThermalEvaporation.rl("0_basic_evaporation_plant"), MoreEvaporationPlantCategory.BasicEvaporationPlantWidget.class)),
+                    Map.entry(MoreThermalEvaporationTier.ADVANCED, createRecipeType(MoreThermalEvaporation.rl("1_advanced_evaporation_plant"), MoreEvaporationPlantCategory.AdvancedEvaporationPlantWidget.class)),
+                    Map.entry(MoreThermalEvaporationTier.ELITE, createRecipeType(MoreThermalEvaporation.rl("2_elite_evaporation_plant"), MoreEvaporationPlantCategory.EliteEvaporationPlantWidget.class)),
+                    Map.entry(MoreThermalEvaporationTier.ULTIMATE, createRecipeType(MoreThermalEvaporation.rl("3_ultimate_evaporation_plant"), MoreEvaporationPlantCategory.UltimateEvaporationPlantWidget.class)),
+                    Map.entry(MoreThermalEvaporationTier.CREATIVE, createRecipeType(MoreThermalEvaporation.rl("8_creative_evaporation_plant"), MoreEvaporationPlantCategory.CreativeEvaporationPlantWidget.class))
+            );
 }
