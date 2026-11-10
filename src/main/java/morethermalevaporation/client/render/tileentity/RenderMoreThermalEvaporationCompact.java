@@ -30,7 +30,6 @@ public class RenderMoreThermalEvaporationCompact extends MekanismTileEntityRende
 
     private final MoreThermalEvaporationTier tier;
     private static final Map<FluidStack, Int2ObjectMap<Model3D>> cachedCenterFluids = new HashMap<>();
-    private static final Map<FluidStack, Int2ObjectMap<Model3D>> cachedValveFluids = new HashMap<>();
 
     private static final int stages = 1_400;
 
@@ -41,7 +40,6 @@ public class RenderMoreThermalEvaporationCompact extends MekanismTileEntityRende
 
     public static void resetCachedModels() {
         cachedCenterFluids.clear();
-        cachedValveFluids.clear();
     }
 
     @Override
@@ -68,9 +66,9 @@ public class RenderMoreThermalEvaporationCompact extends MekanismTileEntityRende
                         .setTexture(MekanismRenderer.getFluidTexture(fluid, FluidTextureType.STILL))
                         .setSideRender(Direction.DOWN, false)
                         .setSideRender(Direction.UP, stage < stages)
-                        .xBounds(0.016F, 0.984F)
-                        .yBounds(0.125F, 0.125F + 0.75F * (stage / (float) stages))
-                        .zBounds(0.016F, 0.984F)
+                        .xBounds(0.020F, 0.975F)
+                        .yBounds(0.135F, 0.135F + 0.75F * (stage / (float) stages))
+                        .zBounds(0.020F, 0.975F)
                 );
     }
 
